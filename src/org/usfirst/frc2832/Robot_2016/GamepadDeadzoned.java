@@ -1,4 +1,4 @@
-package org.usfirst.frc2832.Robot_2015;
+package org.usfirst.frc2832.Robot_2016;
 
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -81,5 +81,3 @@ public class GamepadDeadzoned extends Joystick {
 		return super.getRawAxis(axis);
 	}
 }
-Status API Training Shop Blog About Pricing
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help

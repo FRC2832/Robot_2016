@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc2832.Robot_2016.commands.*;
-import org.usfirst.frc2832.Robot_2016.subsystems.*;
+//import org.usfirst.frc2832.Robot_2016.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
