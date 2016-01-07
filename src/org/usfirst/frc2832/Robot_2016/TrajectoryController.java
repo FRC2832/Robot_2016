@@ -72,7 +72,7 @@ public class TrajectoryController {
 	private double getLerped(double currentValue) {
 		double r = currentValue / target;
 		if (r < maxMoment) {
-			return (lerp(start, min, r / maxMoment));
+			return (lerp(start, max, r / maxMoment));
 		} else if (r < slowMoment) {
 			return (max);
 		} else {
