@@ -1,4 +1,6 @@
-package org.usfirst.frc2832.Robot_2016;
+package org.usfirst.frc2832.Robot_2016.HID;
+
+import org.usfirst.frc2832.Robot_2016.Coordinate;
 
 import edu.wpi.first.wpilibj.Joystick;
 
