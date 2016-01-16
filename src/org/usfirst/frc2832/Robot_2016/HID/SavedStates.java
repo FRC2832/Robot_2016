@@ -9,14 +9,35 @@ import java.util.ArrayList;
 
 /**
  * Utility class to save and load many gamepad states at once
- * /home/lvuser/autondata/FILENAME is where we should save them
  */
 public class SavedStates {
+	
+	private static String convertNameToPath(String name) {
+		return ("/home/lvuser/autondata/" + name + ".dat");
+	}
+	
+	/**
+	 * Saves an ArrayList of GamepadStates to a file.
+	 * @param states
+	 * @param name The name of the file, not including path or extension
+	 */
+	public static void save(ArrayList<GamepadState> states, String name) {
+		saveFile(states, convertNameToPath(name));
+	}
+	
+	/**
+	 * Loads an ArrayList of GamepadStates from a file.
+	 * @param name The name of the file, not including path or extension
+	 */
+	public static ArrayList<GamepadState> load(String name) {
+		return (loadFile(convertNameToPath(name)));
+	}
+	
 	/**
 	 * This saves the file
 	 * @param states Some states
 	 */
-	public static void save(ArrayList<GamepadState> states, String path) {
+	protected static void saveFile(ArrayList<GamepadState> states, String path) {
 		try {
 			FileOutputStream fo = new FileOutputStream(path);
 			ObjectOutputStream oi = new ObjectOutputStream(fo);
@@ -29,7 +50,7 @@ public class SavedStates {
 		}
 	}
 	
-	public static ArrayList<GamepadState> load(String path) {
+	protected static ArrayList<GamepadState> loadFile(String path) {
 		Object result = null;
 		try {
 			FileInputStream fi = new FileInputStream(path);
