@@ -39,6 +39,7 @@ public class GamepadState implements Serializable {
 	public final double axes[];
 	public final boolean buttons[];
 	public final int pov;
+	public final long timestamp;
 	
 	/**
 	 * Creates a new gamepad state based off of raw data. You probably don't want to use this, use makeState instead.
@@ -47,10 +48,11 @@ public class GamepadState implements Serializable {
 	 * @param pov
 	 * @see makeState
 	 */
-	public GamepadState(double axes[], boolean buttons[], int pov) {
+	public GamepadState(double axes[], boolean buttons[], int pov, long timestamp) {
 		this.axes = axes.clone();
 		this.buttons = buttons.clone();
 		this.pov = pov;
+		this.timestamp = timestamp;
 	}
 	
 	/**
@@ -67,6 +69,6 @@ public class GamepadState implements Serializable {
 		for(int i = 0; i < buttons.length; i ++)
 			buttons[i] = j.getRawButton(i + 1);
 		
-		return (new GamepadState(axes, buttons, j.getPOV()));
+		return (new GamepadState(axes, buttons, j.getPOV(), System.currentTimeMillis()));
 	}
 }
