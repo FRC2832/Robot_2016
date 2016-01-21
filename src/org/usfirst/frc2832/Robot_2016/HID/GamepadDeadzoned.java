@@ -16,16 +16,16 @@ public class GamepadDeadzoned extends Joystick {
 	}
 
 	private double deadzone(double in) {
-		return (Math.abs(in) < range ? 0 : in);
+		return Math.abs(in) < range ? 0 : in;
 	}
 	
 	private boolean arrContains(int[] arr, int x) {
 		for(int a : arr) {
 			if (a == x)
-				return (true);
+				return true;
 		}
 		
-		return (false);
+		return false;
 	}
 	
 	
@@ -38,7 +38,7 @@ public class GamepadDeadzoned extends Joystick {
 	@Deprecated
 	@Override
 	public double getAxis(AxisType axis) {
-		return (getRawAxis(axis.value));
+		return getRawAxis(axis.value);
 	}
 	
 	/**
@@ -50,9 +50,9 @@ public class GamepadDeadzoned extends Joystick {
 	private Coordinate deadzone2D(double x, double y) {
 		double magnitude = Math.sqrt(x * x + y * y);
 		if (magnitude <= range)
-			return new Coordinate(0,0);
+			return new Coordinate(0, 0);
 		double scale = (magnitude - range) / (1 - range);
-		return (new Coordinate(x / magnitude * scale, y / magnitude * scale));
+		return new Coordinate(x / magnitude * scale, y / magnitude * scale);
 	}
 	
 	@Override
@@ -62,21 +62,19 @@ public class GamepadDeadzoned extends Joystick {
 					super.getRawAxis(leftstickAxis[0]), 
 					super.getRawAxis(leftstickAxis[1])));
 			if (leftstickAxis[0] == axis)
-				return (p.x);
-			else
-				return (p.y);
+				return p.x;
+			return p.y;
 		}
 		if (arrContains(rightstickAxis, axis)) {
 			Coordinate p = (deadzone2D(
 					super.getRawAxis(rightstickAxis[0]), 
 					super.getRawAxis(rightstickAxis[1])));
 			if (rightstickAxis[0] == axis)
-				return (p.x);
-			else
-				return (p.y);
+				return p.x;
+			return p.y;
 		}
 		
-		return (deadzone(super.getRawAxis(axis)));
+		return deadzone(super.getRawAxis(axis));
 	}
 	
 	public double getDebugAxis(int axis) {

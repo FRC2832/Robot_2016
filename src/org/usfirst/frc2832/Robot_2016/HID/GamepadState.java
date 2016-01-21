@@ -69,6 +69,6 @@ public class GamepadState implements Serializable {
 		for(int i = 0; i < buttons.length; i ++)
 			buttons[i] = j.getRawButton(i + 1);
 		
-		return (new GamepadState(axes, buttons, j.getPOV(), System.currentTimeMillis()));
+		return new GamepadState(axes, buttons, j.getPOV(), System.currentTimeMillis());
 	}
 }

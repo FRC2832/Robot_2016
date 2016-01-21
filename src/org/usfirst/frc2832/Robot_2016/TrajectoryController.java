@@ -66,17 +66,17 @@ public class TrajectoryController {
 	 */
 	public double get(double currentValue) {
 		if (isLerped)
-			return (getLerped(currentValue));
-		return (getLined(currentValue));
+			return getLerped(currentValue);
+		return getLined(currentValue);
 	}
 	private double getLerped(double currentValue) {
 		double r = currentValue / target;
 		if (r < maxMoment) {
-			return (lerp(start, max, r / maxMoment));
+			return lerp(start, max, r / maxMoment);
 		} else if (r < slowMoment) {
-			return (max);
+			return max;
 		} else {
-			return (lerp(max, min, (r - slowMoment) / (1 - slowMoment)));
+			return lerp(max, min, (r - slowMoment) / (1 - slowMoment));
 		}
 	}
 	

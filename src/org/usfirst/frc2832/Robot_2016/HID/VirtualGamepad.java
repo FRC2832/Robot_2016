@@ -27,6 +27,6 @@ public class VirtualGamepad {
 		lastIndex--;
 		// lastIndex now has the latest recorded data from the gamepad at this current time.
 		
-		return (states.get(lastIndex));
+		return states.get(lastIndex);
 	}
 }

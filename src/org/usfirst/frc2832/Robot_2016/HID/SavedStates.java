@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class SavedStates {
 	
 	private static String convertNameToPath(String name) {
-		return ("/home/lvuser/autondata/" + name + ".dat");
+		return "/home/lvuser/autondata/" + name + ".dat";
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class SavedStates {
 	 * @param name The name of the file, not including path or extension
 	 */
 	public static ArrayList<GamepadState> load(String name) {
-		return (loadFile(convertNameToPath(name)));
+		return loadFile(convertNameToPath(name));
 	}
 	
 	/**
@@ -64,8 +64,8 @@ public class SavedStates {
 		}
 		
 		if (result instanceof ArrayList)
-			return ((ArrayList<GamepadState>) result);
+			return (ArrayList<GamepadState>) result;
 		
-		return (null);
+		return null;
 	}
 }
