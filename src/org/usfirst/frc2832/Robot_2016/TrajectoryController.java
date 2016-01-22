@@ -18,7 +18,7 @@ public class TrajectoryController {
 	/**
 	 * Constructor that doesn't use given slopes
 	 * @param target The distance to travel (in whatever units you are able to input, like meters or degrees)
-	 * @param start The inital output, usually measured in voltage. Do NOT make it 0.
+	 * @param start The initial output, usually measured in voltage. Do NOT make it 0.
 	 * @param min The minimum output, make it high enough to still register on the motors
 	 * @param max The max saturation speed, measured in voltage
 	 */
@@ -33,7 +33,7 @@ public class TrajectoryController {
 	/**
 	 * Constructor that takes in slopes to control acceleration and deceleration
 	 * @param target The distance to travel (in whatever units you are able to input, like meters or degrees)
-	 * @param start The inital output, usually measured in voltage. Do NOT make it 0.
+	 * @param start The initial output, usually measured in voltage. Do NOT make it 0.
 	 * @param min The minimum output, make it high enough to still register on the motors
 	 * @param max The max saturation speed, measured in voltage
 	 * @param slope1 The acceleration speed, should be positive, measured in output units per input units (i.e. voltage per meter)

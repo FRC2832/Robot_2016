@@ -16,20 +16,20 @@ public class BallMotors extends Subsystem {
 		
 	}
 	/*
-	 * Spins the wheels inwards, intaking a boulder.
+	 * Spins the wheels inwards to take in a boulder.
 	 */
 	public static void intake()
 	{
 		RobotMap.ballIngestLeft.set(SPEED);
-		RobotMap.ballIngestLeft.set(-SPEED);
+		RobotMap.ballIngestRight.set(-SPEED);
 	}
 	/*
-	 * Spins the wheels outwards, expelling a boulder.
+	 * Spins the wheels outwards to expel a boulder.
 	 */
 	public static void expel()
 	{
 		RobotMap.ballIngestLeft.set(-SPEED);
-		RobotMap.ballIngestLeft.set(SPEED);
+		RobotMap.ballIngestRight.set(SPEED);
 	}
 	/*
 	 * Stops the wheels from spinning.
@@ -37,7 +37,7 @@ public class BallMotors extends Subsystem {
 	public static void stopMotors()
 	{
 		RobotMap.ballIngestLeft.set(0);
-		RobotMap.ballIngestLeft.set(0);
+		RobotMap.ballIngestRight.set(0);
 	}
 	@Override
 	protected void initDefaultCommand() {
