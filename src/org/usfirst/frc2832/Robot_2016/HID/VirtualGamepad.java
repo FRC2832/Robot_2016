@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class VirtualGamepad {
 	private ArrayList<GamepadState> states;
+	private boolean done;
+	
 	
 	// Millisecond timings
 	long startTime, recordedOffset;
@@ -16,6 +18,13 @@ public class VirtualGamepad {
 	public void start() {
 		startTime = System.currentTimeMillis();
 		recordedOffset = states.get(0).timestamp;
+		
+		done = false;
+		lastIndex = 0;
+	}
+	
+	public boolean isDone() {
+		return (done);
 	}
 	
 	public GamepadState getCurrentState() {
@@ -25,8 +34,13 @@ public class VirtualGamepad {
 		while (states.get(lastIndex).timestamp - recordedOffset <= time - startTime)
 			lastIndex++;
 		lastIndex--;
-		// lastIndex now has the latest recorded data from the gamepad at this current time.
 		
-		return states.get(lastIndex);
+		if (lastIndex >= states.size()) {
+			done = true;
+			return (null);
+		}
+		
+		// lastIndex now has the latest recorded data from the gamepad at this current time.
+		return (states.get(lastIndex));
 	}
 }

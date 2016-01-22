@@ -29,12 +29,12 @@ public class GamepadState implements Serializable {
 		BUTTON_BACK = 6,
 		BUTTON_START = 7,
 		
-		AXIS_RX = 0,
-		AXIS_RY = 1,
+		AXIS_LX = 0,
+		AXIS_LY = 1,
 		AXIS_LT = 2,
 		AXIS_RT = 3,
-		AXIS_LX = 4,
-		AXIS_LY = 5;
+		AXIS_RX = 4,
+		AXIS_RY = 5;
 	
 	public final double axes[];
 	public final boolean buttons[];
@@ -69,6 +69,6 @@ public class GamepadState implements Serializable {
 		for(int i = 0; i < buttons.length; i ++)
 			buttons[i] = j.getRawButton(i + 1);
 		
-		return new GamepadState(axes, buttons, j.getPOV(), System.currentTimeMillis());
+		return (new GamepadState(axes, buttons, j.getPOV(), System.currentTimeMillis()));
 	}
 }

@@ -12,17 +12,43 @@ import java.util.ArrayList;
  */
 public class SavedStates {
 	
+	private static ArrayList<GamepadState> recordedStates;
+	private static boolean recording = false;
+	
+	public static boolean startRecording() {
+		if (recording)
+			return (false);
+		
+		recordedStates = new ArrayList<>();
+		recording = true;
+		return (true);
+	}
+	public static void record(GamepadState gs) {
+		// Must take place after the previous one
+		if (!recording || (recordedStates.size() > 0 && 
+				gs.timestamp <= recordedStates.get(recordedStates.size() - 1).timestamp))
+			return;
+		recordedStates.add(gs);
+	}
+	public static void stopRecording() {
+		recording = false;
+	}
+	
+	
+	public static ArrayList<GamepadState> getRecordedStates() {
+		return (recordedStates);
+	}
+	
 	private static String convertNameToPath(String name) {
-		return "/home/lvuser/autondata/" + name + ".dat";
+		return ("/home/lvuser/autondata/" + name + ".dat");
 	}
 	
 	/**
-	 * Saves an ArrayList of GamepadStates to a file.
-	 * @param states
+	 * Saves the recorded GamepadStates to a file.
 	 * @param name The name of the file, not including path or extension
 	 */
-	public static void save(ArrayList<GamepadState> states, String name) {
-		saveFile(states, convertNameToPath(name));
+	public static void save(String name) {
+		saveFile(recordedStates, convertNameToPath(name));
 	}
 	
 	/**
@@ -30,7 +56,7 @@ public class SavedStates {
 	 * @param name The name of the file, not including path or extension
 	 */
 	public static ArrayList<GamepadState> load(String name) {
-		return loadFile(convertNameToPath(name));
+		return (loadFile(convertNameToPath(name)));
 	}
 	
 	/**
@@ -64,8 +90,8 @@ public class SavedStates {
 		}
 		
 		if (result instanceof ArrayList)
-			return (ArrayList<GamepadState>) result;
+			return ((ArrayList<GamepadState>) result);
 		
-		return null;
+		return (null);
 	}
 }
