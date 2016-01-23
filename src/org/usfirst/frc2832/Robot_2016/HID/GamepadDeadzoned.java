@@ -19,7 +19,7 @@ public class GamepadDeadzoned extends Joystick {
 		return Math.abs(in) < range ? 0 : in;
 	}
 	
-	private boolean arrContains(int[] arr, int x) {
+	private static boolean arrContains(int[] arr, int x) {
 		for(int a : arr) {
 			if (a == x)
 				return true;
@@ -62,16 +62,16 @@ public class GamepadDeadzoned extends Joystick {
 					super.getRawAxis(leftstickAxis[0]), 
 					super.getRawAxis(leftstickAxis[1])));
 			if (leftstickAxis[0] == axis)
-				return p.x;
-			return p.y;
+				return p.getX();
+			return p.getY();
 		}
 		if (arrContains(rightstickAxis, axis)) {
 			Coordinate p = (deadzone2D(
 					super.getRawAxis(rightstickAxis[0]), 
 					super.getRawAxis(rightstickAxis[1])));
 			if (rightstickAxis[0] == axis)
-				return p.x;
-			return p.y;
+				return p.getX();
+			return p.getY();
 		}
 		
 		return deadzone(super.getRawAxis(axis));

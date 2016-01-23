@@ -29,11 +29,11 @@ public class SavedStates {
 	
 	public static boolean startRecording() {
 		if (recording)
-			return (false);
+			return false;
 		
 		recordedStates = new ArrayList<>();
 		recording = true;
-		return (true);
+		return true;
 	}
 	public static void record(GamepadState gs) {
 		// Must take place after the previous one
@@ -48,11 +48,11 @@ public class SavedStates {
 	
 	
 	public static ArrayList<GamepadState> getRecordedStates() {
-		return (recordedStates);
+		return recordedStates;
 	}
 	
 	private static String convertNameToPath(String name) {
-		return ("/home/lvuser/" + name);
+		return "/home/lvuser/" + name;
 	}
 	/**
 	 * Returns saved names of autonomous files from the index
@@ -60,7 +60,7 @@ public class SavedStates {
 	 * @return
 	 */
 	public static String[] getIndex() {
-		return (index.toArray(new String[index.size()]));
+		return index.toArray(new String[index.size()]);
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class SavedStates {
 	 * @throws FileNotFoundException 
 	 */
 	public static ArrayList<GamepadState> load(String name) throws FileNotFoundException {
-		return (loadFile(convertNameToPath(name) + ".dat"));
+		return loadFile(convertNameToPath(name) + ".dat");
 	}
 	
 	/**
@@ -151,8 +151,8 @@ public class SavedStates {
 		}
 		
 		if (result instanceof ArrayList)
-			return ((ArrayList<GamepadState>) result);
+			return (ArrayList<GamepadState>) result;
 		
-		return (null);
+		return null;
 	}
 }
