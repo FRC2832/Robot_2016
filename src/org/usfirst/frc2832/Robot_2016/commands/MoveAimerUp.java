@@ -5,14 +5,14 @@ import org.usfirst.frc2832.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MoveAimmerDown extends Command {
+public class MoveAimerUp extends Command {
 
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		requires(Robot.aimer);
-		RobotMap.winchMotor.set(0.6);
-		
+		requires (Robot.aimer);
+		RobotMap.winchMotor.set(-0.6);
+
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class MoveAimmerDown extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
+		//turn off winch
+		RobotMap.winchMotor.set(0);
 	}
 
 	@Override

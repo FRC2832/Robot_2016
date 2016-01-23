@@ -14,8 +14,8 @@ package org.usfirst.frc2832.Robot_2016;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadDeadzoned;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
-import org.usfirst.frc2832.Robot_2016.commands.MoveAimmerDown;
-import org.usfirst.frc2832.Robot_2016.commands.MoveAimmerUp;
+import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
+import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -68,9 +68,9 @@ public class OI {
     	//GamePad Settings
     	gamepad = new GamepadDeadzoned(0);
 	    aButton = new JoystickButton(gamepad,0);
-	    aButton.whileHeld(new MoveAimmerDown());
+	    aButton.whileHeld(new MoveAimerDown());
 	    bButton = new JoystickButton(gamepad,1);
-	    bButton.whileHeld(new MoveAimmerUp());
+	    bButton.whileHeld(new MoveAimerUp());
 	    xButton = new JoystickButton(gamepad, 3);
 	    xButton.whenPressed(new GoToLevel(1));
 	    

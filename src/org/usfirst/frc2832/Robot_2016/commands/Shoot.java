@@ -36,8 +36,8 @@ public class Shoot extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		//returns true only when timeStart + TIMEOUT >= current time OR when the angle is within the TOLERANCE
-		return (Math.abs(Kicker.getAngle() - startAngle) < ANGLE_TOLERANCE || (timeStart + TIMEOUT) > System.currentTimeMillis());
+		//returns true only when timeStart + TIMEOUT < current time OR when the angle is within the TOLERANCE
+		return (Math.abs(Kicker.getAngle() - startAngle) < ANGLE_TOLERANCE || (timeStart + TIMEOUT) < System.currentTimeMillis());
 	}
 
 	@Override
