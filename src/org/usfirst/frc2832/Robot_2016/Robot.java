@@ -178,9 +178,12 @@ public class Robot extends IterativeRobot {
     	
     	// Play recordable autonomous until done if playing
     	if (playing) {
-    		if (!vg.isDone())
-    			return (vg.getCurrentState());
-    		playing = false;
+    		GamepadState virtualState = vg.getCurrentState();
+    		
+    		if (!vg.isDone() && virtualState != null)
+    			return (virtualState);
+    		else
+    			playing = false;
     	}
     	
     	return (realState);
