@@ -165,50 +165,50 @@ public class RecordableGamepad extends GamepadDeadzoned {
 	@Override
 	public double getRawAxis(int axis) {
 		if (mode == Mode.REAL)
-			return (super.getRawAxis(axis));
+			return super.getRawAxis(axis);
 		else if (mode == Mode.VIRTUAL) {
 			GamepadState gs = vg.getCurrentState();
 			// If done or something was done improperly, default to normal control
 			if (vg.isDone() || gs == null)
 				mode = Mode.REAL;
 			else
-				return (gs.axes[axis]);
+				return gs.axes[axis];
 		}
 		
-		return (0);
+		return 0;
 	}
 
 
 	@Override
 	public boolean getRawButton(int button) {
 		if (mode == Mode.REAL)
-			return (super.getRawButton(button));
+			return super.getRawButton(button);
 		else if (mode == Mode.VIRTUAL) {
 			GamepadState gs = vg.getCurrentState();
 			// If done or something was done improperly, default to normal control
 			if (vg.isDone() || gs == null)
 				mode = Mode.REAL;
 			else
-				return (gs.buttons[button]);
+				return gs.buttons[button];
 		}
 		
-		return (false);
+		return false;
 	}
 
 	@Override
 	public int getPOV(int pov) {
 		if (mode == Mode.REAL)
-			return (super.getPOV(pov));
+			return super.getPOV(pov);
 		else if (mode == Mode.VIRTUAL) {
 			GamepadState gs = vg.getCurrentState();
 			// If done or something was done improperly, default to normal control
 			if (vg.isDone() || gs == null)
 				mode = Mode.REAL;
 			else
-				return (gs.pov);
+				return gs.pov;
 		}
 		
-		return (-1);
+		return -1;
 	}
 	
 	

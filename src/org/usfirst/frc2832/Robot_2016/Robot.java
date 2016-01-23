@@ -14,8 +14,8 @@ package org.usfirst.frc2832.Robot_2016;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     
     public static OI oi;
     public static BallMotors ballMotors = new BallMotors();
-    public static Aimer aimer= new Aimer();;
+    public static Aimer aimer = new Aimer();
     public static double defaultAngle;
     public static CameraServer cameraServer;
     public static USBCamera camera1;
@@ -120,7 +120,7 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     
-    private void handleInput(GenericHID g) {
+    private static void handleInput(GenericHID g) {
     	RobotMap.driveTrain.arcadeDrive(
     			g.getRawAxis(GamepadState.AXIS_LY), 
     			g.getRawAxis(GamepadState.AXIS_RX));

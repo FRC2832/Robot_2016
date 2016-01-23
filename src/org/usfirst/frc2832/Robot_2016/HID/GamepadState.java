@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 /**
  * <p>
  * An immutable gamepad object.  Treat this as a gamepad "frozen in time".
- * This is to be used instead of the regular wpilib Joystick or GamepadDeadzoned
+ * This is to be used instead of the regular WPIlib Joystick or GamepadDeadzoned
  * classes, for use with recordable autonomous.
  * </p>
  * @author Brendan

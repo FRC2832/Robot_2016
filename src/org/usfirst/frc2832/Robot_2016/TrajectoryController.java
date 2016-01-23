@@ -56,7 +56,7 @@ public class TrajectoryController {
 	 * @param Ratio of x between endpoints
 	 * @return y-value
 	 */
-	private double lerp(double x, double y, double r) {
+	private static double lerp(double x, double y, double r) {
 		return (x * (1 - r) + y * r);
 	}
 	/**
@@ -91,7 +91,7 @@ public class TrajectoryController {
 			output = accelLine(currentValue);
 		else
 			output = decelLine(currentValue);
-		if(output > max)
+		if (output > max)
 			output = max;
 		return output;
 	}
@@ -109,7 +109,7 @@ public class TrajectoryController {
 		
 		TrajectoryController tc = new TrajectoryController(dist, 0.2, 0, 0.5, 0.5, 0.5);
 		
-		for(double feedValue = 0; feedValue < dist; feedValue += 0.05) {
+		for (double feedValue = 0; feedValue < dist; feedValue += 0.05) {
 			System.out.println(tc.get(feedValue));
 		}
 	}

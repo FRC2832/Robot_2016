@@ -24,7 +24,7 @@ public class VirtualGamepad {
 	}
 	
 	public boolean isDone() {
-		return (done);
+		return done;
 	}
 	
 	public GamepadState getCurrentState() {
@@ -40,13 +40,13 @@ public class VirtualGamepad {
 		
 		if (lastIndex >= states.size()) {
 			done = true;
-			return (null);
+			return null;
 		}
 		
 		// We overshot in that interpolation stage, that was the first time it "failed"
 		lastIndex--;
 		
 		// lastIndex now has the latest recorded data from the gamepad at this current time.
-		return (states.get(lastIndex));
+		return states.get(lastIndex);
 	}
 }
