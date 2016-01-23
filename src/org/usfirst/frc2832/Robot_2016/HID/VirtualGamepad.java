@@ -34,6 +34,8 @@ public class VirtualGamepad {
 		while (lastIndex < states.size()) {
 			if (states.get(lastIndex).timestamp - recordedOffset <= time - startTime)
 				lastIndex++;
+			else
+				break;
 		}
 		
 		if (lastIndex >= states.size()) {
