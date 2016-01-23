@@ -67,9 +67,9 @@ public class OI {
     	
     	//GamePad Settings
     	gamepad = new GamepadDeadzoned(0);
-	    aButton = new JoystickButton(gamepad,0);
+	    aButton = new JoystickButton(gamepad,1);
 	    aButton.whileHeld(new MoveAimerDown());
-	    bButton = new JoystickButton(gamepad,1);
+	    bButton = new JoystickButton(gamepad,2);
 	    bButton.whileHeld(new MoveAimerUp());
 	    xButton = new JoystickButton(gamepad, 3);
 	    xButton.whenPressed(new GoToLevel(1));
