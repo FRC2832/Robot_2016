@@ -11,7 +11,8 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
@@ -35,7 +36,6 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     
-    private ArrayList<GamepadState> recordedStates = new ArrayList<>();
     private boolean recording = false, playing = false;
     private VirtualGamepad vg;
 
@@ -101,10 +101,10 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	GamepadState state = GamepadState.makeState(oi.gamepad);
-    	
     	// Recordable Autonomous
-    	state = updateRecordState(state);
+    	updateRecordStatus();
+    	
+    	GamepadState state = requestGamepadState();
     	
     	handleInput(state);
     	
@@ -117,47 +117,94 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
     /**
      * Handles smart dashboard input for recording
+     * @author Brendan
      */
-    private GamepadState updateRecordState(GamepadState oldState) {
+    private void updateRecordStatus() {
+    	// Update recording status
     	if (SmartDashboard.getBoolean("Record Autonomous", false)) {
 			if (!recording) {
 				SavedStates.startRecording();
 				recording = true;
 			}
 		} else {
+			// Stop recording
 			if (recording) {
 				SavedStates.stopRecording();
 				
 				recording = false;
 			}
 		}
-		
-		if (SmartDashboard.getBoolean("Play Autonomous", false)) {
-			if (!playing) {
-				playing = true;
-				vg = new VirtualGamepad(SavedStates.getRecordedStates());
-				vg.start();
-			} else
-				playing = false;
-		}
-		
-		if (playing) {
-    		GamepadState newState = vg.getCurrentState();
-    		if (newState != null)
-    			return (newState);
-    		else {
-    			playing = false;
-    			return (oldState);
-    		}
-    			
-    	}
-    	if (recording)
-    		SavedStates.record(oldState);
     	
-    	return (oldState);
+    	// Update save status
+    	if (SmartDashboard.getBoolean("Save Autonomous", false)) {
+    		SmartDashboard.putBoolean("Save Autonomous", false);
+    		
+    		try {
+				SavedStates.save(SmartDashboard.getString("RecordableAutonomous ID"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    	// Update load status
+    	if (SmartDashboard.getBoolean("Load Autonomous", false)) {
+    		SmartDashboard.putBoolean("Load Autonomous", false);
+    		
+    		loadAuton(SmartDashboard.getString("RecordableAutonomous ID"));
+    	}
+    	// Play if requested
+    	if (SmartDashboard.getBoolean("Play Loaded Autonomous", false)) {
+    		SmartDashboard.putBoolean("Play Loaded Autonomous", false);
+    		
+    		playLoadedAuton();
+    	}
 	}
+    
+    /**
+     * A wrapper for getting the current state of the gamepad.  It handles recordable autonomous, so this can be used
+     * without any actual input from the driver's USB gamepad assuming proper load procedures are followed.
+     * @return A GamepadState object with the gamepad
+     * @author Brendan
+     */
+    private GamepadState requestGamepadState() {
+    	GamepadState realState = GamepadState.makeState(oi.gamepad);
+    	if (recording)
+    		SavedStates.record(realState);
+    	
+    	// Play recordable autonomous until done if playing
+    	if (playing) {
+    		if (!vg.isDone())
+    			return (vg.getCurrentState());
+    		playing = false;
+    	}
+    	
+    	return (realState);
+
+    }
+    /**
+     * Load an autonomous file to memory
+     * @param name The name, or identifier, of the file (no extension)
+     */
+    private void loadAuton(String name) {
+    	try {
+			vg = new VirtualGamepad(SavedStates.load(name));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    /**
+     * Play a loaded autonomous file. Fails silently if none has been loaded.
+     * @see Robot.loadAuton
+     */
+    private void playLoadedAuton() {
+    	if (vg != null && !playing) {
+    		playing = true;
+    		vg.start();
+    	}
+    }
     
     private void handleInput(GamepadState gs) {
     	RobotMap.driveTrain.arcadeDrive(

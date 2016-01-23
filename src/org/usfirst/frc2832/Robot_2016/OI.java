@@ -60,9 +60,12 @@ public class OI {
 
     	gamepad = new GamepadDeadzoned(0);
 	    
-        // SmartDashboard Buttons
+        // RecordableAuton controls
     	SmartDashboard.putBoolean("Record Autonomous", false);
-    	SmartDashboard.putBoolean("Play Autonomous", false);
+    	SmartDashboard.putBoolean("Save Autonomous", false);
+    	SmartDashboard.putBoolean("Load Autonomous", false);
+    	SmartDashboard.putString("RecordableAutonomous ID", "Name file etc");
+    	SmartDashboard.putBoolean("Play Loaded Autonomous", false);
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 

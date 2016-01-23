@@ -1,6 +1,7 @@
 package org.usfirst.frc2832.Robot_2016.HID;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -46,44 +47,43 @@ public class SavedStates {
 	/**
 	 * Saves the recorded GamepadStates to a file.
 	 * @param name The name of the file, not including path or extension
+	 * @throws IOException 
 	 */
-	public static void save(String name) {
+	public static void save(String name) throws IOException {
 		saveFile(recordedStates, convertNameToPath(name));
 	}
 	
 	/**
 	 * Loads an ArrayList of GamepadStates from a file.
 	 * @param name The name of the file, not including path or extension
+	 * @throws FileNotFoundException 
 	 */
-	public static ArrayList<GamepadState> load(String name) {
+	public static ArrayList<GamepadState> load(String name) throws FileNotFoundException {
 		return (loadFile(convertNameToPath(name)));
 	}
 	
 	/**
 	 * This saves the file
 	 * @param states Some states
+	 * @throws IOException 
 	 */
-	protected static void saveFile(ArrayList<GamepadState> states, String path) {
-		try {
-			FileOutputStream fo = new FileOutputStream(path);
-			ObjectOutputStream oi = new ObjectOutputStream(fo);
-			
-			oi.writeObject(states);
-			
-			oi.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	protected static void saveFile(ArrayList<GamepadState> states, String path) throws IOException {
+		FileOutputStream fo = new FileOutputStream(path);
+		ObjectOutputStream oi = new ObjectOutputStream(fo);
+		
+		oi.writeObject(states);
+		
+		oi.close();
 	}
 	
-	protected static ArrayList<GamepadState> loadFile(String path) {
+	protected static ArrayList<GamepadState> loadFile(String path) throws FileNotFoundException {
 		Object result = null;
+		FileInputStream fi = new FileInputStream(path);
+		ObjectInputStream oi;
+		
 		try {
-			FileInputStream fi = new FileInputStream(path);
-			ObjectInputStream oi = new ObjectInputStream(fi);
-			
+			oi = new ObjectInputStream(fi);
 			result = oi.readObject();
-			
 			oi.close();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
