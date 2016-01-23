@@ -36,31 +36,13 @@ public class Shoot extends Command {
 
 	@Override
 	protected boolean isFinished() {
-<<<<<<< HEAD
-		//returns true only when timeStart + TIMEOUT < current time OR when the angle is within the TOLERANCE
+		//returns true only when timeStart + TIMEOUT < current time
 		return ((timeStart + TIMEOUT) < System.currentTimeMillis());
-=======
-		//returns true only when timeStart + TIMEOUT < current time OR when the
-		//angle is within the TOLERANCE
-		return Math.abs(Kicker.getAngle() - startAngle) < ANGLE_TOLERANCE ||
-			(timeStart + TIMEOUT) < System.currentTimeMillis();
->>>>>>> branch 'master' of https://github.com/FRC2832/Robot_2016.git
 	}
 
 	@Override
 	protected void end() {
-<<<<<<< HEAD
-		//if it didn't reach the tolerance (used the time-out maybe) then do the hard reset
-		//if(Math.abs(Kicker.getAngle() - startAngle) > ANGLE_TOLERANCE)
-			//Kicker.reset();
 		Kicker.resetAfterLaunch();
-=======
-		//if it didn't reach the tolerance (used the time-out maybe) then do the
-		//hard reset
-		if (Math.abs(Kicker.getAngle() - startAngle) > ANGLE_TOLERANCE)
-			Kicker.reset();
-
->>>>>>> branch 'master' of https://github.com/FRC2832/Robot_2016.git
 	}
 
 	@Override
