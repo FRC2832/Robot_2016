@@ -10,7 +10,7 @@ public class MoveAimmerDown extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		requires(Robot.aimmer);
+		requires(Robot.aimer);
 		RobotMap.winchMotor.set(0.6);
 		
 	}

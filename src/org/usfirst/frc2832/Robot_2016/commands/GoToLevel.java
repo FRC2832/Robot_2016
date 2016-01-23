@@ -1,6 +1,6 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
-import org.usfirst.frc2832.Robot_2016.Aimmer;
+import org.usfirst.frc2832.Robot_2016.Aimer;
 import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
@@ -12,8 +12,8 @@ public class GoToLevel extends Command {
 	private int direction;
 	public GoToLevel (int level){
 		this.level = level;
-		requires (Robot.aimmer);
-		if (RobotMap.winchMotor.getEncPosition() > Aimmer.levelPositions[level])
+		requires (Robot.aimer);
+		if (RobotMap.winchMotor.getEncPosition() > Aimer.levelPositions[level])
 		{
 			direction = -1;
 		}
@@ -38,7 +38,7 @@ public class GoToLevel extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		if (Math.abs(Aimmer.levelPositions[level]- RobotMap.winchMotor.getEncPosition())>DIST_THRESHOLD)
+		if (Math.abs(Aimer.levelPositions[level]- RobotMap.winchMotor.getEncPosition())>DIST_THRESHOLD)
 			return false;
 		else 
 			return true;
