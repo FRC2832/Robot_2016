@@ -38,7 +38,7 @@ public class Intake extends Command {
 	@Override
 	protected boolean isFinished() {
 		//returns true only when timeStart + TIMEOUT < current time
-		return ((timeStart + TIMEOUT) < System.currentTimeMillis());
+		return (timeStart + TIMEOUT) < System.currentTimeMillis();
 	}
 
 	@Override

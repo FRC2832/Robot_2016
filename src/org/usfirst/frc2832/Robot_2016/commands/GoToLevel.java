@@ -10,7 +10,7 @@ public class GoToLevel extends Command {
 	private final int DIST_THRESHOLD = 20;
 	private int level;
 	private int direction;
-	public GoToLevel (int level){
+	public GoToLevel (int level) {
 		this.level = level;
 		requires (Robot.aimer);
 		if (RobotMap.winchMotor.getEncPosition() > Aimer.levelPositions[level])
@@ -24,24 +24,20 @@ public class GoToLevel extends Command {
 	
 	@Override
 	protected void initialize() {
-		//TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		RobotMap.winchMotor.set(direction*.8);
+		RobotMap.winchMotor.set(direction * 0.8);
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		if (Math.abs(Aimer.levelPositions[level]- RobotMap.winchMotor.getEncPosition())>DIST_THRESHOLD)
 			return false;
-		else 
-			return true;
+		return true;
 	}
 
 	@Override
@@ -52,7 +48,6 @@ public class GoToLevel extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 
 	}
 
