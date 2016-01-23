@@ -46,8 +46,8 @@ public class GoToLevel extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
+		//turn off winch
+		RobotMap.winchMotor.set(0);
 	}
 
 	@Override
