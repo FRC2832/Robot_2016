@@ -31,6 +31,8 @@ public class RobotMap {
     public static CANTalon frontRightMotor;
     public static CANTalon rearRightMotor;
     
+    public static CANTalon winchMotor;
+    
     public static CANTalon ballIngestLeft;
     public static CANTalon ballIngestRight;
     
@@ -56,6 +58,7 @@ public class RobotMap {
         driveTrain = new RobotDrive(frontLeftMotor, rearLeftMotor,
               frontRightMotor, rearRightMotor);
         
+        
         driveTrain.setSafetyEnabled(true);
         driveTrain.setExpiration(0.1);
         driveTrain.setSensitivity(0.5);
@@ -65,6 +68,8 @@ public class RobotMap {
         driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        
+        winchMotor = new CANTalon(7);
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft", rearRightMotor);
