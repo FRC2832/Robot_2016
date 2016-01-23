@@ -31,14 +31,18 @@ public class VirtualGamepad {
 		long time = System.currentTimeMillis();
 		
 		// Interpolate the times, using the last recorded gamepad state.
-		while (states.get(lastIndex).timestamp - recordedOffset <= time - startTime)
-			lastIndex++;
-		lastIndex--;
+		while (lastIndex < states.size()) {
+			if (states.get(lastIndex).timestamp - recordedOffset <= time - startTime)
+				lastIndex++;
+		}
 		
 		if (lastIndex >= states.size()) {
 			done = true;
 			return (null);
 		}
+		
+		// We overshot in that interpolation stage, that was the first time it "failed"
+		lastIndex--;
 		
 		// lastIndex now has the latest recorded data from the gamepad at this current time.
 		return (states.get(lastIndex));
