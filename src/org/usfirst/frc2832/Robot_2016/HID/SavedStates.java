@@ -41,7 +41,7 @@ public class SavedStates {
 	}
 	
 	private static String convertNameToPath(String name) {
-		return ("/home/lvuser/autondata/" + name + ".dat");
+		return ("/home/lvuser/" + name + ".dat");
 	}
 	
 	/**
