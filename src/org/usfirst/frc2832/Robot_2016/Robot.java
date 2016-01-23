@@ -11,13 +11,18 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
+import java.util.ArrayList;
+
+import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
+import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
+import org.usfirst.frc2832.Robot_2016.HID.VirtualGamepad;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-//import org.usfirst.frc2832.Robot_2016.subsystems.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +34,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    
+    private ArrayList<GamepadState> recordedStates = new ArrayList<>();
+    private boolean recording = false, playing = false;
+    private VirtualGamepad vg;
 
     public static OI oi;
     public static BallMotors ballMotors;
@@ -93,7 +102,13 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	RobotMap.driveTrain.arcadeDrive(oi.gamepad);
+    	GamepadState state = GamepadState.makeState(oi.gamepad);
+    	
+    	// Recordable Autonomous
+    	state = updateRecordState(state);
+    	
+    	handleInput(state);
+    	
         Scheduler.getInstance().run();
     }
 
@@ -102,5 +117,52 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    /**
+     * Handles smart dashboard input for recording
+     */
+    private GamepadState updateRecordState(GamepadState oldState) {
+    	if (SmartDashboard.getBoolean("Record Autonomous", false)) {
+			if (!recording) {
+				SavedStates.startRecording();
+				recording = true;
+			}
+		} else {
+			if (recording) {
+				SavedStates.stopRecording();
+				
+				recording = false;
+			}
+		}
+		
+		if (SmartDashboard.getBoolean("Play Autonomous", false)) {
+			if (!playing) {
+				playing = true;
+				vg = new VirtualGamepad(SavedStates.getRecordedStates());
+				vg.start();
+			} else
+				playing = false;
+		}
+		
+		if (playing) {
+    		GamepadState newState = vg.getCurrentState();
+    		if (newState != null)
+    			return (newState);
+    		else {
+    			playing = false;
+    			return (oldState);
+    		}
+    			
+    	}
+    	if (recording)
+    		SavedStates.record(oldState);
+    	
+    	return (oldState);
+	}
+    
+    private void handleInput(GamepadState gs) {
+    	RobotMap.driveTrain.arcadeDrive(
+    			gs.axes[GamepadState.AXIS_LY], 
+    			gs.axes[GamepadState.AXIS_RX]);
     }
 }
