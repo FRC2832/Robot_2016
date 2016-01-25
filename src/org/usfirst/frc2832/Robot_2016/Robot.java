@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
@@ -116,6 +117,7 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("laser",RobotMap.laser.pidGet()); //this value may not be right value?
     }
 
     /**
