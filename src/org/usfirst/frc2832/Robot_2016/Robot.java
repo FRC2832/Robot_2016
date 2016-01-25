@@ -13,6 +13,7 @@ package org.usfirst.frc2832.Robot_2016;
 
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
+import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
