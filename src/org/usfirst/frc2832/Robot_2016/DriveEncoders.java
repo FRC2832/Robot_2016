@@ -7,6 +7,7 @@ public class DriveEncoders extends Subsystem {
 	static double left;
 	static double right;
 	static double[] vals = new double[2];
+	static final double TOLERANCE = 0.1;
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
@@ -16,23 +17,28 @@ public class DriveEncoders extends Subsystem {
 	public static double getAbsoluteValue()
 	{
 		vals = getBothValues();
-		return Math.sqrt(vals[0]*vals[1]);
+		if (Math.abs(vals[0]) < TOLERANCE)
+			return vals[1];
+		else if (Math.abs(vals[1]) < TOLERANCE)
+			return vals[0];
+		else
+			return Math.sqrt(vals[0]*vals[1]);
 	}
 	
 	public static double getLeftValue()
 	{
-		return RobotMap.frontLeftMotor.getEncPosition();
+		return RobotMap.frontLeftMotor.getEncPosition() / RobotMap.ENCODER_PULSE_PER_METER;
 	}
 	
 	public static double getRightValue()
 	{
-		return RobotMap.frontRightMotor.getEncPosition();
+		return RobotMap.frontRightMotor.getEncPosition() / RobotMap.ENCODER_PULSE_PER_METER;
 	}
 	
 	public static double[] getBothValues()
 	{
-		vals[0] = RobotMap.frontLeftMotor.getEncPosition();
-		vals[1] = RobotMap.frontRightMotor.getEncPosition();
+		vals[0] = RobotMap.frontLeftMotor.getEncPosition() / RobotMap.ENCODER_PULSE_PER_METER;
+		vals[1] = RobotMap.frontRightMotor.getEncPosition() / RobotMap.ENCODER_PULSE_PER_METER;
 		return vals;
 	}
 	
