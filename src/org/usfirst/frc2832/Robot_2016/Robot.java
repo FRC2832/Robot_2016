@@ -124,7 +124,7 @@ public class Robot extends IterativeRobot {
     
     private static void handleInput(GenericHID g) {
     	RobotMap.driveTrain.arcadeDrive(
-    			g.getRawAxis(GamepadState.AXIS_LY), 
+    			g.getRawAxis(GamepadState.AXIS_LY) * (InterfaceFlip.isFlipped ? 1 : -1), 
     			g.getRawAxis(GamepadState.AXIS_RX));
     }
 }
