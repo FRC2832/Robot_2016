@@ -48,7 +48,7 @@ public class GoToLevel extends Command {
 
 	@Override
 	protected void interrupted() {
-
+		RobotMap.winchMotor.set(0);
 	}
 
 }
