@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("laser",RobotMap.laser.pidGet()); //this value may not be right value?
+        DashboardOutput.putData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     /**
@@ -130,7 +130,7 @@ public class Robot extends IterativeRobot {
     
     private static void handleInput(GenericHID g) {
     	RobotMap.driveTrain.arcadeDrive(
-    			g.getRawAxis(GamepadState.AXIS_LY), 
+    			g.getRawAxis(GamepadState.AXIS_LY) * (InterfaceFlip.isFlipped ? 1 : -1), 
     			g.getRawAxis(GamepadState.AXIS_RX));
     }
 }

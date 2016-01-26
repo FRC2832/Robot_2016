@@ -59,8 +59,8 @@ public class RobotMap {
         driveTrain.setSensitivity(0.5);
         driveTrain.setMaxOutput(1.0);
 
-        driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        frontLeftMotor.setInverted(true);
+        frontRightMotor.setInverted(true);
         
         winchMotor = new CANTalon(7);
         
