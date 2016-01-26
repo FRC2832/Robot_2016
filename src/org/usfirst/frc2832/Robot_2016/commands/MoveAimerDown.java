@@ -34,7 +34,7 @@ public class MoveAimerDown extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		RobotMap.winchMotor.set(0);
 
 	}
 
