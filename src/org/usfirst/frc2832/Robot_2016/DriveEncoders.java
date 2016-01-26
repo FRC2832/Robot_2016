@@ -22,7 +22,7 @@ public class DriveEncoders extends Subsystem {
 		else if (Math.abs(vals[1]) < TOLERANCE)
 			return vals[0];
 		else
-			return Math.sqrt(vals[0]*vals[1]);
+			return (vals[0] - vals[1])/2; //CURRENTLY ONE IS OPPOSITE OF OTHER. IF ENCODER VALUE IS NOT CHANGING, CONSIDER REPLACING MINUS WITH PLUS
 	}
 	
 	public static double getLeftValue()
