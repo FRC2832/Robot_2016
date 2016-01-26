@@ -3,18 +3,20 @@ package org.usfirst.frc2832.Robot_2016.commands;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+/**
+ * Controls whether the control interface is flipped when the driver wants to
+ * drive the robot in reverse
+ * @author Andrew
+ *
+ */
 public class InterfaceFlip extends Command {
 	
-	public static boolean isFlipped = false;
+	public static boolean isFlipped = true;
 
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		isFlipped = !isFlipped;
-		RobotMap.frontLeftMotor.setInverted(isFlipped);
-		RobotMap.frontRightMotor.setInverted(isFlipped);
-
 	}
 
 	@Override
