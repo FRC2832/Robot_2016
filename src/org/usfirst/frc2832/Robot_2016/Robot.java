@@ -112,7 +112,7 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("laser",RobotMap.laser.pidGet()); //this value may not be right value?
+        DashboardOutput.putData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     /**
