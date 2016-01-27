@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class  MoveForward extends Command {
 	
 	static double dist, initVal;
-	static final double TOLERANCE = 0.3;
+	static final double TOLERANCE = 0.15;
 	static TrajectoryController tc;
 	
     public MoveForward(double distance) {

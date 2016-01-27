@@ -15,13 +15,14 @@ import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 
+import com.ni.vision.VisionException;
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
@@ -57,10 +58,15 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         
         oi = new OI();
-        camera1 = new USBCamera("cam0");
-        camera2 = new USBCamera("cam1");
-        cameraServer = CameraServer.getInstance();
-        cameraServer.startAutomaticCapture(camera1);
+        try {
+        	camera1 = new USBCamera("cam0");
+        	camera2 = new USBCamera("cam1");
+        	cameraServer = CameraServer.getInstance();
+        	cameraServer.startAutomaticCapture(camera1);
+        } catch (VisionException e) {
+        	// fail case, camera is unplugged.
+        	e.printStackTrace();
+        }
         
        
         

@@ -60,6 +60,7 @@ public class OI {
 	public JoystickButton aButton;
 	public JoystickButton bButton;
 	public JoystickButton xButton;
+	public JoystickButton yButton;
 	
 	public SendableChooser autonomous;
 	
@@ -72,8 +73,10 @@ public class OI {
 	    aButton.whileHeld(new MoveAimerDown());
 	    bButton = new JoystickButton(gamepad,2);
 	    bButton.whileHeld(new MoveAimerUp());
-	    xButton = new JoystickButton(gamepad, 3);
+	    xButton = new JoystickButton(gamepad,3);
 	    xButton.whenPressed(new GoToLevel(1));
+	    yButton = new JoystickButton(gamepad,4);
+	    yButton.whenPressed(new Shoot());
 	    
 	    RecordableGamepad.dashboardSetup();
     	
