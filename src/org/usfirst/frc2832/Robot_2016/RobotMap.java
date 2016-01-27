@@ -81,6 +81,7 @@ public class RobotMap {
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);
         ballIngestRight = new CANTalon(6);
         LiveWindow.addActuator("Ball Handler", "ingestRight", ballIngestRight);
+
         laser = new AnalogInput(0);
         
         kicker = new Servo(1);

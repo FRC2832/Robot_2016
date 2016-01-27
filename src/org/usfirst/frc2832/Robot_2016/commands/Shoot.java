@@ -1,5 +1,6 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
+import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,6 +26,7 @@ public class Shoot extends Command {
 	protected void initialize() {
 		startAngle = Kicker.get();
 		Kicker.launch();
+		BallMotors.expel();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 	}
@@ -43,11 +45,13 @@ public class Shoot extends Command {
 	@Override
 	protected void end() {
 		Kicker.resetAfterLaunch();
+		BallMotors.stopMotors();
 	}
 
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
+		BallMotors.stopMotors();
 	}
 
 }
