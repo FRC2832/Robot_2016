@@ -12,5 +12,6 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Right Encoder", DriveEncoders.getRightValue());
 		SmartDashboard.putNumber("Combined Enc.", DriveEncoders.getAbsoluteValue());
 		SmartDashboard.putNumber("Servo val", Kicker.get());
+		SmartDashboard.putNumber("Gyro Reading", RobotMap.imu.getYaw());
 	}
 }
