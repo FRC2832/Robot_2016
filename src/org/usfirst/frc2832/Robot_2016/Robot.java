@@ -87,6 +87,7 @@ public class Robot extends IterativeRobot {
 
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     public void autonomousInit() {
@@ -101,6 +102,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     public void teleopInit() {
@@ -124,7 +126,7 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
-        DashboardOutput.putData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
+        DashboardOutput.putPeriodicData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     /**
