@@ -1,5 +1,6 @@
 package org.usfirst.frc2832.Robot_2016;
 
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DashboardOutput {
@@ -13,5 +14,7 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Combined Enc.", DriveEncoders.getAbsoluteValue());
 		SmartDashboard.putNumber("Servo val", Kicker.get());
 		SmartDashboard.putNumber("Gyro Reading", RobotMap.imu.getYaw());
+		
+		SmartDashboard.putData(Scheduler.getInstance());
 	}
 }
