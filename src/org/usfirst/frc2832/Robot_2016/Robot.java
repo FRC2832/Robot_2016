@@ -125,6 +125,7 @@ public class Robot extends IterativeRobot {
     	
         Scheduler.getInstance().run();
         DashboardOutput.putData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
+       //RobotMap.winchMotor.set(1000);
     }
 
     /**
