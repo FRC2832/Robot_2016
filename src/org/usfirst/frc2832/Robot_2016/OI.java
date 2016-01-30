@@ -13,11 +13,7 @@ package org.usfirst.frc2832.Robot_2016;
 
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.commands.*;
-import org.usfirst.frc2832.Robot_2016.commands.autonomous.*;
-
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**

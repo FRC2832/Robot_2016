@@ -1,6 +1,5 @@
 package org.usfirst.frc2832.Robot_2016.commands.autonomous;
 
-import org.usfirst.frc2832.Robot_2016.DriveEncoders;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.TrajectoryController;
 
