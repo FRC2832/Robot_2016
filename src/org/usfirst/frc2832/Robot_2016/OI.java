@@ -60,7 +60,7 @@ public class OI {
 	public JoystickButton xButton;
 	public JoystickButton yButton;
 	
-	public SendableChooser autonomous;
+
 	
     public OI() {
     	
@@ -79,11 +79,7 @@ public class OI {
 	    
 	    refreshRecordedAutonIndex();
     	
-    	autonomous = new SendableChooser();
-    	autonomous.addDefault("Do nothing", new AutonomousCommand());
-    	autonomous.addObject("Rotate 45", new RotateAngle(45));
-    	autonomous.addObject("Move forward 5", new MoveForward(5));
-		SmartDashboard.putData("Autonomous selection", autonomous);
+		
     	
 		DashboardOutput.putOneTimeData(); //this method contains all the buttons for commands
 
