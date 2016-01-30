@@ -75,7 +75,8 @@ public class RobotMap {
         frontLeftMotor.setInverted(true);
         frontRightMotor.setInverted(true);
         
-        winchMotor = new CANTalon(7);
+       
+        
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);

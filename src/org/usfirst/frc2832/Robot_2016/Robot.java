@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
+import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
@@ -22,6 +23,7 @@ import com.ni.vision.VisionException;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -46,6 +48,8 @@ public class Robot extends IterativeRobot {
     public static double defaultAngle;
     public static CameraServer cameraServer;
     public static USBCamera camera1, camera2;
+    public boolean leftTriggerPressed;
+    public boolean rightTriggerPressed;
 	public SendableChooser autonomous;
     /**
      * This function is run when the robot is first started up and should be
@@ -136,6 +140,24 @@ public class Robot extends IterativeRobot {
     	
         Scheduler.getInstance().run();
         DashboardOutput.putPeriodicData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
+    
+       //left Trigger Code
+        if (oi.gamepad.getRawAxis(2) >= .9) {
+        	Scheduler.getInstance().add(null);
+        	
+			leftTriggerPressed = true;
+		} else {
+			leftTriggerPressed = false;
+		}
+        
+        //right Trigger Code
+        if (oi.gamepad.getRawAxis(3) >= .9) {   	
+        	Scheduler.getInstance().add(null);
+        	
+        	rightTriggerPressed = true;
+		} else {
+			rightTriggerPressed = false;
+		}
     }
 
     /**
