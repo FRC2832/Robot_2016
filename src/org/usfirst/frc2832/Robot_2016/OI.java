@@ -66,22 +66,22 @@ public class OI {
     	gamepad = new RecordableGamepad(0);
 	    
     	aButton = new JoystickButton(gamepad,1);
-	    aButton.whileHeld(new MoveAimerDown());
+	    aButton.whenPressed(new InterfaceFlip());
 	    
 	    bButton = new JoystickButton(gamepad,2);
-	    bButton.whileHeld(new MoveAimerUp());
+	    bButton.whileHeld(null);
 	    
 	    xButton = new JoystickButton(gamepad,3);
-	    xButton.whenPressed(new GoToLevel(1));
+	    xButton.whenPressed(null);
 	    
 	    yButton = new JoystickButton(gamepad,4);
-	    yButton.whenPressed(new Shoot());
+	    yButton.whenPressed(null);
 	    
 	    leftBumper = new JoystickButton(gamepad,5);
-	    leftBumper.whenPressed(null);
+	    leftBumper.whileHeld(new MoveAimerDown());
 	    
 	    rightBumper = new JoystickButton(gamepad,6);
-	    rightBumper.whenPressed(null);
+	    rightBumper.whileHeld(new MoveAimerUp()  );
 	    
 	    RecordableGamepad.dashboardSetup();
 	    

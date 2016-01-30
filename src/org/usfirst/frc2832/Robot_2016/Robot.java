@@ -14,12 +14,15 @@ package org.usfirst.frc2832.Robot_2016;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
+import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
+import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
 import com.ni.vision.VisionException;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -48,6 +51,7 @@ public class Robot extends IterativeRobot {
     public static USBCamera camera1, camera2;
     public boolean leftTriggerPressed;
     public boolean rightTriggerPressed;
+    public boolean shooterNotActive;
 	public SendableChooser autonomous;
     /**
      * This function is run when the robot is first started up and should be
@@ -94,12 +98,10 @@ public class Robot extends IterativeRobot {
 
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
     }
 
     public void autonomousInit() {
     	
-    	Scheduler.getInstance().add((Command) autonomous.getSelected());
     }
 
     /**
@@ -117,8 +119,6 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
         
-        //set winch to start at 0
-        RobotMap.winchMotor.setEncPosition(0);
     }
 
     /**
@@ -131,11 +131,48 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
-        DashboardOutput.putPeriodicData(); //this is a method to contain all the "putNumber" crap we put to the Dashboard
-    
+       
+      //D-Pad Controls
+        boolean povPressed = false;
+
+        switch (oi.gamepad.getPOV()) {
+		//D-pad right
+		case 90:
+			if (!povPressed) {
+				Scheduler.getInstance().add(new InterfaceFlip());
+			}
+			povPressed = true;
+			break;
+		//D-pad left
+		case 270:
+			if (!povPressed) {
+				Scheduler.getInstance().add(null);
+			}
+			povPressed = true;
+			break;
+		//D-pad up
+		case 0:
+			// Use speed mode if not currently used
+			if (!povPressed) {
+				Scheduler.getInstance().add(null);
+			}
+			povPressed = true;
+			break;
+		//D-pad down
+		case 180:
+			if (!povPressed) {
+				Scheduler.getInstance().add(null);
+			}
+			povPressed = true;
+			break;
+		case -1:
+		povPressed = false;
+			break;
+		}
+        
        //left Trigger Code
         if (oi.gamepad.getRawAxis(2) >= .9) {
-        	Scheduler.getInstance().add(null);
+        	Scheduler.getInstance().add(new Intake());
         	
 			leftTriggerPressed = true;
 		} else {
@@ -149,7 +186,12 @@ public class Robot extends IterativeRobot {
         	rightTriggerPressed = true;
 		} else {
 			rightTriggerPressed = false;
+			shooterNotActive = true;
 		}
+        if (rightTriggerPressed && shooterNotActive) {
+        	Scheduler.getInstance().add(new Shoot());
+        	shooterNotActive = false;
+        }
     }
 
     /**
