@@ -1,5 +1,6 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
+import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /*
  * Pushes out the ball assuming the ball motors are already running
  * Turns it off after timeout.
+ * NOTE: The timeout isn't really a "timeout", it's just time between launching and resetting
+ * This is because the servo is stable, it needs no tolerances, relative measurements, or timeouts
  */
 public class Shoot extends Command {
 
@@ -23,8 +26,8 @@ public class Shoot extends Command {
 	
 	
 	protected void initialize() {
-		startAngle = Kicker.get();
 		Kicker.launch();
+		BallMotors.expel();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 	}
@@ -43,11 +46,13 @@ public class Shoot extends Command {
 	@Override
 	protected void end() {
 		Kicker.resetAfterLaunch();
+		BallMotors.stopMotors();
 	}
 
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
+		BallMotors.stopMotors();
 	}
 
 }
