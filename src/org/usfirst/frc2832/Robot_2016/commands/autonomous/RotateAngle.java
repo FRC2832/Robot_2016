@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class RotateAngle extends Command {
-//THIS DOESN'T WORK AT ALL WITHOUT NAVX GYRO READING
 	static double angle, initVal;
 	static final double TOLERANCE = 2;
 	static TrajectoryController tc;
@@ -24,18 +23,18 @@ public class RotateAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initVal = DriveEncoders.getAbsoluteValue();
-    	tc = new TrajectoryController(angle, 0.3, 0.3, 0.7, 1, -1); //TO-DO: would be nice to test these numbers!
+    	initVal = RobotMap.imu.getYaw();
+    	tc = new TrajectoryController(angle, 0.3, 0.4, 0.5, 1, -1); //TO-DO: would be nice to test these numbers!
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.driveTrain.arcadeDrive(0, tc.get(100)); //replace 100 with gyro reading when availalbe
+    	RobotMap.driveTrain.arcadeDrive(0, tc.get(RobotMap.imu.getYaw())); 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(DriveEncoders.getAbsoluteValue() - initVal) < TOLERANCE;
+        return Math.abs(RobotMap.imu.getYaw() - initVal - angle) < TOLERANCE;
     }
 
     // Called once after isFinished returns true

@@ -88,9 +88,9 @@ public class TrajectoryController {
 	private double getLined(double currentValue) {
 		double output;
 		if (accelLine(currentValue) < decelLine(currentValue))
-			output = accelLine(currentValue);
+			output = Math.max(start, accelLine(currentValue));
 		else
-			output = decelLine(currentValue);
+			output = Math.max(min, decelLine(currentValue));
 		if (output > max)
 			output = max;
 		return output;
@@ -104,15 +104,15 @@ public class TrajectoryController {
 		return Math.abs(slope2) * -1 * (currentValue - target);
 	}
 	
-	public static void main(String[] args) {
-		double dist = 2.0;
-		
-		TrajectoryController tc = new TrajectoryController(dist, 0.2, 0, 0.5, 0.5, 0.5);
-		
-		for (double feedValue = 0; feedValue < dist; feedValue += 0.05) {
-			System.out.println(tc.get(feedValue));
-		}
-	}
-	
+	/*public static void main(String[] args) {
+	*	double dist = 2.0;
+	*	
+	*	TrajectoryController tc = new TrajectoryController(dist, 0.2, 0, 0.5, 0.5, 0.5);
+	*	
+	*	for (double feedValue = 0; feedValue < dist; feedValue += 0.05) {
+	*		System.out.println(tc.get(feedValue));
+	*	}
+	*}
+	*/
 	
 }

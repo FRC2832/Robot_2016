@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class  MoveForward extends Command {
 	
 	static double dist, initVal;
-	static final double TOLERANCE = 0.15;
+	static final double TOLERANCE = 0.05;
 	static TrajectoryController tc;
 	
     public MoveForward(double distance) {
@@ -24,7 +24,7 @@ public class  MoveForward extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initVal = DriveEncoders.getAbsoluteValue();
-    	tc = new TrajectoryController(dist, 0.3, 0.4, 0.5, 1, -1); //TO-DO: would be nice to test these numbers!
+    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.6, 0.5, -0.5); //TO-DO: would be nice to test these numbers!
     }
 
     // Called repeatedly when this Command is scheduled to run
