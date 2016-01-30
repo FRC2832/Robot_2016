@@ -17,11 +17,13 @@ public class InterfaceFlip extends Command {
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		if (isFlipped == false) {
-			Robot.cameraServer.startAutomaticCapture(Robot.camera2);
+			Robot.activeCamera = Robot.camera2;
+			//Robot.cameraServer.startAutomaticCapture(Robot.camera2);
 			isFlipped = true;
 		} else {
-			Robot.cameraServer.startAutomaticCapture(Robot.camera1);
-			isFlipped = true;
+			Robot.activeCamera = Robot.camera1;
+			//Robot.cameraServer.startAutomaticCapture(Robot.camera1);
+			isFlipped = false;
 		}
 	}
 
