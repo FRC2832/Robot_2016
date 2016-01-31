@@ -25,12 +25,10 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Right Encoder", DriveEncoders.getRightValue());
 		SmartDashboard.putNumber("Combined Enc.", DriveEncoders.getAbsoluteValue());
 		SmartDashboard.putNumber("Servo val", Kicker.get());
-		SmartDashboard.putNumber("Winch Pos", RobotMap.winchMotor.getEncPosition());
 		SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
 		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
 		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
 		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
-		SmartDashboard.putNumber("Winch Motor Value", RobotMap.winchMotor.get());
 		
 		SmartDashboard.putNumber("Gyro Reading", RobotMap.imu.getYaw());
 		

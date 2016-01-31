@@ -18,13 +18,6 @@ public class GoToLevel extends Command {
 	public GoToLevel (int level) {
 		this.level = level;
 		requires (Robot.aimer);
-		if (RobotMap.winchMotor.getEncPosition() > Aimer.levelPositions[level])
-		{
-			direction = -1;
-		}
-		else
-			direction = 1;
-		
 	}
 	
 	@Override
