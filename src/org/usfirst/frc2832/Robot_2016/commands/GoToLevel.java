@@ -37,17 +37,14 @@ public class GoToLevel extends Command {
 		if (Math.abs(Aimer.levelPositions[level] - position) < SLOW_DOWN_MORE_POINT)
 		{
 			speed = MIN_SPEED;
-			SmartDashboard.putNumber("GoToLevelIfStatement", 1);
 		}
 		else if (Math.abs(Aimer.levelPositions[level] - position) <  SLOW_DOWN_POINT)
 		{
 			position = Math.abs(Aimer.levelPositions[level] - position) - SLOW_DOWN_POINT;
 			position = position / (SLOW_DOWN_MORE_POINT - SLOW_DOWN_POINT);
 			speed = (1-position) * MAX_SPEED + position * MIN_SPEED;
-			SmartDashboard.putNumber("GoToLevelIfStatement", 2);
 		}
-		else 
-			SmartDashboard.putNumber("GoToLevelIfStatement", 0);
+		
 		
 		RobotMap.winchMotor.set(direction * speed);
 		
