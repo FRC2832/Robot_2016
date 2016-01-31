@@ -30,7 +30,9 @@ public class DashboardOutput {
 		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
 		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
 		
-		SmartDashboard.putNumber("Gyro Reading", RobotMap.imu.getYaw());
+		SmartDashboard.putNumber("Gyro.Yaw", RobotMap.imu.getYaw());
+		SmartDashboard.putNumber("Gyro.Pitch", RobotMap.imu.getPitch());
+		SmartDashboard.putNumber("Gyro.Roll", RobotMap.imu.getRoll());
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
