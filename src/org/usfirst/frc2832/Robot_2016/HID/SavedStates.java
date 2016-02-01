@@ -111,6 +111,8 @@ public class SavedStates {
 			bw.write(index.get(i));
 		}
 		
+		bw.flush();
+		
 		fw.close();
 	}
 	
