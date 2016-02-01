@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class  MoveForward extends Command {
 	
-	static double dist, initVal;
-	static final double TOLERANCE = 0.05;
+	static double dist, initVal, startAngle, correctiveForce;
+	static final double TOLERANCE = 0.05, kP = 0.05; //constant of proportion for PID
 	static TrajectoryController tc;
 	
     public MoveForward(double distance) {
@@ -25,11 +25,13 @@ public class  MoveForward extends Command {
     protected void initialize() {
     	initVal = DriveEncoders.getAbsoluteValue();
     	tc = new TrajectoryController(dist, 0.4, 0.4, 0.6, 0.5, -0.5); //TO-DO: would be nice to test these numbers!
+    	startAngle = RobotMap.imu.getYaw();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.driveTrain.arcadeDrive(-tc.get(DriveEncoders.getAbsoluteValue() - initVal), 0); //set speed to one given by Trajectory Controller.
+    	correctiveForce = kP * (RobotMap.imu.getYaw() - startAngle); //corrects for displaced angles while moving forward (e.g. over Ramparts); sign may be wrong
+    	RobotMap.driveTrain.arcadeDrive(-tc.get(DriveEncoders.getAbsoluteValue() - initVal), correctiveForce); //set speed to one given by Trajectory Controller.
     }
 
     // Make this return true when this Command no longer needs to run execute()
