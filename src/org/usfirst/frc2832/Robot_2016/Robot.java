@@ -11,16 +11,12 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
-import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
-import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
-
-import com.ni.vision.VisionException;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -44,7 +40,6 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     
-    InterfaceFlip interfaceflip = new InterfaceFlip();
     
     public static OI oi;
     public static BallMotors ballMotors = new BallMotors();
@@ -73,19 +68,24 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
+        
+        
         camera1 = new USBCamera("cam0");
         camera2 = new USBCamera("cam1");
-        activeCamera = camera1;
-        InterfaceFlip.isFlipped = false;
+        //activeCamera = camera1;
+        
         
         cameraServer = CameraServer.getInstance();
-        cameraServer.startAutomaticCapture(activeCamera);
+        //cameraServer.startAutomaticCapture(activeCamera);
         
         camera1.setFPS(15);
         camera1.setSize(320, 240);
         
         camera2.setFPS(15);
         camera2.setSize(320, 240);
+        
+        Thread cameraThread = new Thread(new DualCameraRunnable());
+        cameraThread.start();
         
         autonomous = new SendableChooser();
         autonomous.addObject("Do nothing at all", null);
@@ -143,7 +143,7 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
-       
+        
       //D-Pad Controls
         boolean povPressed = false;
 
