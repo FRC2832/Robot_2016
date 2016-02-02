@@ -16,15 +16,8 @@ public class InterfaceFlip extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		if (isFlipped == false) {
-			Robot.activeCamera = Robot.camera2;
-			//Robot.cameraServer.startAutomaticCapture(Robot.camera2);
-			isFlipped = true;
-		} else {
-			Robot.activeCamera = Robot.camera1;
-			//Robot.cameraServer.startAutomaticCapture(Robot.camera1);
-			isFlipped = false;
-		}
+		isFlipped = !isFlipped;
+		
 	}
 
 	@Override
