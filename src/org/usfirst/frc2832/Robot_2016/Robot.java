@@ -38,7 +38,7 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
  */
 public class Robot extends IterativeRobot {
 
-    private static final boolean recordedAuton = true;
+    private static boolean recordedAuton = false;
 
 	Command autonomousCommand;
     
@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         recordedID = (String) (oi.index.getSelected());
+        recordedAuton = SmartDashboard.getBoolean("Use Recorded Autonomous");
         
         DashboardOutput.putPeriodicData();
     }
