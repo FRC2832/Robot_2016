@@ -128,10 +128,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	
-    	if (recordedAuton) {
-    		oi.gamepad.updateRecordStatus();
+    	if (recordedAuton)
     		handleInput(oi.gamepad);
-    	}
     	
         Scheduler.getInstance().run();
         DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
