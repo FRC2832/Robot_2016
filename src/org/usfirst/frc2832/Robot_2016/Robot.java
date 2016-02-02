@@ -92,6 +92,10 @@ public class Robot extends IterativeRobot {
         autonomous.addObject("Rotate 45",  new RotateAngle(45));
         autonomous.addDefault("Move Forward 5", new MoveForward(5));
         SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
+        
+        RobotMap.winchMotor.setEncPosition(0);
+        
+        
     }
 
     /**
@@ -128,7 +132,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
-        
+    
     }
 
     /**
@@ -204,6 +208,8 @@ public class Robot extends IterativeRobot {
         	Scheduler.getInstance().add(new Shoot());
         	shooterNotActive = false;
         }
+        
+        
     }
 
     /**
@@ -217,5 +223,11 @@ public class Robot extends IterativeRobot {
     	RobotMap.driveTrain.arcadeDrive(
     			g.getRawAxis(GamepadState.AXIS_LY) * (InterfaceFlip.isFlipped ? 1 : -1), 
     			g.getRawAxis(GamepadState.AXIS_RX));
+    	if (g.getRawAxis(GamepadState.AXIS_LT) > .025)
+    		Scheduler.getInstance().add(new Intake());
+    	
+    	if (g.getRawAxis(GamepadState.AXIS_RT) > .025)
+    		Scheduler.getInstance().add(new Shoot()); //TODO: Make sure that shoot is the command we want
+    	
     }
 }
