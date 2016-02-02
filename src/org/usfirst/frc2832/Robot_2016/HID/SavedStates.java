@@ -60,6 +60,13 @@ public class SavedStates {
 	 * @return
 	 */
 	public static String[] getIndex() {
+		if (index == null) {
+			try {
+				loadIndex();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return index.toArray(new String[index.size()]);
 	}
 	
@@ -110,6 +117,8 @@ public class SavedStates {
 				bw.newLine();
 			bw.write(index.get(i));
 		}
+		
+		bw.flush();
 		
 		fw.close();
 	}

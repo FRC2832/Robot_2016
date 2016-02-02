@@ -40,6 +40,7 @@ public class DashboardOutput {
 	//This method is invoked in the OI constructor to add one-time things (command buttons, etc.)
 	public static void putOneTimeData()
 	{
+		SmartDashboard.putBoolean("Use Recorded Autonomous", false);
     	SmartDashboard.putData("Autonomous Command", new AutonomousCommand()); 
         SmartDashboard.putData("shoot", new Shoot());  
       	SmartDashboard.putData("Flip Motors", new InterfaceFlip());

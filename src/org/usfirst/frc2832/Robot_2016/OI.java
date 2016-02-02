@@ -11,15 +11,21 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
+import java.io.IOException;
+
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
+import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
+import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
+import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -65,7 +71,7 @@ public class OI {
 	public JoystickButton leftBumper;
 	public JoystickButton rightBumper;
 	
-
+	public SendableChooser index;
 	
     public OI() {
     	
@@ -92,7 +98,7 @@ public class OI {
 	    
 	    RecordableGamepad.dashboardSetup();
 	    
-	    refreshRecordedAutonIndex();
+	    createRecordedAutonIndex();
     	
 		
     	
@@ -100,8 +106,20 @@ public class OI {
 
     }
 
-	public static void refreshRecordedAutonIndex() {
+	private void createRecordedAutonIndex() {		
 		
+		index = new SendableChooser();
+		
+		try {
+			SavedStates.loadIndex();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for(String key : SavedStates.getIndex())
+			index.addObject(key, key);
+        
+		SmartDashboard.putData("Recorded Selection", index);
 	}
     
 }
