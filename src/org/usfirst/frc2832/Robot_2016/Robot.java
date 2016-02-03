@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
     public static BallMotors ballMotors = new BallMotors();
     public static Aimer aimer = new Aimer();
     public static double defaultAngle;
-    public static CameraServer cameraServer; 
+    public static CameraServer2832 cameraServer;
     public static USBCamera camera1, camera2, activeCamera;
     public boolean leftTriggerPressed = false;
     public boolean rightTriggerPressed = false;
@@ -72,15 +72,8 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
-        
-        
         camera1 = new USBCamera("cam0");
         camera2 = new USBCamera("cam1");
-        //activeCamera = camera1;
-        
-        
-        cameraServer = CameraServer.getInstance();
-        //cameraServer.startAutomaticCapture(activeCamera);
         
         camera1.setFPS(15);
         camera1.setSize(320, 240);
@@ -88,8 +81,9 @@ public class Robot extends IterativeRobot {
         camera2.setFPS(15);
         camera2.setSize(320, 240);
         
-        Thread cameraThread = new Thread(new DualCameraRunnable());
-        cameraThread.start();
+        cameraServer = CameraServer2832.getInstance();
+        cameraServer.startAutomaticCapture(activeCamera);
+
         
         autonomous = new SendableChooser();
         autonomous.addObject("Do nothing at all", null);
