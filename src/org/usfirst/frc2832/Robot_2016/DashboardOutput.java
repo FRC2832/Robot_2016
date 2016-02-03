@@ -34,6 +34,8 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Gyro.Pitch", RobotMap.imu.getPitch());
 		SmartDashboard.putNumber("Gyro.Roll", RobotMap.imu.getRoll());
 		
+		CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
+		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
 	
