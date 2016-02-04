@@ -25,11 +25,8 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Right Encoder", DriveEncoders.getRightValue());
 		SmartDashboard.putNumber("Combined Enc.", DriveEncoders.getAbsoluteValue());
 		SmartDashboard.putNumber("Servo val", Kicker.get());
-		SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
-		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
-		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
-		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
-		
+		SmartDashboard.putNumber("Winch Pos", RobotMap.winchMotor.getEncPosition());
+		SmartDashboard.putNumber("Winch Motor Value", RobotMap.winchMotor.get());
 		SmartDashboard.putNumber("Gyro.Yaw", RobotMap.imu.getYaw());
 		SmartDashboard.putNumber("Gyro.Pitch", RobotMap.imu.getPitch());
 		SmartDashboard.putNumber("Gyro.Roll", RobotMap.imu.getRoll());
@@ -47,6 +44,10 @@ public class DashboardOutput {
         SmartDashboard.putData("shoot", new Shoot());  
       	SmartDashboard.putData("Flip Motors", new InterfaceFlip());
       	SmartDashboard.putData("Move Forward", new MoveForward(5));
-      	SmartDashboard.putData("Rotate Angle", new RotateAngle(90));	
+      	SmartDashboard.putData("Rotate Angle", new RotateAngle(90));
+      	SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
+		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
+		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
+		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
 	}
 }

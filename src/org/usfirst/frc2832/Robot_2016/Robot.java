@@ -97,6 +97,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	if (recordedAuton)
     		oi.gamepad.loadVirtualGamepad(recordedID);
+    	RobotMap.winchMotor.setEncPosition(0);
     }
 
     public void disabledPeriodic() {
