@@ -1,10 +1,29 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="0" y="117"/>
+	</static-widget>
+	<widget field="DEBUG" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="8" y="96"/>
+	</widget>
+	<widget field="GoToLevelIfStatement" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="63"/>
+	</widget>
+	<widget field="LevelEncPos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="42"/>
+	</widget>
+	<widget field="levelTo" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="21"/>
+	</widget>
+	<widget field="DEBUG2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
 	<widget field="Use Recorded Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1086" y="353"/>
+		<location x="80" y="418"/>
 	</widget>
 	<widget field="Record Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1103" y="294"/>
+		<location x="1005" y="244"/>
+		<height>15</height>
 	</widget>
 	<widget field="Save Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="1112" y="324"/>
@@ -22,7 +41,7 @@
 		<location x="1164" y="183"/>
 	</widget>
 	<widget field="Move Forward" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.CommandButton">
-		<location x="1158" y="156"/>
+		<location x="1132" y="272"/>
 	</widget>
 	<widget field="GoToLevel 3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.CommandButton">
 		<location x="1169" y="128"/>
@@ -40,16 +59,16 @@
 		<location x="1204" y="21"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="336" y="333"/>
+		<location x="969" y="415"/>
 	</static-widget>
 	<widget field="Autonomous Selection" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="219" y="32"/>
+		<location x="67" y="449"/>
 	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
 		<location x="214" y="12"/>
 	</widget>
 	<widget field="Recorded Selection" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="217" y="119"/>
+		<location x="281" y="412"/>
 	</widget>
 	<widget field="Axis Level right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="860" y="38"/>
@@ -94,23 +113,44 @@
 		<location x="1081" y="381"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="126" y="336"/>
+		<location x="1073" y="454"/>
 		<width>249</width>
 		<height>228</height>
 		<property name="Image File" value="C:\Users\Zach\Pictures\Dragon No Eyes.png"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="194" y="383"/>
+		<location x="1142" y="500"/>
 		<width>106</width>
 		<property name="Connection Color" value="0.255.51.255"/>
 		<property name="No Connection Color" value="0.0.102.255"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="183" y="429"/>
-		<width>123</width>
-		<height>114</height>
+		<location x="1168" y="551"/>
+		<width>59</width>
+		<height>83</height>
 		<property name="Connection Color" value="255.55.0.255"/>
 		<property name="No Connection Color" value="51.51.51.255"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="14" y="347"/>
+		<width>431</width>
+		<height>325</height>
+		<property name="Image File" value="C:\FRC\2016\DASHBOARD CRAP\autoselection.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="446" y="14"/>
+		<width>443</width>
+		<height>330</height>
+		<property name="Image File" value="C:\FRC\2016\DASHBOARD CRAP\debug.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="448" y="346"/>
+		<width>438</width>
+		<height>331</height>
+		<property name="Image File" value="C:\FRC\2016\DASHBOARD CRAP\autorecord.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
 	</static-widget>
 </dashboard>
 <live-window>
