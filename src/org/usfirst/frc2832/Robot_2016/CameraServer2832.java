@@ -11,6 +11,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.FlipAxis;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.RawData;
 import com.ni.vision.VisionException;
@@ -39,6 +40,7 @@ public class CameraServer2832 {
 	  private static final int kHardwareCompression = -1;
 	  private static final String kDefaultCameraName = "cam1";
 	  private static final int kMaxImageSize = 200000;
+	  private boolean flipped;
 	  private static CameraServer2832 server;
 
 	  public static CameraServer2832 getInstance() {
@@ -94,8 +96,9 @@ public class CameraServer2832 {
 	  private synchronized void setImageData(RawData data, int start) {
 	    if (m_imageData != null && m_imageData.data != null) {
 	      m_imageData.data.free();
-	      if (m_imageData.data.getBuffer() != null)
+	      if (m_imageData.data.getBuffer() != null){
 	        m_imageDataPool.addLast(m_imageData.data.getBuffer());
+	      }
 	      m_imageData = null;
 	    }
 	    m_imageData = new CameraData(data, start);
@@ -112,11 +115,19 @@ public class CameraServer2832 {
 	   *
 	   * @param image The IMAQ image to show on the dashboard
 	   */
+	  public void flip(){
+		  flipped = !flipped;
+	  }
+	  
 	  public void setImage(Image image) {
 	    // handle multi-threadedness
 
 	    /* Flatten the IMAQ image to a JPEG */
-
+		if(flipped){
+			Image flippedImage = null;
+			NIVision.imaqFlip(flippedImage, image, FlipAxis.HORIZONTAL_AXIS);
+			image = flippedImage;
+		}
 	    RawData data =
 	        NIVision.imaqFlatten(image, NIVision.FlattenType.FLATTEN_IMAGE,
 	            NIVision.CompressionType.COMPRESSION_JPEG, 10 * m_quality);
