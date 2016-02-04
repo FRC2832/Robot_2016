@@ -56,6 +56,7 @@ public class CameraServer2832 {
 	  private int selectedCamera = 0;
 	  private CameraData m_imageData;
 	  private Deque<ByteBuffer> m_imageDataPool;
+	  private long lastSwitch;
 
 	  private class CameraData {
 	    RawData data;
@@ -180,8 +181,7 @@ public class CameraServer2832 {
 	    m_autoCaptureStarted = true;
 	    m_camera = camera;
 	    
-	    for(USBCamera cam: camera)
-	    	cam.startCapture();
+	    m_camera[selectedCamera].startCapture();
 
 	    Thread captureThread = new Thread(new Runnable() {
 	      @Override
@@ -229,8 +229,16 @@ public class CameraServer2832 {
 	  }
 	  
 	  public void setSelectedCamera(int id) {
-		  if (id >= 0 && id < m_camera.length)
+		  if (lastSwitch + 2500 > System.currentTimeMillis())
+			  return;
+		  if (selectedCamera != id && id >= 0 && id < m_camera.length) {
+			  m_camera[selectedCamera].stopCapture();
+			  m_camera[id].startCapture();
+			  
 			  selectedCamera = id;
+			  
+			  lastSwitch = System.currentTimeMillis();
+		  }
 	  }
 	  
 	  /**
@@ -249,7 +257,7 @@ public class CameraServer2832 {
 	   * @param size The size to use
 	   */
 	  public synchronized void setSize(int size, int camID) {
-	    if (m_camera == null)
+	    if (m_camera[camID] == null)
 	      return;
 	    switch (size) {
 	      case kSize640x480:
@@ -318,12 +326,12 @@ public class CameraServer2832 {
 	        // Wait for the camera
 	        synchronized (this) {
 	          System.out.println("Camera not yet ready, awaiting image");
-	          if (m_camera == null)
+	          if (m_camera[selectedCamera] == null)
 	            wait();
 	          m_hwClient = compression == kHardwareCompression;
 	          if (!m_hwClient)
 	            setQuality(100 - compression);
-	          else if (m_camera != null)
+	          else if (m_camera[selectedCamera] != null)
 	            m_camera[selectedCamera].setFPS(fps);
 	          setSize(size, selectedCamera);
 	        }
