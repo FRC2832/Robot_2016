@@ -232,11 +232,14 @@ public class CameraServer2832 {
 		  if (lastSwitch + 2500 > System.currentTimeMillis())
 			  return;
 		  if (selectedCamera != id && id >= 0 && id < m_camera.length) {
-			  m_camera[selectedCamera].stopCapture();
-			  m_camera[id].startCapture();
-			  
-			  selectedCamera = id;
-			  
+			  try {
+				  m_camera[selectedCamera].stopCapture();
+				  m_camera[id].startCapture();
+				  
+				  selectedCamera = id;
+			  } catch (VisionException e) {
+				  DriverStation.reportError("A camera was unplugged.", true);
+			  }
 			  lastSwitch = System.currentTimeMillis();
 		  }
 	  }
