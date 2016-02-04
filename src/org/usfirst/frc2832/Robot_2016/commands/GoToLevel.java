@@ -11,26 +11,27 @@ public class GoToLevel extends Command {
 	private final int SLOW_DOWN_POINT = 6300;
 	private final int SLOW_DOWN_MORE_POINT = 2100;
 	private final int MIN_SPEED = 300;
-	private final int MAX_SPEED = 500;
+	private final int MAX_SPEED = 1000;
 	private final int DIST_THRESHOLD = 500;
 	private int level;
 	private int direction;
 	public GoToLevel (int level) {
 		this.level = level;
 		requires (Robot.aimer);
+		if(Aimer.levelPositions[level]>RobotMap.winchMotor.getEncPosition())
+			direction = 1;
+		else
+			direction = -1;
 	}
 	
 	@Override
 	protected void initialize() {
-		
 	}
 
 	@Override
 	protected void execute() {
 		double speed = MAX_SPEED;
 		double position = RobotMap.winchMotor.getEncPosition();
-		SmartDashboard.putNumber("GoToLevelIfStatement", 0);
-		
 		//When the position is a certain distance away from the level (SLOW_DOWN_POINT) it decelerates from MAX_SPEED 
 		//When it reaches a closer distance (SLOW_DOWN_MORE_POINT) it goes to MIN_SPEED.
 		
@@ -47,7 +48,6 @@ public class GoToLevel extends Command {
 		
 		
 		RobotMap.winchMotor.set(direction * speed);
-		
 	}
 
 	@Override
