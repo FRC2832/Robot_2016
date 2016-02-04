@@ -81,9 +81,8 @@ public class Robot extends IterativeRobot {
         camera2.setSize(320, 240);
         
         CameraServer2832 cameraServer = CameraServer2832.getInstance();
-        cameraServer.startAutomaticCapture(camera1);
+        cameraServer.startAutomaticCapture(camera1, camera2);
 
-        
         autonomous = new SendableChooser();
         autonomous.addObject("Do nothing at all", null);
         autonomous.addObject("Rotate 45",  new RotateAngle(45));
