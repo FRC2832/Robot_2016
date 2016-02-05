@@ -1,7 +1,20 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Use Recorded Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.CheckBox">
+		<location x="183" y="408"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="48" y="408"/>
+		<property name="Text" value="Use Recorded Autonomous?"/>
+	</static-widget>
+	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="84"/>
+	</widget>
+	<widget field="AmIWorking?" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
 	<widget field="DEBUG" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1031" y="44"/>
+		<location x="1032" y="60"/>
 		<width>120</width>
 	</widget>
 	<widget field="GoToLevelIfStatement" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
@@ -14,10 +27,7 @@
 		<location x="0" y="21"/>
 	</widget>
 	<widget field="DEBUG2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1154" y="45"/>
-	</widget>
-	<widget field="Use Recorded Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="73" y="396"/>
+		<location x="1155" y="60"/>
 	</widget>
 	<widget field="Record Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="213" y="497"/>
@@ -57,49 +67,49 @@
 		<location x="208" y="272"/>
 	</widget>
 	<widget field="Autonomous Selection" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="67" y="449"/>
+		<location x="92" y="284"/>
 	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
-		<location x="214" y="12"/>
+		<location x="516" y="539"/>
 	</widget>
 	<widget field="Recorded Selection" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="281" y="412"/>
+		<location x="2" y="282"/>
 	</widget>
 	<widget field="Axis Level right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="704" y="26"/>
+		<location x="646" y="10"/>
 	</widget>
 	<widget field="Winch Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1086" y="20"/>
+		<location x="1145" y="32"/>
 	</widget>
 	<widget field="Combined Enc." type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="322" y="46"/>
 	</widget>
 	<widget field="laser" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="917" y="26"/>
+		<location x="915" y="60"/>
 	</widget>
 	<widget field="Winch Motor Value" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1048" y="1"/>
+		<location x="1104" y="0"/>
 	</widget>
 	<widget field="Gyro.Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="501" y="50"/>
+		<location x="832" y="32"/>
 	</widget>
 	<widget field="Right Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="323" y="23"/>
 	</widget>
 	<widget field="Servo val" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="895" y="5"/>
+		<location x="973" y="0"/>
 	</widget>
 	<widget field="ProximitySensor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="863" y="48"/>
+		<location x="976" y="32"/>
 	</widget>
 	<widget field="Gyro.Roll" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="506" y="28"/>
+		<location x="780" y="56"/>
 	</widget>
 	<widget field="Gyro.Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="503" y="5"/>
 	</widget>
 	<widget field="Axis Level left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="710" y="5"/>
+		<location x="812" y="6"/>
 	</widget>
 	<widget field="Left Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="327" y="3"/>
@@ -107,27 +117,27 @@
 	<widget field="RecordableAutonomous ID" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="540"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="870" y="593"/>
-		<width>106</width>
-		<property name="Connection Color" value="0.255.51.255"/>
-		<property name="No Connection Color" value="0.0.102.255"/>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="0" y="0"/>
+		<property name="Image File" value="C:\Users\Brendan\git\Robot_2016\smartdashboardbg.png"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="992" y="569"/>
+		<location x="614" y="118"/>
 		<width>59</width>
 		<height>83</height>
 		<property name="Connection Color" value="255.55.0.255"/>
 		<property name="No Connection Color" value="51.51.51.255"/>
 	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="0" y="0"/>
-		<property name="Image File" value="C:\Users\Brendan\git\Robot_2016\smartdashboardbg.png"/>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="590" y="63"/>
+		<width>106</width>
+		<property name="Connection Color" value="0.255.51.255"/>
+		<property name="No Connection Color" value="0.0.102.255"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="641" y="83"/>
-		<width>639</width>
-		<height>477</height>
+		<location x="642" y="81"/>
+		<width>638</width>
+		<height>479</height>
 	</static-widget>
 </dashboard>
 <live-window>
