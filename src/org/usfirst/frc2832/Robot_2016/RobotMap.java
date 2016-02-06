@@ -64,7 +64,7 @@ public class RobotMap {
         backLeftMotor = new CANTalon(2);
         backLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backLeftMotor.set(1);
-        backRightMotor = new CANTalon(8);
+        backRightMotor = new CANTalon(4);
         backRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backRightMotor.set(3);
         
@@ -78,7 +78,7 @@ public class RobotMap {
         frontLeftMotor.setInverted(true);
         frontRightMotor.setInverted(true);
         
-        winchMotor = new CANTalon(4);
+        winchMotor = new CANTalon(8);
         winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
         
         ballIngestLeft = new CANTalon(5);
