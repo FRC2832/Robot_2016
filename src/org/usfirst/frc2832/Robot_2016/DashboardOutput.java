@@ -8,6 +8,7 @@ import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,8 +31,16 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Gyro.Yaw", RobotMap.imu.getYaw());
 		SmartDashboard.putNumber("Gyro.Pitch", RobotMap.imu.getPitch());
 		SmartDashboard.putNumber("Gyro.Roll", RobotMap.imu.getRoll());
+		SmartDashboard.putNumber("Proximity Sensor", RobotMap.proxSensor.pidGet());
 		
 		CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
+		
+		double[] defaultVal = new double[0];
+		double[] areas = Robot.table.getNumberArray("area", defaultVal);
+		for(int i = 0; i < areas.length; i++)
+		{
+			Preferences.getInstance().putDouble("Area " + i, areas[i]);
+		}
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}

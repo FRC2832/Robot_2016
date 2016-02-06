@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
@@ -43,7 +44,7 @@ public class Robot extends IterativeRobot {
     private static boolean recordedAuton = false;
 
 	Command autonomousCommand;
-    
+    public static NetworkTable table;
     
     public static OI oi;
     public static BallMotors ballMotors = new BallMotors();
@@ -96,7 +97,7 @@ public class Robot extends IterativeRobot {
         
         RobotMap.winchMotor.setEncPosition(0);
         
-        
+        table = NetworkTable.getTable("GRIP/contours");
     }
 
     /**

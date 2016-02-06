@@ -43,6 +43,7 @@ public class RobotMap {
     public static CANTalon ballIngestRight;
     
     public static AnalogInput laser;
+    public static AnalogInput proxSensor;
     
     public static Servo kicker; 
     
@@ -87,7 +88,7 @@ public class RobotMap {
         LiveWindow.addActuator("Ball Handler", "ingestRight", ballIngestRight);
 
         laser = new AnalogInput(0);
-        
+        proxSensor = new AnalogInput(1);
         kicker = new Servo(1);
         
         byte update_rate_hz = 50;
