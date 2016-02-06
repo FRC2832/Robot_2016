@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Timer;
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /*
