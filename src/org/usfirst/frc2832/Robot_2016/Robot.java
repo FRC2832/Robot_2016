@@ -93,6 +93,10 @@ public class Robot extends IterativeRobot {
         autonomous.addObject("Rotate 45",  new RotateAngle(45));
         autonomous.addDefault("Move Forward 5", new MoveForward(5));
         SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
+        
+        RobotMap.winchMotor.setEncPosition(0);
+        
+        
     }
 
     /**
@@ -143,7 +147,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
-        
+    
     }
 
     /**
@@ -213,17 +217,16 @@ public class Robot extends IterativeRobot {
 		}
         
        //left Trigger Code
-        if (oi.gamepad.getRawAxis(2) >= .9) {
+        if (oi.gamepad.getRawAxis(GamepadState.AXIS_LT) >= .9) {
         	Scheduler.getInstance().add(new Intake());
         	
 			leftTriggerPressed = true;
 		} else {
 			leftTriggerPressed = false;
 		}
-        
         //right Trigger Code
-        if (oi.gamepad.getRawAxis(3) >= .9) {   	
-        	Scheduler.getInstance().add(null);
+        if (oi.gamepad.getRawAxis(GamepadState.AXIS_RT) >= .9) {   	
+        	Scheduler.getInstance().add(new Shoot());
         	
         	rightTriggerPressed = true;
 		} else {
@@ -234,5 +237,7 @@ public class Robot extends IterativeRobot {
         	Scheduler.getInstance().add(new Shoot());
         	shooterNotActive = false;
         }
+        
+        
     }
 }

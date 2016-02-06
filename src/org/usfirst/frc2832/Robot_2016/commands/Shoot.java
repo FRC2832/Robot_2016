@@ -1,5 +1,7 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
@@ -18,6 +20,7 @@ public class Shoot extends Command {
 	private static final long TIMEOUT = 1000;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
+	private static final double  DELAY = 5; //SECONDS (not milliseconds) that the ball motors move for before the kicker kicks in
 	
 	public Shoot()
 	{
@@ -26,8 +29,11 @@ public class Shoot extends Command {
 	
 	
 	protected void initialize() {
-		Kicker.launch();
+		
+		
 		BallMotors.expel();
+		Timer.delay(DELAY);
+		Kicker.launch();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 	}

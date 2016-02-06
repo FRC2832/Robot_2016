@@ -1,5 +1,7 @@
 package org.usfirst.frc2832.Robot_2016;
 
+import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /*
@@ -9,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BallMotors extends Subsystem {
 	
-	private static final double SPEED = 1; //speed of motors, from 0 to 1.  
+	
 	
 	public BallMotors()
 	{
@@ -20,16 +22,16 @@ public class BallMotors extends Subsystem {
 	 */
 	public static void intake()
 	{
-		RobotMap.ballIngestLeft.set(SPEED);
-		RobotMap.ballIngestRight.set(-SPEED);
+		RobotMap.ballIngestLeft.set(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
+		RobotMap.ballIngestRight.set(-Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
 	}
 	/*
 	 * Spins the wheels outwards to expel a boulder.
 	 */
 	public static void expel()
 	{
-		RobotMap.ballIngestLeft.set(-SPEED);
-		RobotMap.ballIngestRight.set(SPEED);
+		RobotMap.ballIngestLeft.set(-Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
+		RobotMap.ballIngestRight.set(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
 	}
 	/*
 	 * Stops the wheels from spinning.
