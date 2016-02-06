@@ -60,13 +60,8 @@ public class SavedStates {
 	 * @return
 	 */
 	public static String[] getIndex() {
-		if (index == null) {
-			try {
+		if (index == null)
 				loadIndex();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		return index.toArray(new String[index.size()]);
 	}
 	
@@ -91,20 +86,25 @@ public class SavedStates {
 	
 	/**
 	 * Loads the indexing file, which should contain all of the autonomous filenames.
-	 * @throws IOException
 	 */
-	public static void loadIndex() throws IOException {
-		FileReader fr = new FileReader(convertNameToPath("index.txt"));
-		BufferedReader br = new BufferedReader(fr);
-		
-		index = new ArrayList<>();
-		
-		// Read all lines into index
-		String line;
-		while ((line = br.readLine()) != null)
-			index.add(line);
-		
-		fr.close();
+	public static void loadIndex() {
+		FileReader fr = null;
+		try {
+			fr = new FileReader(convertNameToPath("index.txt"));
+			BufferedReader br = new BufferedReader(fr);
+			
+			index = new ArrayList<>();
+			
+			// Read all lines into index
+			String line;
+			while ((line = br.readLine()) != null)
+				index.add(line);
+			
+			fr.close();
+		} catch (IOException e) {
+			index = new ArrayList<>();
+			index.add("RecordableAutonIndex");
+		}
 	}
 	
 	private static void saveIndex() throws IOException {

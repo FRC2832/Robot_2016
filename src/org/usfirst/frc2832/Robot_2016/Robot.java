@@ -18,6 +18,8 @@ import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
+import com.ni.vision.VisionException;
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -70,18 +72,21 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         
         oi = new OI();
-        
-        camera1 = new USBCamera("cam0");
-        camera2 = new USBCamera("cam1");
-        
-        camera1.setFPS(15);
-        camera1.setSize(320, 240);
-        
-        camera2.setFPS(15);
-        camera2.setSize(320, 240);
-        
-        CameraServer2832 cameraServer = CameraServer2832.getInstance();
-        cameraServer.startAutomaticCapture(camera1, camera2);
+        try {
+	        camera1 = new USBCamera("cam0");
+	        camera2 = new USBCamera("cam1");
+	        
+	        camera1.setFPS(15);
+	        camera1.setSize(320, 240);
+	        
+	        camera2.setFPS(15);
+	        camera2.setSize(320, 240);
+	        
+	        CameraServer2832 cameraServer = CameraServer2832.getInstance();
+	        cameraServer.startAutomaticCapture(camera1, camera2);
+        } catch (VisionException e) {
+        	e.printStackTrace();
+        }
 
         autonomous = new SendableChooser();
         autonomous.addObject("Do nothing at all", null);

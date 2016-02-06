@@ -110,11 +110,7 @@ public class OI {
 		
 		index = new SendableChooser();
 		
-		try {
-			SavedStates.loadIndex();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		SavedStates.loadIndex();
 		
 		for(String key : SavedStates.getIndex())
 			index.addObject(key, key);
