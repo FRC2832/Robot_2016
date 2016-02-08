@@ -40,7 +40,6 @@ public class CameraServer2832 {
 	  private static final int kHardwareCompression = -1;
 	  private static final String kDefaultCameraName = "cam1";
 	  private static final int kMaxImageSize = 200000;
-	  private boolean flipped;
 	  private static CameraServer2832 server;
 
 	  public static CameraServer2832 getInstance() {
@@ -59,6 +58,7 @@ public class CameraServer2832 {
 	  private CameraData m_imageData;
 	  private Deque<ByteBuffer> m_imageDataPool;
 	  private long lastSwitch;
+	  private boolean flipped = false;
 
 	  private class CameraData {
 	    RawData data;
@@ -93,8 +93,24 @@ public class CameraServer2832 {
 	    serverThread.start();
 	  }
 
+	  public void flip(){
+		  flipped = !flipped;
+	  }
+	  
 	  private synchronized void setImageData(RawData data, int start) {
-	    if (m_imageData != null && m_imageData.data != null) {
+		//flip it here, since it is called by setImage anyways
+		if(flipped){
+			//make an image out of data
+			Image image = null;
+			NIVision.imaqUnflatten(image, data, data.getBuffer().array().length);
+			//flip it
+			Image flippedImage = null;
+			NIVision.imaqFlip(flippedImage, image, FlipAxis.HORIZONTAL_AXIS);
+			//change data to the data of the flipped image
+			data = NIVision.imaqFlatten(flippedImage, NIVision.FlattenType.FLATTEN_IMAGE,
+		            NIVision.CompressionType.COMPRESSION_JPEG, 10 * m_quality);
+		}
+		if (m_imageData != null && m_imageData.data != null) {
 	      m_imageData.data.free();
 	      if (m_imageData.data.getBuffer() != null){
 	        m_imageDataPool.addLast(m_imageData.data.getBuffer());
@@ -115,19 +131,10 @@ public class CameraServer2832 {
 	   *
 	   * @param image The IMAQ image to show on the dashboard
 	   */
-	  public void flip(){
-		  flipped = !flipped;
-	  }
-	  
 	  public void setImage(Image image) {
 	    // handle multi-threadedness
 
 	    /* Flatten the IMAQ image to a JPEG */
-		if(flipped){
-			Image flippedImage = null;
-			NIVision.imaqFlip(flippedImage, image, FlipAxis.HORIZONTAL_AXIS);
-			image = flippedImage;
-		}
 	    RawData data =
 	        NIVision.imaqFlatten(image, NIVision.FlattenType.FLATTEN_IMAGE,
 	            NIVision.CompressionType.COMPRESSION_JPEG, 10 * m_quality);
