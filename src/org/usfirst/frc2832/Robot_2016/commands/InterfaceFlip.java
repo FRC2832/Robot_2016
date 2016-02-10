@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class InterfaceFlip extends Command {
 	
-	public static boolean isFlipped;
+	public static boolean isFlipped = true;
 
 	@Override
 	protected void initialize() {
