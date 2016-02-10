@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveAimerDown extends Command {
 
-	@Override
+	public MoveAimerDown() {
+		requires (Robot.aimer);
+	}
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		requires(Robot.aimer);
 		RobotMap.winchMotor.set(0.6);
 	}
 
