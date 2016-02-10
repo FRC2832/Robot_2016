@@ -82,13 +82,13 @@ public class OI {
 	    aButton.whenPressed(new InterfaceFlip());
 	    
 	    bButton = new JoystickButton(gamepad,2);
-	    bButton.whileHeld(null);
+	    //bButton.whileHeld(null);
 	    
 	    xButton = new JoystickButton(gamepad,3);
-	    xButton.whenPressed(null);
+	    //xButton.whenPressed(null);
 	    
 	    yButton = new JoystickButton(gamepad,4);
-	    yButton.whenPressed(null);
+	    //yButton.whenPressed(null);
 	    
 	    leftBumper = new JoystickButton(gamepad,5);
 	    leftBumper.whileHeld(new MoveAimerDown());
