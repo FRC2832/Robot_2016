@@ -91,11 +91,11 @@ public class RobotMap {
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);
-        ballIngestRight = new CANTalon(4);
+        ballIngestRight = new CANTalon(6);
         LiveWindow.addActuator("Ball Handler", "ingestRight", ballIngestRight);
 
         laser = new AnalogInput(0);
-        proxSensor = new AnalogInput(6);
+        proxSensor = new AnalogInput(1);
         kicker = new Servo(1);
         
         kicker.setPosition(Kicker.REST_ANGLE);
