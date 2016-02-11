@@ -20,18 +20,18 @@ public class BallMotors extends Subsystem {
 	/*
 	 * Spins the wheels inwards to take in a boulder.
 	 */
-	public static void intake()
+	public static void intake(double speed)
 	{
-		RobotMap.ballIngestLeft.set(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
-		RobotMap.ballIngestRight.set(-Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
+		RobotMap.ballIngestLeft.set(speed);
+		RobotMap.ballIngestRight.set(-speed);
 	}
 	/*
 	 * Spins the wheels outwards to expel a boulder.
 	 */
-	public static void expel()
+	public static void expel(double speed)
 	{
-		RobotMap.ballIngestLeft.set(-Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
-		RobotMap.ballIngestRight.set(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
+		RobotMap.ballIngestLeft.set(-speed);
+		RobotMap.ballIngestRight.set(speed);
 	}
 	/*
 	 * Stops the wheels from spinning.

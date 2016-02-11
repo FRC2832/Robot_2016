@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Kicker extends Subsystem{
 
-	private static final double LAUNCH_ANGLE = 1.0;
-	private static final double REST_ANGLE = 0.0;
+	public static final double LAUNCH_ANGLE = 0;
+	public static final double REST_ANGLE = 0.5;
 	
 	@Override
 	protected void initDefaultCommand() {

@@ -20,7 +20,7 @@ public class Shoot extends Command {
 	private static final long TIMEOUT = 1000;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
-	private static final double  DELAY = 5; //SECONDS (not milliseconds) that the ball motors move for before the kicker kicks in
+	private static final double  DELAY = 1; //SECONDS (not milliseconds) that the ball motors move for before the kicker kicks in
 	
 	public Shoot()
 	{
@@ -31,7 +31,7 @@ public class Shoot extends Command {
 	protected void initialize() {
 		
 		
-		BallMotors.expel();
+		BallMotors.expel(0.8);
 		Timer.delay(DELAY);
 		Kicker.launch();
 		//record time of command start

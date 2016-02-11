@@ -98,6 +98,8 @@ public class RobotMap {
         proxSensor = new AnalogInput(1);
         kicker = new Servo(1);
         
+        kicker.setPosition(Kicker.REST_ANGLE);
+        
         byte update_rate_hz = 50;
         imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP), update_rate_hz);
     }
