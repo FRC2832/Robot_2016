@@ -31,8 +31,6 @@ public class MoveAimerUp extends Command {
 
 	@Override
 	protected void end() {
-		//turn off winch
-		RobotMap.winchMotor.set(0);
 	}
 
 	@Override

@@ -21,9 +21,7 @@ import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
-import org.usfirst.frc2832.Robot_2016.commands.Shoot;
-import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
-import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
+import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;

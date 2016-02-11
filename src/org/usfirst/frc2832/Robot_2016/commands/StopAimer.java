@@ -1,29 +1,23 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
-import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MoveAimerDown extends Command {
+public class StopAimer extends Command {
 
-	public MoveAimerDown() {
-		requires (Robot.aimer);
-	}
+	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		RobotMap.winchMotor.set(0.6);
+		RobotMap.winchMotor.set(0);
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -34,8 +28,7 @@ public class MoveAimerDown extends Command {
 
 	@Override
 	protected void interrupted() {
-		RobotMap.winchMotor.set(0);
-
+		
 	}
 
 }
