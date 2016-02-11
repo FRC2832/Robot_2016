@@ -33,6 +33,11 @@ public class BallMotors extends Subsystem {
 		RobotMap.ballIngestLeft.set(-Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
 		RobotMap.ballIngestRight.set(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_RT));
 	}
+	public static void expel(double num)
+	{
+		RobotMap.ballIngestLeft.set(-num);
+		RobotMap.ballIngestRight.set(num);
+	}
 	/*
 	 * Stops the wheels from spinning.
 	 */
