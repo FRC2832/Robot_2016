@@ -11,16 +11,13 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
-import java.io.IOException;
-
+import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
-import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
-import org.usfirst.frc2832.Robot_2016.commands.Expel;
-import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
+import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -77,23 +74,19 @@ public class OI {
     	//GamePad Settings
     	gamepad = new RecordableGamepad(0);
 	    
-    	aButton = new JoystickButton(gamepad,1);
+    	aButton = new JoystickButton(gamepad,GamepadState.BUTTON_A + 1);
 	    aButton.whenPressed(new InterfaceFlip());
 	    
-	    bButton = new JoystickButton(gamepad,2);
-	    //bButton.whileHeld(null);
+	    yButton = new JoystickButton(gamepad,GamepadState.BUTTON_Y + 1);
+	    yButton.whenPressed(new Shoot());
 	    
-	    xButton = new JoystickButton(gamepad,3);
-	    //xButton.whenPressed(null);
-	    
-	    yButton = new JoystickButton(gamepad,4);
-	    yButton.whenPressed(new Expel());
-	    
-	    leftBumper = new JoystickButton(gamepad,5);
+	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
 	    leftBumper.whileHeld(new MoveAimerDown());
+	    leftBumper.whenReleased(new StopAimer());
 	    
-	    rightBumper = new JoystickButton(gamepad,6);
+	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
 	    rightBumper.whileHeld(new MoveAimerUp()  );
+	    rightBumper.whenReleased(new StopAimer());
 	    
 	    RecordableGamepad.dashboardSetup();
 	    
