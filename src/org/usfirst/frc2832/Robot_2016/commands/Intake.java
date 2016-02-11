@@ -2,6 +2,7 @@ package org.usfirst.frc2832.Robot_2016.commands;
 
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Robot;
+import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,7 +15,7 @@ public class Intake extends Command {
 
 	private long timeStart;
 	//length of timeout, in milliseconds
-	private static final long TIMEOUT = 5000;
+	private static final long TIMEOUT = 200;
 	
 	public Intake()
 	{
@@ -25,7 +26,7 @@ public class Intake extends Command {
 	
 	protected void initialize() {
 		//intake motors
-		BallMotors.intake();
+		BallMotors.intake(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 	}

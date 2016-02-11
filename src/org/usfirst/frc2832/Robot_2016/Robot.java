@@ -218,7 +218,7 @@ public class Robot extends IterativeRobot {
 		}
         
        //left Trigger Code
-        if (oi.gamepad.getRawAxis(GamepadState.AXIS_LT) >= .9) {
+        if (oi.gamepad.getRawAxis(GamepadState.AXIS_LT) >= .2) {
         	Scheduler.getInstance().add(new Intake());
         	
 			leftTriggerPressed = true;
@@ -226,7 +226,7 @@ public class Robot extends IterativeRobot {
 			leftTriggerPressed = false;
 		}
         //right Trigger Code
-        if (oi.gamepad.getRawAxis(GamepadState.AXIS_RT) >= .9) {   	
+        if (oi.gamepad.getRawAxis(GamepadState.AXIS_RT) >= .2) {   	
         	Scheduler.getInstance().add(new Shoot());
         	
         	rightTriggerPressed = true;
