@@ -1,7 +1,7 @@
 package org.usfirst.frc2832.Robot_2016;
 
 import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
-
+import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
@@ -35,13 +35,6 @@ public class DashboardOutput {
 		
 		CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
 		
-		double[] defaultVal = new double[0];
-		double[] areas = Robot.table.getNumberArray("area", defaultVal);
-		for(int i = 0; i < areas.length; i++)
-		{
-			Preferences.getInstance().putDouble("Area " + i, areas[i]);
-		}
-		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
 	
@@ -58,5 +51,6 @@ public class DashboardOutput {
 		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
 		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
 		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
+		SmartDashboard.putData("ImagingTest", new ImagingTest());
 	}
 }

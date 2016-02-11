@@ -4,11 +4,23 @@ public class ImageProcessing {
 	//resolution
 	private static final int RES_X = 320;
 	private static final int RES_Y = 240;
+	//view angle of camera, in radians
+	private static final double VIEW_ANG = 67* Math.PI / 180;
+	
+	//height/width of target, in meters
+	public static final double TOWER_HEIGHT = .3048;
+	public static final double TOWER_WIDTH = .508;
+	//distance from bottom of target to ground, in meters
+	public static final double DIST_TO_GROUND = 2.159;
+	
 	
 	//each coord is from -1 to 1 and says how far away the last-processed
 	//target is. [0,0] is center. [-1,-1] is top left corner.
 	public static double[] targetOffset = {0,0};
-		
+	
+	//how far away the target is, in meters.
+	public static double depth = 0;
+	
 	/*The contours report has the following values:
 	 * centerX
 	 * centerY
@@ -26,7 +38,7 @@ public class ImageProcessing {
 	 * 3) Determine target's offset from center
 	 * 4) Determine how far away the target it
 	 */
-	public void process()
+	public static void process()
 	{
 		//first, find largest contour with respect to area
 		double[] areas = Robot.table.getNumberArray("area", new double[0]);
@@ -47,9 +59,10 @@ public class ImageProcessing {
 		targetOffset[0] = (contour[0]-RES_X/2)/(RES_X/2);
 		targetOffset[1] = (contour[0]-RES_Y/2)/(RES_Y/2);
 		
-		/*finally let's figure out how far away we are from the target.
-		 * 
-		 */
+		//finally let's figure out how far away we are from the target.
+		//TODO: make this work for nonzero angle tilts
+		double pixelsToFeet = TOWER_HEIGHT / contour[5];
+		depth=(pixelsToFeet * RES_Y/2)/Math.tan(VIEW_ANG/2);
 		
 	}
 }
