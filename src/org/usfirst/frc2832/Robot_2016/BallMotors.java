@@ -33,6 +33,11 @@ public class BallMotors extends Subsystem {
 		RobotMap.ballIngestLeft.set(-speed);
 		RobotMap.ballIngestRight.set(speed);
 	}
+	public static void expel(double num)
+	{
+		RobotMap.ballIngestLeft.set(-num);
+		RobotMap.ballIngestRight.set(num);
+	}
 	/*
 	 * Stops the wheels from spinning.
 	 */

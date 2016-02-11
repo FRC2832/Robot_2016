@@ -11,8 +11,13 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
+import java.io.IOException;
+
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
+import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
+import org.usfirst.frc2832.Robot_2016.commands.Expel;
+import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
@@ -82,15 +87,13 @@ public class OI {
 	    //xButton.whenPressed(null);
 	    
 	    yButton = new JoystickButton(gamepad,4);
-	    //yButton.whenPressed(null);
+	    yButton.whenPressed(new Expel());
 	    
 	    leftBumper = new JoystickButton(gamepad,5);
 	    leftBumper.whileHeld(new MoveAimerDown());
-	    leftBumper.whenReleased(new StopAimer());
 	    
 	    rightBumper = new JoystickButton(gamepad,6);
 	    rightBumper.whileHeld(new MoveAimerUp()  );
-	    rightBumper.whenReleased(new StopAimer());
 	    
 	    RecordableGamepad.dashboardSetup();
 	    
