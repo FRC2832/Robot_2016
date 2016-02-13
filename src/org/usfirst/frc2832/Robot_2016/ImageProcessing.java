@@ -8,7 +8,7 @@ public class ImageProcessing {
 	private static final double VIEW_ANG = 67* Math.PI / 180;
 	
 	//height/width of target, in meters
-	public static final double TOWER_HEIGHT = .3048;
+	public static final double TOWER_HEIGHT = 1.220;//.3048;
 	public static final double TOWER_WIDTH = .508;
 	//distance from bottom of target to ground, in meters
 	public static final double DIST_TO_GROUND = 2.159;
@@ -20,7 +20,7 @@ public class ImageProcessing {
 	
 	//how far away the target is, in meters.
 	public static double depth = 0;
-	
+	public static double height = 1;
 	/*The contours report has the following values:
 	 * centerX
 	 * centerY
@@ -42,6 +42,8 @@ public class ImageProcessing {
 	{
 		//first, find largest contour with respect to area
 		double[] areas = Robot.table.getNumberArray("area", new double[0]);
+		if(areas.length < 1)
+			return;
 		int largest = 0;
 		for(int i = 1; i < areas.length; i++)
 			if(areas[i]>areas[largest])
@@ -59,10 +61,11 @@ public class ImageProcessing {
 		targetOffset[0] = (contour[0]-RES_X/2)/(RES_X/2);
 		targetOffset[1] = (contour[0]-RES_Y/2)/(RES_Y/2);
 		
+		height = contour[5];
 		//finally let's figure out how far away we are from the target.
 		//TODO: make this work for nonzero angle tilts
 		double pixelsToFeet = TOWER_HEIGHT / contour[5];
-		depth=(pixelsToFeet * RES_Y/2)/Math.tan(VIEW_ANG/2);
+		depth=(pixelsToFeet * RES_X/2)/Math.tan(VIEW_ANG/2);
 		
 	}
 }

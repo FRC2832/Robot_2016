@@ -3,7 +3,9 @@ package org.usfirst.frc2832.Robot_2016.commands;
 import org.usfirst.frc2832.Robot_2016.ImageProcessing;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //DEBUG USE ONLY
 //DO NOT USE FOR ANY LEGITIMATE PROCESS
 //THANKS :)
@@ -18,6 +20,10 @@ public class ImagingTest extends Command {
 	protected void execute() {
 		ImageProcessing.process();
 		RobotMap.driveTrain.arcadeDrive(0, ImageProcessing.targetOffset[0]);
+		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
+		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
+		SmartDashboard.putNumber("target depth", ImageProcessing.depth);
+		SmartDashboard.putNumber("height", ImageProcessing.height);
 	}
 
 	@Override
