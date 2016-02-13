@@ -1,11 +1,13 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  * Pushes out the ball assuming the ball motors are already running
@@ -20,7 +22,7 @@ public class Shoot extends Command {
 	private static final long TIMEOUT = 1500;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
-	private static final double  DELAY = 1; //SECONDS (not milliseconds) that the ball motors move for before the kicker kicks in
+	private static double  DELAY = 1; //SECONDS (not milliseconds) that the ball motors move for before the kicker kicks in
 	
 	public Shoot()
 	{
@@ -30,12 +32,14 @@ public class Shoot extends Command {
 	
 	protected void initialize() {
 		
-		
+		//DELAY = Preferences.getInstance().getDouble("Shooter Delay (Seconds)", 1);//this does not display
 		BallMotors.expel(1);
 		Timer.delay(DELAY);
 		Kicker.launch();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
+		
+	
 	}
 
 	@Override

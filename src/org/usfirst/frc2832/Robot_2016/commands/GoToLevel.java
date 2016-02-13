@@ -4,14 +4,15 @@ import org.usfirst.frc2832.Robot_2016.Aimer;
 import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GoToLevel extends Command {
-	private final int SLOW_DOWN_POINT = 6300;
-	private final int SLOW_DOWN_MORE_POINT = 2100;
-	private final int MIN_SPEED = 300;
-	private final int MAX_SPEED = 1000;
+	private int SLOW_DOWN_POINT;
+	private int SLOW_DOWN_MORE_POINT;
+	private int MIN_SPEED;
+	private int MAX_SPEED;
 	private final int DIST_THRESHOLD = 500;
 	private int level;
 	private int direction;
@@ -30,6 +31,14 @@ public class GoToLevel extends Command {
 
 	@Override
 	protected void execute() {
+
+		SLOW_DOWN_POINT = Preferences.getInstance().getInt("Slow Down Aimer Distance", 6300);
+		SLOW_DOWN_MORE_POINT = Preferences.getInstance().getInt("Slow Down More Aimer Distance", 2100);
+		MIN_SPEED = Preferences.getInstance().getInt("Min Aimer Speed", 300);
+		MAX_SPEED = Preferences.getInstance().getInt("Max Speed", 1000); // You must change this one in the code, it doesn't work in Preferences
+		
+		
+		
 		double speed = MAX_SPEED;
 		double position = RobotMap.winchMotor.getEncPosition();
 		//When the position is a certain distance away from the level (SLOW_DOWN_POINT) it decelerates from MAX_SPEED 

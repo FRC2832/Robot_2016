@@ -3,6 +3,7 @@ package org.usfirst.frc2832.Robot_2016;
 import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
 import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
+import org.usfirst.frc2832.Robot_2016.commands.Expel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
@@ -49,7 +50,7 @@ public class DashboardOutput {
       	SmartDashboard.putData("Rotate Angle", new RotateAngle(90));
       	SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
 		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
-		SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
+      	SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
 		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
 		SmartDashboard.putData("ImagingTest", new ImagingTest());
 	}

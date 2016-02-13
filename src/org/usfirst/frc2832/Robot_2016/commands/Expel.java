@@ -3,6 +3,7 @@ package org.usfirst.frc2832.Robot_2016.commands;
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,7 +18,7 @@ public class Expel extends Command {
 	private static final long TIMEOUT = 1000;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
-	private static final double SPEED = 0.3; //sets the speed the ball expels at
+	private static double SPEED; //sets the speed the ball expels at
 	
 	
 
@@ -30,11 +31,12 @@ public class Expel extends Command {
 
 	protected void initialize() {
 		
-		
+		SPEED = Preferences.getInstance().getDouble("Expel Speed", 0.3);
 		BallMotors.expel(SPEED);
 		Kicker.launch();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
+		
 		
 	}
 	

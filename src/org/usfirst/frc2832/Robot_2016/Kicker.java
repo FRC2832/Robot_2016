@@ -1,6 +1,8 @@
 package org.usfirst.frc2832.Robot_2016;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Kick used to expel the ball from the holder
@@ -10,8 +12,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Kicker extends Subsystem{
 
-	public static final double LAUNCH_ANGLE = 0;
-	public static final double REST_ANGLE = 0.5;
+	public static double LAUNCH_ANGLE;
+	public static double REST_ANGLE;
+
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -21,17 +24,23 @@ public class Kicker extends Subsystem{
 	//push boulder out at a default angle
 	public static void launch()
 	{
+		LAUNCH_ANGLE = Preferences.getInstance().getDouble("Kicker Launch Angle", 0);
 		RobotMap.kicker.set(LAUNCH_ANGLE);
+		
 	}
 	//return after using default launch method
 	public static void resetAfterLaunch()
 	{
+		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", .5);
 		RobotMap.kicker.set(REST_ANGLE);
+		
 	}
 	//reset back to position acquired in robotInit()
 	public static void reset()
 	{
+		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", .5);
 		RobotMap.kicker.set(REST_ANGLE);
+		
 	}
 	
 	//accessor
