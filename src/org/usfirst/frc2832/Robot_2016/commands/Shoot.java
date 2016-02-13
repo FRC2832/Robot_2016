@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
+import org.usfirst.frc2832.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -55,13 +56,26 @@ public class Shoot extends Command {
 
 	@Override
 	protected void end() {
+		if (Robot.isAuton) {
+			Robot.gameMode = 0;
+		}
+		else {
+			Robot.gameMode = 1;
+		}
 		Kicker.resetAfterLaunch();
 		BallMotors.stopMotors();
+		
 	}
 
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
+		if (Robot.isAuton) {
+			Robot.gameMode = 0;
+		}
+		else {
+			Robot.gameMode = 1;
+		}
 		BallMotors.stopMotors();
 	}
 
