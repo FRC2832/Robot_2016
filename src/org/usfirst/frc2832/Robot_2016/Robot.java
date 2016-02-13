@@ -96,6 +96,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
         
         RobotMap.winchMotor.setEncPosition(0);
+        RobotMap.winchMotor.setPosition(0);
         
         table = NetworkTable.getTable("GRIP/contours");
     }
@@ -117,6 +118,10 @@ public class Robot extends IterativeRobot {
         recordedAuton = SmartDashboard.getBoolean("Use Recorded Autonomous");
         
         DashboardOutput.putPeriodicData();
+        
+        RobotMap.winchMotor.setEncPosition(0);
+        RobotMap.winchMotor.setPosition(0);
+        RobotMap.winchMotor.set(0);
     }
 
     public void autonomousInit() {

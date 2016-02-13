@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Aimer extends Subsystem {
 	public static int currentLevel = 0;
-	public static int[] levelPositions = {0,10000,20000,30000};
+	public static int[] levelPositions = {0,-300,-600,-900};
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub

@@ -82,11 +82,11 @@ public class OI {
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
 	    leftBumper.whileHeld(new MoveAimerDown());
-	    leftBumper.whenReleased(new StopAimer());
+	    //leftBumper.whenReleased(new StopAimer());
 	    
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
-	    rightBumper.whileHeld(new MoveAimerUp()  );
-	    rightBumper.whenReleased(new StopAimer());
+	    rightBumper.whileHeld(new MoveAimerUp());
+	    //rightBumper.whenReleased(new StopAimer());
 	    
 	    RecordableGamepad.dashboardSetup();
 	    

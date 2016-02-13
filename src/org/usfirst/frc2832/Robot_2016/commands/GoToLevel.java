@@ -19,20 +19,21 @@ public class GoToLevel extends Command {
 	public GoToLevel (int level) {
 		this.level = level;
 		requires (Robot.aimer);
-		if(Aimer.levelPositions[level]>RobotMap.winchMotor.getEncPosition())
+		/*if(Aimer.levelPositions[level]>RobotMap.winchMotor.getEncPosition())
 			direction = 1;
 		else
-			direction = -1;
+			direction = -1;*/
 	}
 	
 	@Override
 	protected void initialize() {
+		RobotMap.winchMotor.set(Aimer.levelPositions[level]);
 	}
 
 	@Override
 	protected void execute() {
 
-		SLOW_DOWN_POINT = Preferences.getInstance().getInt("Slow Down Aimer Distance", 6300);
+		/*SLOW_DOWN_POINT = Preferences.getInstance().getInt("Slow Down Aimer Distance", 6300);
 		SLOW_DOWN_MORE_POINT = Preferences.getInstance().getInt("Slow Down More Aimer Distance", 2100);
 		MIN_SPEED = Preferences.getInstance().getInt("Min Aimer Speed", 300);
 		MAX_SPEED = Preferences.getInstance().getInt("Max Speed", 1000); // You must change this one in the code, it doesn't work in Preferences
@@ -56,25 +57,25 @@ public class GoToLevel extends Command {
 		}
 		
 		
-		RobotMap.winchMotor.set(direction * speed);
+		RobotMap.winchMotor.set(direction * speed);*/
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (Math.abs(Aimer.levelPositions[level]- RobotMap.winchMotor.getEncPosition())>DIST_THRESHOLD)
-			return false;
+		//if (Math.abs(Aimer.levelPositions[level]- RobotMap.winchMotor.getEncPosition())>DIST_THRESHOLD)
+		//	return false;
 		return true;
 	}
 
 	@Override
 	protected void end() {
 		//turn off winch
-		RobotMap.winchMotor.set(0);
+		//RobotMap.winchMotor.set(0);
 	}
 
 	@Override
 	protected void interrupted() {
-		RobotMap.winchMotor.set(0);
+		//RobotMap.winchMotor.set(0);
 	}
 
 }

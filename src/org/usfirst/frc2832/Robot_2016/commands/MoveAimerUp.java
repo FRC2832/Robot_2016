@@ -4,6 +4,7 @@ import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveAimerUp extends Command {
 	
@@ -13,7 +14,8 @@ public class MoveAimerUp extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		RobotMap.winchMotor.set(-0.6);
+		SmartDashboard.putNumber("goto",RobotMap.winchMotor.getEncPosition()-100);
+		RobotMap.winchMotor.set(RobotMap.winchMotor.getEncPosition()-100);
 
 	}
 
@@ -35,7 +37,6 @@ public class MoveAimerUp extends Command {
 
 	@Override
 	protected void interrupted() {
-		RobotMap.winchMotor.set(0);
 
 	}
 
