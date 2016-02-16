@@ -14,7 +14,7 @@ public class MoveAimerUp extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		Aimer.toSpeedMode();
+		Aimer.upSpeedMode();
 		RobotMap.winchMotor.set(Aimer.MOVE_SPEED);
 
 	}
@@ -37,7 +37,6 @@ public class MoveAimerUp extends Command {
 
 	@Override
 	protected void interrupted() {
-		RobotMap.winchMotor.set(0);
 
 	}
 
