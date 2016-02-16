@@ -64,7 +64,7 @@ public class RobotMap {
         
         //the following code sets the back motors as slaves/followers to the front
         backLeftMotor = new CANTalon(2);
-        backLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
+        //backLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backLeftMotor.set(1);
         backRightMotor = new CANTalon(4);
         backRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
