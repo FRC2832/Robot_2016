@@ -82,10 +82,10 @@ public class OI {
 	    yButton.whenPressed(new Expel());
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
-	    leftBumper.whileHeld(null);
+	    //leftBumper.whileHeld(null);
 	    
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
-	    rightBumper.whileHeld(null);
+	    //rightBumper.whileHeld(null);
 	    
 	    RecordableGamepad.dashboardSetup();
 	    

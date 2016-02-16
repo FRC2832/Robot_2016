@@ -12,7 +12,7 @@ public class MoveAimerDown extends Command {
 	}
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		RobotMap.winchMotor.set(0.6);
+		RobotMap.winchMotor.set(0.8);
 	}
 
 	@Override

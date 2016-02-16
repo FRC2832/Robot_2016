@@ -208,14 +208,14 @@ public class Robot extends IterativeRobot {
 		case 0:
 			// Use speed mode if not currently used
 			if (!povPressed) {
-				Scheduler.getInstance().add(new MoveAimerUp());
+				Scheduler.getInstance().add(new MoveAimerDown());
 			}
 			povPressed = true;
 			break;
 		//D-pad down
 		case 180:
 			if (!povPressed) {
-				Scheduler.getInstance().add(new MoveAimerDown());
+				Scheduler.getInstance().add(new MoveAimerUp());
 			}
 			povPressed = true;
 			break;
