@@ -1,5 +1,6 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
+import org.usfirst.frc2832.Robot_2016.Aimer;
 import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 
@@ -12,7 +13,8 @@ public class MoveAimerDown extends Command {
 	}
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		RobotMap.winchMotor.set(0.6);
+		Aimer.toSpeedMode();
+		RobotMap.winchMotor.set(-1*Aimer.MOVE_SPEED);
 	}
 
 	@Override
