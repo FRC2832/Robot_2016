@@ -9,6 +9,8 @@ import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
+import com.ni.vision.VisionException;
+
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,7 +37,11 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Proximity Sensor", RobotMap.proxSensor.pidGet());
 		SmartDashboard.putNumber("winch error", RobotMap.winchMotor.getError());
 		
-		CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
+		try {
+			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}

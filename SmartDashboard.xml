@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="225"/>
+	</widget>
+	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.CommandButton">
+		<location x="6" y="90"/>
+	</widget>
 	<widget field="Use Recorded Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.CheckBox">
 		<location x="183" y="408"/>
 	</widget>
@@ -7,9 +13,6 @@
 		<location x="48" y="408"/>
 		<property name="Text" value="Use Recorded Autonomous?"/>
 	</static-widget>
-	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="84"/>
-	</widget>
 	<widget field="AmIWorking?" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="0"/>
 	</widget>
@@ -117,6 +120,32 @@
 	<widget field="RecordableAutonomous ID" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="540"/>
 	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="0" y="0"/>
+		<property name="Image File" value="C:\Users\Zach\git\Robot_2016\smartdashboardbg.png"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="614" y="118"/>
+		<width>59</width>
+		<height>83</height>
+		<property name="Connection Color" value="255.55.0.255"/>
+		<property name="No Connection Color" value="51.51.51.255"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="590" y="63"/>
+		<width>106</width>
+		<property name="Connection Color" value="0.255.51.255"/>
+		<property name="No Connection Color" value="0.0.102.255"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="642" y="81"/>
+		<width>638</width>
+		<height>479</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="48" y="408"/>
+		<property name="Text" value="Use Recorded Autonomous?"/>
+	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
 		<location x="0" y="0"/>
 		<property name="Image File" value="C:\Users\Brendan\git\Robot_2016\smartdashboardbg.png"/>
