@@ -14,7 +14,7 @@ public class MoveAimerDown extends Command {
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		Aimer.downSpeedMode();
-		RobotMap.winchMotor.set(-20);
+		RobotMap.winchMotor.set(Aimer.MOVE_SPEED_DOWN);
 	}
 
 	@Override
