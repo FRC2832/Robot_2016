@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
     		oi.gamepad.startVirtualGamepad();
     	} else {
 		    // schedule the autonomous command (example)
-			autonomousCommand = (Command)autonomous.getSelected();
+			autonomousCommand = new MoveForward(5);//(Command)autonomous.getSelected();
 			autonomousCommand.start();
     	}
     }

@@ -5,6 +5,7 @@ import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.TrajectoryController;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,19 +25,20 @@ public class  MoveForward extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initVal = DriveEncoders.getAbsoluteValue();
-    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.6, 0.5, -0.5); //TO-DO: would be nice to test these numbers!
+    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.8, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
     	startAngle = RobotMap.imu.getYaw();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	correctiveForce = kP * (RobotMap.imu.getYaw() - startAngle); //corrects for displaced angles while moving forward (e.g. over Ramparts); sign may be wrong
+    	correctiveForce = -kP * (RobotMap.imu.getYaw() - startAngle); //corrects for displaced angles while moving forward (e.g. over Ramparts); sign may be wrong
     	RobotMap.driveTrain.arcadeDrive(-tc.get(DriveEncoders.getAbsoluteValue() - initVal), correctiveForce); //set speed to one given by Trajectory Controller.
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(DriveEncoders.getAbsoluteValue() - initVal - dist) < TOLERANCE;
+        return (DriveEncoders.getAbsoluteValue() - initVal) > dist; //TODO: Only works for positive dist
+        //Math.abs(DriveEncoders.getAbsoluteValue() - initVal - dist) < TOLERANCE;
     }
 
     // Called once after isFinished returns true

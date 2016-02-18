@@ -8,6 +8,7 @@ public class DriveEncoders extends Subsystem {
 	static double right;
 	static double[] vals = new double[2];
 	static final double TOLERANCE = 0.1;
+	private static final double ENCODER_TO_METERS = 1.96;
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
@@ -22,7 +23,7 @@ public class DriveEncoders extends Subsystem {
 		else if (Math.abs(vals[1]) < TOLERANCE)
 			return vals[0];
 		else
-			return (vals[0] - vals[1])/2; //CURRENTLY ONE IS OPPOSITE OF OTHER. IF ENCODER VALUE IS NOT CHANGING, CONSIDER REPLACING MINUS WITH PLUS
+			return ENCODER_TO_METERS*(vals[0] - vals[1])/2; //CURRENTLY ONE IS OPPOSITE OF OTHER. IF ENCODER VALUE IS NOT CHANGING, CONSIDER REPLACING MINUS WITH PLUS
 			//return Math.sqrt(vals[0]*vals[1]);
 	}
 	
