@@ -26,6 +26,7 @@ public class Intake extends Command {
 	
 	protected void initialize() {
 		//intake motors
+		Robot.sendEvent(new byte[]{4});
 		BallMotors.intake(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
 		//record time of command start
 		timeStart = System.currentTimeMillis();
@@ -45,6 +46,7 @@ public class Intake extends Command {
 	@Override
 	protected void end() {
 		//turn off motors when done.
+		Robot.sendEvent(new byte[]{0});
 		BallMotors.stopMotors();
 		if (Robot.isAuton) {
 			Robot.gameMode = 0;
@@ -56,6 +58,7 @@ public class Intake extends Command {
 
 	@Override
 	protected void interrupted() {
+		Robot.sendEvent(new byte[]{0});
 		if (Robot.isAuton) {
 			Robot.gameMode = 0;
 		}

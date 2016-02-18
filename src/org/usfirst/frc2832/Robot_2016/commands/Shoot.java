@@ -1,14 +1,11 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.Timer;
-
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
 import org.usfirst.frc2832.Robot_2016.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  * Pushes out the ball assuming the ball motors are already running
@@ -34,7 +31,9 @@ public class Shoot extends Command {
 	protected void initialize() {
 		
 		//DELAY = Preferences.getInstance().getDouble("Shooter Delay (Seconds)", 1);//this does not display
+		Robot.sendEvent(new byte[]{1});
 		BallMotors.expel(1);
+		Robot.sendEvent(new byte[]{2});
 		Timer.delay(DELAY);
 		Kicker.launch();
 		//record time of command start
@@ -56,6 +55,7 @@ public class Shoot extends Command {
 
 	@Override
 	protected void end() {
+		Robot.sendEvent(new byte[]{0});
 		if (Robot.isAuton) {
 			Robot.gameMode = 0;
 		}
@@ -69,6 +69,7 @@ public class Shoot extends Command {
 
 	@Override
 	protected void interrupted() {
+		Robot.sendEvent(new byte[]{0});
 		//Kicker.reset(); //fail-safe
 		if (Robot.isAuton) {
 			Robot.gameMode = 0;

@@ -35,7 +35,7 @@ public class Expel extends Command {
 
 
 	protected void initialize() {
-		CANJNI.FRCNetworkCommunicationCANSessionMuxSendMessage(CANJNI.CAN_SEND_PERIOD_NO_REPEAT | Robot.MSGID_MODE, ByteBuffer.wrap(new byte[]{(byte) Robot.gameMode}), 5000);
+		Robot.sendEvent(new byte[]{3});
 		prevGamemode = Robot.gameMode;
 		Robot.gameMode = 4;
 		SPEED = Preferences.getInstance().getDouble("Expel Speed", 0.3);
@@ -61,8 +61,8 @@ public class Expel extends Command {
 
 	@Override
 	protected void end() {
+		Robot.sendEvent(new byte[]{0});
 		Robot.gameMode = prevGamemode;
-		CANJNI.FRCNetworkCommunicationCANSessionMuxSendMessage(CANJNI.CAN_SEND_PERIOD_NO_REPEAT | Robot.MSGID_MODE, ByteBuffer.wrap(new byte[]{(byte) Robot.gameMode}), 5000);
 		Kicker.resetAfterLaunch();
 		BallMotors.stopMotors();
 		
@@ -71,8 +71,8 @@ public class Expel extends Command {
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
+		Robot.sendEvent(new byte[]{0});
 		Robot.gameMode = prevGamemode;
-		CANJNI.FRCNetworkCommunicationCANSessionMuxSendMessage(CANJNI.CAN_SEND_PERIOD_NO_REPEAT | Robot.MSGID_MODE, ByteBuffer.wrap(new byte[]{(byte) Robot.gameMode}), 5000);
 		BallMotors.stopMotors();
 	}
 }
