@@ -133,7 +133,7 @@ public class Robot extends IterativeRobot {
     	} else {
 		    // schedule the autonomous command (example)
 			autonomousCommand = new MoveForward(5);//(Command)autonomous.getSelected();
-			autonomousCommand.start();
+			//autonomousCommand.start();
     	}
     }
 

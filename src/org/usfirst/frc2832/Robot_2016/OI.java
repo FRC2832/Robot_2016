@@ -16,12 +16,15 @@ import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
 import org.usfirst.frc2832.Robot_2016.commands.Expel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
+import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
+import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -81,11 +84,19 @@ public class OI {
 	    yButton = new JoystickButton(gamepad,GamepadState.BUTTON_Y + 1);
 	    yButton.whenPressed(new Expel());
 	    
+	
+	    
+
+	    
+	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
 	    leftBumper.whileHeld(null);
 	    
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
-	    rightBumper.whileHeld(null);
+	    rightBumper.whileHeld(new SpinShooterWheels());
+	    
+	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X + 1);
+	    xButton.whileHeld(new Kick());
 	    
 	    RecordableGamepad.dashboardSetup();
 	    
