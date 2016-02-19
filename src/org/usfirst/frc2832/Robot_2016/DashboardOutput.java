@@ -53,8 +53,10 @@ public class DashboardOutput {
     	SmartDashboard.putData("Autonomous Command", new AutonomousCommand()); 
         SmartDashboard.putData("shoot", new Shoot());  
       	SmartDashboard.putData("Flip Motors", new InterfaceFlip());
-      	SmartDashboard.putData("Move Forward", new MoveForward(5));
-      	SmartDashboard.putData("Rotate Angle", new RotateAngle(90));
+      	SmartDashboard.putData("Move Forward 5", new MoveForward(5));
+      	SmartDashboard.putData("Rotate 45", new RotateAngle(45));
+      	SmartDashboard.putData("Move Forward 3", new MoveForward(3));
+      	SmartDashboard.putData("Rotate -45", new RotateAngle(-45));
       	SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
 		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
       	SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
