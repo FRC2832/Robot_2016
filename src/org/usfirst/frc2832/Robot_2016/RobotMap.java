@@ -88,6 +88,7 @@ public class RobotMap {
         winchMotor = new CANTalon(8);
         winchMotor.enableBrakeMode(true);
         winchMotor.configPeakOutputVoltage(12, -12);
+        winchMotor.enableLimitSwitch(false, false);
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);

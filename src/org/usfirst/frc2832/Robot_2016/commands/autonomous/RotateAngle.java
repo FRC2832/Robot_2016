@@ -28,7 +28,7 @@ public class RotateAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initVal = RobotMap.imu.getYaw();
-    	tc = new TrajectoryController(angle, 0.4, 0.4, 0.8, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
+    	tc = new TrajectoryController(angle, 0.4, 0.4, 0.6, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
     	isPos = Math.signum(angle);
     	curVal = initVal;
     }
