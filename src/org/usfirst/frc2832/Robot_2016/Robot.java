@@ -17,7 +17,9 @@ import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
+import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
+import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
@@ -239,18 +241,20 @@ public class Robot extends IterativeRobot {
         //right Trigger Code
         if (oi.gamepad.getRawAxis(GamepadState.AXIS_RT) >= .2) {  
         	gameMode = 3;
-        	Scheduler.getInstance().add(new Shoot());
+        	Scheduler.getInstance().add(new SpinShooterWheels());
         	
         	rightTriggerPressed = true;
-		} else {
+		} else if (rightTriggerPressed){
 			rightTriggerPressed = false;
 			shooterNotActive = true;
+			Scheduler.getInstance().add(new StopBallMotors());
+			
 		}
-        if (rightTriggerPressed && shooterNotActive) {
-        	gameMode = 3;
-        	Scheduler.getInstance().add(new Shoot());
-        	shooterNotActive = false;
-        }
+      //  if (rightTriggerPressed && shooterNotActive) {
+        //	gameMode = 3;
+        //	Scheduler.getInstance().add(new SpinShooterWheels());
+        //	shooterNotActive = false;
+       // }
         
         
     }

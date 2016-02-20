@@ -70,6 +70,7 @@ public class OI {
 	public JoystickButton yButton;
 	public JoystickButton leftBumper;
 	public JoystickButton rightBumper;
+	public JoystickButton backButton;
 	
 	public SendableChooser index;
 	
@@ -84,7 +85,9 @@ public class OI {
 	    yButton = new JoystickButton(gamepad,GamepadState.BUTTON_Y + 1);
 	    yButton.whenPressed(new Expel());
 	    
-	
+	    backButton = new JoystickButton(gamepad, GamepadState.BUTTON_BACK + 1);
+	    backButton.whenPressed(new Shoot());
+	    
 	    
 
 	    
@@ -92,8 +95,10 @@ public class OI {
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
 	    leftBumper.whileHeld(null);
 	    
-	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
-	    rightBumper.whileHeld(new SpinShooterWheels());
+	    //rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
+	    //rightBumper.whileHeld(new SpinShooterWheels());
+	    
+	    
 	    
 	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X + 1);
 	    xButton.whileHeld(new Kick());
