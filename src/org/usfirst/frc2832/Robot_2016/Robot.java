@@ -100,6 +100,8 @@ public class Robot extends IterativeRobot {
         autonomous = new SendableChooser();
         autonomous.addObject("Do nothing at all", null);
         autonomous.addObject("Rotate 45",  new RotateAngle(45));
+        autonomous.addObject("Rotate -45", new RotateAngle(-45));
+        autonomous.addObject("Move Forward 3", new MoveForward(3));
         autonomous.addDefault("Move Forward 5", new MoveForward(5));
         SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
         isBlue = false; //TODO replace with dashboard variable
@@ -134,8 +136,8 @@ public class Robot extends IterativeRobot {
     		oi.gamepad.startVirtualGamepad();
     	} else {
 		    // schedule the autonomous command (example)
-			autonomousCommand = new MoveForward(5);//(Command)autonomous.getSelected();
-			//autonomousCommand.start();
+			autonomousCommand = (Command)autonomous.getSelected();
+			autonomousCommand.start();
     	}
     }
 

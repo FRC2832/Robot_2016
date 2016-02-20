@@ -189,7 +189,7 @@ public class RecordableGamepad extends GamepadDeadzoned {
 			if (vg.isDone() || gs == null)
 				mode = Mode.REAL;
 			else
-				return gs.buttons[button];
+				return gs.buttons[button-1];
 		}
 		
 		return false;

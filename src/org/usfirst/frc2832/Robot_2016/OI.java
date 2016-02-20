@@ -79,28 +79,28 @@ public class OI {
     	//GamePad Settings
     	gamepad = new RecordableGamepad(0);
 	    
-    	aButton = new JoystickButton(gamepad,GamepadState.BUTTON_A + 1);
+    	aButton = new JoystickButton(gamepad,GamepadState.BUTTON_A);
 	    aButton.whenPressed(new InterfaceFlip());
 	    
-	    yButton = new JoystickButton(gamepad,GamepadState.BUTTON_Y + 1);
+	    yButton = new JoystickButton(gamepad,GamepadState.BUTTON_Y);
 	    yButton.whenPressed(new Expel());
 	    
-	    backButton = new JoystickButton(gamepad, GamepadState.BUTTON_BACK + 1);
+	    backButton = new JoystickButton(gamepad, GamepadState.BUTTON_BACK);
 	    backButton.whenPressed(new Shoot());
 	    
 	    
 
 	    
 	    
-	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB + 1);
+	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
 	    leftBumper.whileHeld(null);
 	    
-	    //rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB + 1);
+	    //rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    //rightBumper.whileHeld(new SpinShooterWheels());
 	    
 	    
 	    
-	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X + 1);
+	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X);
 	    xButton.whileHeld(new Kick());
 	    
 	    RecordableGamepad.dashboardSetup();
