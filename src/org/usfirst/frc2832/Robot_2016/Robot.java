@@ -103,6 +103,7 @@ public class Robot extends IterativeRobot {
         autonomous.addObject("Rotate -45", new RotateAngle(-45));
         autonomous.addObject("Move Forward 3", new MoveForward(3));
         autonomous.addDefault("Move Forward 5", new MoveForward(5));
+        autonomous.addObject("Move Forward 6.5", new MoveForward(6.5));
         SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
         isBlue = false; //TODO replace with dashboard variable
         RobotMap.winchMotor.setEncPosition(0);

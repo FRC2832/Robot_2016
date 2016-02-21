@@ -14,6 +14,7 @@ public class Kicker extends Subsystem{
 
 	public static double LAUNCH_ANGLE = 0;
 	public static double REST_ANGLE = .5;
+	public static double NEUTRAL_ANGLE = 0.7;
 
 	
 	@Override

@@ -25,7 +25,7 @@ public class  MoveForward extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initVal = DriveEncoders.getAbsoluteValue();
-    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.6, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
+    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.8, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
     	startAngle = RobotMap.imu.getYaw();
     }
 
