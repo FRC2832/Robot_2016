@@ -127,6 +127,10 @@ public class Robot extends IterativeRobot {
         recordedID = (String) (oi.index.getSelected());
         recordedAuton = SmartDashboard.getBoolean("Use Recorded Autonomous");
         
+        Aimer.toPositionMode();
+        RobotMap.winchMotor.setEncPosition(0);
+        RobotMap.winchMotor.setPosition(0);
+        RobotMap.winchMotor.set(0);
         DashboardOutput.putPeriodicData();
     }
 
