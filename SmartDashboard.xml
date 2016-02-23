@@ -1,5 +1,12 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="927" y="250"/>
+		<width>117</width>
+		<height>115</height>
+		<property name="Image File" value="C:\FRC\target.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="225"/>
 	</widget>
@@ -16,10 +23,6 @@
 	<widget field="AmIWorking?" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="0"/>
 	</widget>
-	<widget field="DEBUG" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1032" y="60"/>
-		<width>120</width>
-	</widget>
 	<widget field="GoToLevelIfStatement" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="63"/>
 	</widget>
@@ -28,9 +31,6 @@
 	</widget>
 	<widget field="levelTo" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="21"/>
-	</widget>
-	<widget field="DEBUG2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1155" y="60"/>
 	</widget>
 	<widget field="Record Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="213" y="497"/>
@@ -171,4 +171,6 @@
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="DEBUG2"/>
+	<hidden field="DEBUG"/>
 </xml>
