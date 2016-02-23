@@ -1,5 +1,6 @@
 <xml version="1.0">
 <dashboard>
+<<<<<<< HEAD
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
 		<location x="927" y="250"/>
 		<width>117</width>
@@ -7,6 +8,29 @@
 		<property name="Image File" value="C:\FRC\target.png"/>
 		<property name="Maintain Aspect Ratio" value="true"/>
 	</static-widget>
+=======
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="446" y="269"/>
+		<property name="Text" value="90"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="621" y="267"/>
+		<width>22</width>
+		<height>19</height>
+		<property name="Text" value="0"/>
+	</static-widget>
+	<widget field="Winch Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="323" y="224"/>
+		<width>318</width>
+		<height>44</height>
+		<property name="Foreground" value="255.0.0.255"/>
+		<property name="Background" value="0.0.255.255"/>
+		<property name="Maximum" value="1500.0"/>
+	</widget>
+	<widget field="Left Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="323" y="2"/>
+	</widget>
+>>>>>>> branch 'master' of https://github.com/FRC2832/Robot_2016.git
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="225"/>
 	</widget>
@@ -21,7 +45,7 @@
 		<property name="Text" value="Use Recorded Autonomous?"/>
 	</static-widget>
 	<widget field="AmIWorking?" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="0"/>
+		<location x="4" y="2"/>
 	</widget>
 	<widget field="GoToLevelIfStatement" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="63"/>
@@ -30,7 +54,14 @@
 		<location x="0" y="42"/>
 	</widget>
 	<widget field="levelTo" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+<<<<<<< HEAD
 		<location x="0" y="21"/>
+=======
+		<location x="1" y="21"/>
+	</widget>
+	<widget field="DEBUG2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1155" y="60"/>
+>>>>>>> branch 'master' of https://github.com/FRC2832/Robot_2016.git
 	</widget>
 	<widget field="Record Autonomous" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="213" y="497"/>
@@ -81,9 +112,6 @@
 	<widget field="Axis Level right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="646" y="10"/>
 	</widget>
-	<widget field="Winch Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="1145" y="32"/>
-	</widget>
 	<widget field="Combined Enc." type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="322" y="46"/>
 	</widget>
@@ -114,15 +142,12 @@
 	<widget field="Axis Level left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="812" y="6"/>
 	</widget>
-	<widget field="Left Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="327" y="3"/>
-	</widget>
 	<widget field="RecordableAutonomous ID" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="540"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
-		<location x="0" y="0"/>
-		<property name="Image File" value="C:\Users\Zach\git\Robot_2016\smartdashboardbg.png"/>
+		<location x="-4" y="-3"/>
+		<property name="Image File" value="C:\Users\SCHOOLandROBOTICS\git\Robot_2016\smartdashboardbg.png"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="614" y="118"/>
