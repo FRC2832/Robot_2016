@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class  MoveForward extends Command {
 	
-	static double dist, initVal, startAngle, correctiveForce;
+	double dist, initVal, startAngle, correctiveForce;
 	static final double TOLERANCE = 0.05, kP = 0.05; //constant of proportion for PID
-	static TrajectoryController tc;
+	TrajectoryController tc;
 	
     public MoveForward(double distance) {
         // Use requires() here to declare subsystem dependencies
@@ -25,14 +25,14 @@ public class  MoveForward extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	initVal = DriveEncoders.getAbsoluteValue();
-    	tc = new TrajectoryController(dist, 0.4, 0.4, 0.8, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
+    	tc = new TrajectoryController(Math.abs(dist), 0.4, 0.4, 0.8, 0.9, -0.9); //TO-DO: would be nice to test these numbers!
     	startAngle = RobotMap.imu.getYaw();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	correctiveForce = -kP * (RobotMap.imu.getYaw() - startAngle); //corrects for displaced angles while moving forward (e.g. over Ramparts); sign may be wrong
-    	RobotMap.driveTrain.arcadeDrive(Math.signum(dist) * -tc.get(DriveEncoders.getAbsoluteValue() - initVal), correctiveForce); //set speed to one given by Trajectory Controller.
+    	RobotMap.driveTrain.arcadeDrive(Math.signum(dist) * -tc.get(Math.abs(DriveEncoders.getAbsoluteValue() - initVal)), correctiveForce); //set speed to one given by Trajectory Controller.
     }
 
     // Make this return true when this Command no longer needs to run execute()

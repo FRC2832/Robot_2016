@@ -59,6 +59,7 @@ public class DashboardOutput {
       	SmartDashboard.putData("Rotate 45", new RotateAngle(45));
       	SmartDashboard.putData("Move Forward 3", new MoveForward(3));
       	SmartDashboard.putData("Rotate -45", new RotateAngle(-45));
+      	SmartDashboard.putData("Move Backward 5", new MoveForward(-5));
       	SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
 		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
       	SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
