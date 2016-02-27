@@ -56,12 +56,6 @@ public class Shoot extends Command {
 
 	@Override
 	protected void end() {
-		if (Robot.isAuton) {
-			Robot.gameMode = 0;
-		}
-		else {
-			Robot.gameMode = 1;
-		}
 		Kicker.resetAfterLaunch();
 		BallMotors.stopMotors();
 		
@@ -70,12 +64,7 @@ public class Shoot extends Command {
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
-		if (Robot.isAuton) {
-			Robot.gameMode = 0;
-		}
-		else {
-			Robot.gameMode = 1;
-		}
+
 		BallMotors.stopMotors();
 	}
 

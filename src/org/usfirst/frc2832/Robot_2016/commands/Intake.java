@@ -46,22 +46,10 @@ public class Intake extends Command {
 	protected void end() {
 		//turn off motors when done.
 		BallMotors.stopMotors();
-		if (Robot.isAuton) {
-			Robot.gameMode = 0;
-		}
-		else {
-			Robot.gameMode = 1;
-		}
 	}
 
 	@Override
 	protected void interrupted() {
-		if (Robot.isAuton) {
-			Robot.gameMode = 0;
-		}
-		else {
-			Robot.gameMode = 1;
-		}
 	}
 
 }
