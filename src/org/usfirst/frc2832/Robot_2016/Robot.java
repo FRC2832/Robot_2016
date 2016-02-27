@@ -149,6 +149,8 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setPosition(0);
         RobotMap.winchMotor.set(0);
         DashboardOutput.putPeriodicData();
+        
+        sendStateToLights(false, false);
     }
 
     public void autonomousInit() {
@@ -175,6 +177,8 @@ public class Robot extends IterativeRobot {
     	
         Scheduler.getInstance().run();
         DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
+
+        sendStateToLights(true, true);
     }
 
     public void teleopInit() {
@@ -200,7 +204,7 @@ public class Robot extends IterativeRobot {
     	
         Scheduler.getInstance().run();
         
-        
+        sendStateToLights(true, false);
         
       //D-Pad Controls
     }
@@ -286,4 +290,13 @@ public class Robot extends IterativeRobot {
         
         
     }
+    
+    
+    void sendStateToLights(boolean isEnabled, boolean isAutonomous)
+    {
+    	CANJNI.FRCNetworkCommunicationCANSessionMuxSendMessage(MSGID_STATE, ByteBuffer.wrap(new byte[]{
+    			(byte) (isAutonomous ? 0 : 1), (byte) (isBlue ? 0 : 1), (byte) (isEnabled ? 1 : 0)
+    	}), 5000);
+    }
+
 }
