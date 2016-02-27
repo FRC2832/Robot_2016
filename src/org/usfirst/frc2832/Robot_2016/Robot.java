@@ -45,6 +45,8 @@ import edu.wpi.first.wpilibj.can.CANExceptionFactory;
 import java.nio.IntBuffer;
 import java.util.Arrays;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -140,7 +142,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Shooting", auto_isHighGoal);
         
         
-        isBlue = false; //TODO replace with dashboard variable
+        isBlue = false;
         isSpinning = false;
         isShooting = false;
         isExpelling = false;
@@ -172,7 +174,9 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setPosition(0);
         RobotMap.winchMotor.set(0);
         DashboardOutput.putPeriodicData();
-        
+    
+        isBlue = (DriverStation.getInstance().getAlliance() == Alliance.Blue);
+          
         sendStateToLights(false, false);
     }
 
