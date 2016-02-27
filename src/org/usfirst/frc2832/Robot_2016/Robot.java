@@ -20,7 +20,9 @@ import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
+import org.usfirst.frc2832.Robot_2016.commands.autonomous.ConstructedAutonomous;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
+import org.usfirst.frc2832.Robot_2016.commands.autonomous.ParseInput;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 
 import com.ni.vision.VisionException;
@@ -29,6 +31,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -62,7 +65,7 @@ public class Robot extends IterativeRobot {
     public boolean povPressed = false;
 
 	private String recordedID;
-    public static SendableChooser autonomous;
+    public static SendableChooser auto_Movement, auto_Reverse, auto_isHighGoal;
     public static int gameMode; // 0 is autonDrive, 1 teleopDrive, 2 ingesting, 3 shooting
     public static boolean isAuton;
     public static boolean isBlue;
@@ -97,14 +100,28 @@ public class Robot extends IterativeRobot {
         	e.printStackTrace();
         }
 
-        autonomous = new SendableChooser();
-        autonomous.addObject("Do nothing at all", null);
-        autonomous.addObject("Rotate 45",  new RotateAngle(45));
-        autonomous.addObject("Rotate -45", new RotateAngle(-45));
-        autonomous.addObject("Move Forward 3", new MoveForward(3));
-        autonomous.addDefault("Move Forward 5", new MoveForward(5));
-        autonomous.addObject("Move Forward 6.5", new MoveForward(6.5));
-        SmartDashboard.putData("Autonomous Selection", Robot.autonomous);
+        auto_Movement = new SendableChooser();
+        auto_Movement.addObject("Do nothing at all", "0");
+        auto_Movement.addObject("Rotate 45", "r45");
+        auto_Movement.addObject("Rotate -45", "r-45");
+        auto_Movement.addObject("Move Forward 3", "f3");
+        auto_Movement.addDefault("Move Forward 5", "f5");
+        auto_Movement.addObject("Move Forward 6.5", "f6.5");
+        auto_Movement.addObject("Spy Bot", "s");
+        SmartDashboard.putData("Autonomous Selection", auto_Movement);
+        
+        auto_Reverse = new SendableChooser();
+        auto_Reverse.addDefault("Just move forward", false);
+        auto_Reverse.addObject("Go backwards after", true);
+        SmartDashboard.putData("Add backwards motion", auto_Reverse);
+        
+        auto_isHighGoal = new SendableChooser();
+        auto_isHighGoal.addDefault("No shot", 0);
+        auto_isHighGoal.addObject("Low Goal", 1);
+        auto_isHighGoal.addObject("High Goal", 2);
+        SmartDashboard.putData("Shooting", auto_isHighGoal);
+        
+        
         isBlue = false; //TODO replace with dashboard variable
         RobotMap.winchMotor.setEncPosition(0);
         
@@ -140,8 +157,9 @@ public class Robot extends IterativeRobot {
     	if (recordedAuton) {
     		oi.gamepad.startVirtualGamepad();
     	} else {
-		    // schedule the autonomous command (example)
-			autonomousCommand = (Command)autonomous.getSelected();
+		    // schedule the autonomous command (example)	
+			autonomousCommand = (CommandGroup) new ConstructedAutonomous(ParseInput.takeInput((String)auto_Movement.getSelected(), 
+					(boolean)auto_Reverse.getSelected(), (int)auto_isHighGoal.getSelected()));
 			if(autonomousCommand != null)
 				autonomousCommand.start();
     	}
@@ -181,6 +199,8 @@ public class Robot extends IterativeRobot {
     	handleInput(oi.gamepad);
     	
         Scheduler.getInstance().run();
+        
+        
         
       //D-Pad Controls
     }

@@ -32,12 +32,12 @@ public class  MoveForward extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	correctiveForce = -kP * (RobotMap.imu.getYaw() - startAngle); //corrects for displaced angles while moving forward (e.g. over Ramparts); sign may be wrong
-    	RobotMap.driveTrain.arcadeDrive(-tc.get(DriveEncoders.getAbsoluteValue() - initVal), correctiveForce); //set speed to one given by Trajectory Controller.
+    	RobotMap.driveTrain.arcadeDrive(Math.signum(dist) * -tc.get(DriveEncoders.getAbsoluteValue() - initVal), correctiveForce); //set speed to one given by Trajectory Controller.
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (DriveEncoders.getAbsoluteValue() - initVal) > dist; //TODO: Only works for positive dist
+        return Math.signum(dist) * (DriveEncoders.getAbsoluteValue() - initVal) > Math.abs(dist); //TODO: need to test whether this works for negative dist 
         //Math.abs(DriveEncoders.getAbsoluteValue() - initVal - dist) < TOLERANCE;
     }
 

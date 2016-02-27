@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Aimer extends Subsystem {
 	public static int currentLevel = 0;
-	public static int[] levelPositions = {0,10000,20000,30000};
+	public static int[] levelPositions = {0,3000,4500,5500};
 	public static final int MOVE_SPEED_UP = 75;
 	public static String mode = "position";
 	public static final int MOVE_SPEED_DOWN = -30;

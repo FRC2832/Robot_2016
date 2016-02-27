@@ -13,6 +13,7 @@ public class RotateAngle extends Command {
 	//static final double TOLERANCE = 2;
 	static TrajectoryController tc;
 	private double isPos, curVal, curDisplacement = 0;
+	private final double BUFFER = 90; //This is needed to block "noise" when comparing previous from current values (or else curDisplacement really racks up fast)
 	//isPos: turns into a 1 is moving positive angle, -1 if moving negative angle
 	//curVal: the current (NOT adjusted) value of our angle
 	//curDisplacement: the adjustment factor due to gyro wraparound
@@ -35,7 +36,7 @@ public class RotateAngle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (curVal * isPos > RobotMap.imu.getYaw() * isPos) //This will be true iff the gyro val has just wrapped around
+    	if (curVal * isPos > RobotMap.imu.getYaw() * isPos + BUFFER) //This will be true iff the gyro val has just wrapped around
     		curDisplacement += 180*isPos;
     			
     	RobotMap.driveTrain.arcadeDrive(0, tc.get(curVal + curDisplacement));

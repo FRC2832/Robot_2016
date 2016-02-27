@@ -36,6 +36,8 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Gyro.Roll", RobotMap.imu.getRoll());
 		SmartDashboard.putNumber("Proximity Sensor", RobotMap.proxSensor.pidGet());
 		SmartDashboard.putNumber("winch error", RobotMap.winchMotor.getError());
+		SmartDashboard.putBoolean("Forward Lim", RobotMap.winchMotor.isFwdLimitSwitchClosed());
+		SmartDashboard.putBoolean("Reverse Lim", RobotMap.winchMotor.isRevLimitSwitchClosed());
 		
 		try {
 			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
