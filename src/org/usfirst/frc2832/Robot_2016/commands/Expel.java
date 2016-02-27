@@ -2,6 +2,7 @@ package org.usfirst.frc2832.Robot_2016.commands;
 
 import org.usfirst.frc2832.Robot_2016.BallMotors;
 import org.usfirst.frc2832.Robot_2016.Kicker;
+import org.usfirst.frc2832.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
@@ -36,7 +37,7 @@ public class Expel extends Command {
 		Kicker.launch();
 		//record time of command start
 		timeStart = System.currentTimeMillis();
-		
+		Robot.isExpelling = true;
 		
 	}
 	
@@ -56,14 +57,14 @@ public class Expel extends Command {
 	protected void end() {
 		Kicker.resetAfterLaunch();
 		BallMotors.stopMotors();
-		
+		Robot.isExpelling = false;
 	}
 
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
 		BallMotors.stopMotors();
-		
+		Robot.isExpelling = false;
 	}
 
 }

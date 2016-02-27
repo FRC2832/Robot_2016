@@ -1,6 +1,7 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
 import org.usfirst.frc2832.Robot_2016.Kicker;
+import org.usfirst.frc2832.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 //runs the kicker
@@ -18,7 +19,7 @@ private static final long TIMEOUT = 1500;
 	protected void initialize() {
 		timeStart = System.currentTimeMillis();
 		Kicker.launch();
-
+		Robot.isShooting = true;
 	}
 
 	@Override
@@ -38,12 +39,12 @@ private static final long TIMEOUT = 1500;
 	@Override
 	protected void end() {
 		Kicker.resetAfterLaunch();
-		
+		Robot.isShooting = false;
 	}
 
 	@Override
 	protected void interrupted() {
 		Kicker.reset();
-		
+		Robot.isShooting = false;
 	}
 }

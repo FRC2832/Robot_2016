@@ -29,6 +29,7 @@ public class Intake extends Command {
 		BallMotors.intake(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
 		//record time of command start
 		timeStart = System.currentTimeMillis();
+		Robot.isIngesting = true;
 	}
 
 	@Override
@@ -45,11 +46,13 @@ public class Intake extends Command {
 	@Override
 	protected void end() {
 		//turn off motors when done.
+		Robot.isIngesting = false;
 		BallMotors.stopMotors();
 	}
 
 	@Override
 	protected void interrupted() {
+		Robot.isIngesting = false;
 	}
 
 }
