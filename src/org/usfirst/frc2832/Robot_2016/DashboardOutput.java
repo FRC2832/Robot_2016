@@ -65,5 +65,7 @@ public class DashboardOutput {
       	SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
 		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
 		SmartDashboard.putData("ImagingTest", new ImagingTest());
+		
+		SmartDashboard.putString("MAC", Robot.GetMacAddress());
 	}
 }

@@ -11,6 +11,11 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
@@ -44,6 +49,7 @@ import edu.wpi.first.wpilibj.can.CANJNI;
 import edu.wpi.first.wpilibj.can.CANExceptionFactory;
 import java.nio.IntBuffer;
 import java.util.Arrays;
+import java.util.Enumeration;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -355,5 +361,53 @@ public class Robot extends IterativeRobot {
     		
     	}
     }
+  
+    public static String GetMacAddress()
+    {
+    	String address = null;
+    	InetAddress lanIp = null;
 
+    	try 
+    	{
+    		String ipAddress = null;
+    		Enumeration<NetworkInterface> net = null;
+    		net = NetworkInterface.getNetworkInterfaces();
+    		while(net.hasMoreElements())
+    		{
+    			NetworkInterface element = net.nextElement();
+    			Enumeration<InetAddress> addresses = element.getInetAddresses();
+    			while (addresses.hasMoreElements())
+    			{
+    				InetAddress ip = addresses.nextElement();
+    				if (ip instanceof Inet4Address)
+    				{
+    					if (ip.isSiteLocalAddress())
+    					{
+    						ipAddress = ip.getHostAddress();
+    						lanIp = InetAddress.getByName( ipAddress );
+    					}
+    				}
+    			}
+    		}
+
+    		if( lanIp != null )
+    		{
+    			NetworkInterface network = NetworkInterface.getByInetAddress( lanIp );
+    			byte[] mac = network.getHardwareAddress();
+
+    			StringBuilder sb = new StringBuilder();
+    			for (int i = 0; i < mac.length; i++) 
+    			{
+    				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
+    			}
+    			address = sb.toString();
+    		}
+    	} 
+    	catch (Exception e)
+    	{
+//    		e.printStackTrace();
+    	}
+
+    	return address;
+    }
 }
