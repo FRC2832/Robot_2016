@@ -20,10 +20,10 @@ public class ParseInput {
 			auto_Commands.add(new SpyBot(shooting));
 		
 		if(isRev == true && movement.charAt(0) == 'f')
-			auto_Commands.add(new MoveForward(-1*Double.valueOf(movement.substring(1))));
+			auto_Commands.add(new MoveForward(-0.65*Double.valueOf(movement.substring(1)))); //This has the 0.65 because we don't want to accidentially cross the autoline when we go back
 		
 			
-		return auto_Commands;
+		return auto_Commands; //an arraylist of the commands to be executed in autonomous
 	}
 	
 }

@@ -108,19 +108,9 @@
 	<widget field="RecordableAutonomous ID" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="5" y="440"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="642" y="81"/>
-		<width>638</width>
-		<height>479</height>
-	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="12" y="391"/>
 		<property name="Text" value="Use Recorded Autonomous?"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="642" y="81"/>
-		<width>638</width>
-		<height>479</height>
 	</static-widget>
 	<widget field="Shooting" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="23" y="164"/>
@@ -177,77 +167,9 @@
 		<location x="100" y="31"/>
 		<property name="Image File" value="C:\Users\Brendan\git\Robot_2016\smartdashboardbg.png"/>
 	</static-widget>
-</dashboard>
-<live-window>
-	<widget field="Ball Handler" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="ingestRight" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="ingestLeft" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="157"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="48"/>
-		<width>305</width>
-		<height>305</height>
-	</widget>
-	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="CANTalon[8]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="157"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="CANTalon[4]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="177"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="Servo[1]" type="Servo" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
-			<location x="6" y="318"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<widget field="AnalogInput[1]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="364"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="CANTalon[2]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="384"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="24"/>
-		<width>305</width>
-		<height>532</height>
-	</widget>
-	<widget field="Drivetrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="frontLeft" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="frontRight" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="157"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="0"/>
-		<width>305</width>
-		<height>305</height>
-	</widget>
-</live-window>
-	<hidden field="distance"/>
-	<hidden field="dist"/>
-	<hidden field="arcadeDrive output"/>
-	<hidden field="tc output"/>
-	<hidden field="signum of dist"/>
-</xml>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="642" y="81"/>
+		<width>638</width>
+		<height>479</height>
+	</static-widget>
+	<static-widget cl

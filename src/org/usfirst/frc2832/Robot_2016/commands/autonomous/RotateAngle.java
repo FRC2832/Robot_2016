@@ -37,7 +37,7 @@ public class RotateAngle extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (curVal * isPos > RobotMap.imu.getYaw() * isPos + BUFFER) //This will be true iff the gyro val has just wrapped around
-    		curDisplacement += 180*isPos;
+    		curDisplacement += 360*isPos; //The point of curDisplacement is to turn the strictly -180 to 180 number into a number that just increased or decreases, so if it jumps from 180 to -175, we can treat it as 185 instead
     			
     	RobotMap.driveTrain.arcadeDrive(0, tc.get(curVal + curDisplacement));
     	
