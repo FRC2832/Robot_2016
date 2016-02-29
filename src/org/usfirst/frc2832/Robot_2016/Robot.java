@@ -26,6 +26,7 @@ import org.usfirst.frc2832.Robot_2016.commands.autonomous.ConstructedAutonomous;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ParseInput;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
+import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
 
 import com.ni.vision.VisionException;
 
