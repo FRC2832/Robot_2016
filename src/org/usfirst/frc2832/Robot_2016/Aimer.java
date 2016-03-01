@@ -11,15 +11,22 @@ public class Aimer extends Subsystem {
 	//public static final int MOVE_SPEED_UP = 200;
 	public static String mode = "position";
 	//public static final int MOVE_SPEED_DOWN = -175;
-	public static final double UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 5.0),
-							   UP_PID_I = Preferences.getInstance().getDouble("Aimer Up kI", 0.001),
-							   UP_PID_D = Preferences.getInstance().getDouble("Aimer Up kD", 0.0),
-							   DOWN_PID_P = Preferences.getInstance().getDouble("Aimer Down kP", 2.0),
-							   DOWN_PID_I = Preferences.getInstance().getDouble("Aimer Down kI", 0.02),
-							   DOWN_PID_D = Preferences.getInstance().getDouble("Aimer Down kD", 0.0);
-	public static final int	MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", 200),
-							MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed", -175);
+	public static double UP_PID_P, UP_PID_I, UP_PID_D,
+							   DOWN_PID_P, DOWN_PID_I, DOWN_PID_D;
+	public static int MOVE_SPEED_UP, MOVE_SPEED_DOWN;
 			
+	
+	public static void loadPreferences() {
+		UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 5.0);
+		UP_PID_I = Preferences.getInstance().getDouble("Aimer Up kI", 0.001);
+		UP_PID_D = Preferences.getInstance().getDouble("Aimer Up kD", 0.0);
+		DOWN_PID_P = Preferences.getInstance().getDouble("Aimer Down kP", 2.0);
+		DOWN_PID_I = Preferences.getInstance().getDouble("Aimer Down kI", 0.02);
+		DOWN_PID_D = Preferences.getInstance().getDouble("Aimer Down kD", 0.0);
+		
+		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", 200);
+		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed", -175);
+	}
 	
 	@Override
 	protected void initDefaultCommand() {
