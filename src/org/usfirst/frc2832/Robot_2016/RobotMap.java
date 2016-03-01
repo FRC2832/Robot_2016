@@ -91,10 +91,15 @@ public class RobotMap {
         winchMotor.configPeakOutputVoltage(12, -12);
         winchMotor.enableLimitSwitch(false, false);
         
+        winchMotor.setInverted(true);
+        
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);
         ballIngestRight = new CANTalon(6);
         LiveWindow.addActuator("Ball Handler", "ingestRight", ballIngestRight);
+        
+        ballIngestLeft.setInverted(true);
+        ballIngestRight.setInverted(true);
 
         laser = new AnalogInput(0);
         proxSensor = new AnalogInput(1);

@@ -34,7 +34,7 @@ public class Shoot extends Command {
 	protected void initialize() {
 		
 		//DELAY = Preferences.getInstance().getDouble("Shooter Delay (Seconds)", 1);//this does not display
-		BallMotors.expel(1);
+		BallMotors.expel(.5);
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 		

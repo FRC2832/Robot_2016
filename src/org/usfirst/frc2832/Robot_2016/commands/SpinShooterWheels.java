@@ -6,7 +6,7 @@ import org.usfirst.frc2832.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SpinShooterWheels extends Command {
-	private static final int SPEED = 1;
+	private static final double SPEED = .5;
 
 	@Override
 	protected void initialize() {

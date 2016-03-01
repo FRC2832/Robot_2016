@@ -37,12 +37,14 @@ public class Aimer extends Subsystem {
 	public static void upSpeedMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
+		loadPreferences();
 		RobotMap.winchMotor.setPID(UP_PID_P, UP_PID_I, UP_PID_D);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	public static void downSpeedMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
+		loadPreferences();
 		RobotMap.winchMotor.setPID(DOWN_PID_P, DOWN_PID_I, DOWN_PID_D);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}

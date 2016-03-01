@@ -26,7 +26,7 @@ public class Intake extends Command {
 	
 	protected void initialize() {
 		//intake motors
-		BallMotors.intake(Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
+		BallMotors.intake(0.45*Robot.oi.gamepad.getRawAxis(GamepadState.AXIS_LT));
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 		Robot.isIngesting = true;
