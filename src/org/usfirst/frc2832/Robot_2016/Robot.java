@@ -150,6 +150,7 @@ public class Robot extends IterativeRobot {
         isIngesting = false;
 
         RobotMap.winchMotor.setEncPosition(0);
+        Aimer.loadPreferences();
         
         table = NetworkTable.getTable("GRIP/contours");
     }
