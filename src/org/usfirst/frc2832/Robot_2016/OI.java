@@ -93,7 +93,7 @@ public class OI {
 	    
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
-	    leftBumper.whileHeld(null);
+	    //leftBumper.whileHeld(null);
 	    
 	    //rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    //rightBumper.whileHeld(new SpinShooterWheels());
