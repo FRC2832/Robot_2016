@@ -51,7 +51,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(20, 0, 0);
+		RobotMap.winchMotor.setPID(2, 0, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	/**

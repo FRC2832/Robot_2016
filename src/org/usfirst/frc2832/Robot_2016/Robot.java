@@ -163,6 +163,7 @@ public class Robot extends IterativeRobot {
     	if (recordedAuton)
     		oi.gamepad.loadVirtualGamepad(recordedID);
     	RobotMap.winchMotor.setEncPosition(0);
+    	RobotMap.winchMotor.enableBrakeMode(false);
     }
 
     public void disabledPeriodic() {
@@ -183,6 +184,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
     		oi.gamepad.startVirtualGamepad();
     	} else {
@@ -214,6 +216,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
+    	RobotMap.winchMotor.enableBrakeMode(true);
     }
 
     /**
