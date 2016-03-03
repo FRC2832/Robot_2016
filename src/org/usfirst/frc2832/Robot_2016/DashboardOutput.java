@@ -9,6 +9,7 @@ import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
+import org.usfirst.frc2832.Robot_2016.vision.ImageProcessing;
 
 import com.ni.vision.VisionException;
 
@@ -30,7 +31,7 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("Right Encoder", DriveEncoders.getRightValue());
 		SmartDashboard.putNumber("Combined Enc.", DriveEncoders.getAbsoluteValue());
 		SmartDashboard.putNumber("Servo val", Kicker.get());
-		SmartDashboard.putNumber("Winch Pos", RobotMap.winchMotor.getEncPosition());
+		SmartDashboard.putNumber("Winch Pos (Test)", RobotMap.winchMotor.getEncPosition());
 		SmartDashboard.putNumber("Winch Motor Value", RobotMap.winchMotor.get());
 		SmartDashboard.putNumber("Gyro.Yaw", RobotMap.imu.getYaw());
 		SmartDashboard.putNumber("Gyro.Pitch", RobotMap.imu.getPitch());
@@ -39,6 +40,10 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("winch error", RobotMap.winchMotor.getError());
 		SmartDashboard.putBoolean("Forward Lim", RobotMap.winchMotor.isFwdLimitSwitchClosed());
 		SmartDashboard.putBoolean("Reverse Lim", RobotMap.winchMotor.isRevLimitSwitchClosed());
+		
+		//TODO: best to remove the below code at competition to reduce lag
+		ImageProcessing.process();
+		SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
 		
 		try {
 			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);

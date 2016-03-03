@@ -62,5 +62,6 @@ public class Aimer extends Subsystem {
 	{
 		toPositionMode();
 		RobotMap.winchMotor.set(RobotMap.winchMotor.getEncPosition());
+		SmartDashboard.putNumber("cause Zach wanted it", RobotMap.winchMotor.getEncPosition());
 	}
 }
