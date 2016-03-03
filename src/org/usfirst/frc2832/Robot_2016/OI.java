@@ -22,6 +22,7 @@ import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
+import org.usfirst.frc2832.Robot_2016.commands.TurnToImage;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -93,7 +94,7 @@ public class OI {
 	    
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
-	    //leftBumper.whileHeld(null);
+	    leftBumper.whenPressed(new TurnToImage());
 	    
 	    //rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    //rightBumper.whileHeld(new SpinShooterWheels());

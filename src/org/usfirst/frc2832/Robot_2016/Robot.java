@@ -163,6 +163,7 @@ public class Robot extends IterativeRobot {
     	if (recordedAuton)
     		oi.gamepad.loadVirtualGamepad(recordedID);
     	RobotMap.winchMotor.setEncPosition(0);
+    	RobotMap.winchMotor.enableBrakeMode(false);
     }
 
     public void disabledPeriodic() {
@@ -183,6 +184,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
     		oi.gamepad.startVirtualGamepad();
     	} else {
@@ -209,6 +211,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	RobotMap.winchMotor.enableBrakeMode(true);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove

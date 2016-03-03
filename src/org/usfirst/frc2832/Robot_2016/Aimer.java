@@ -51,7 +51,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(20, 0, 0);
+		RobotMap.winchMotor.setPID(2, 0, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	/**
@@ -62,5 +62,6 @@ public class Aimer extends Subsystem {
 	{
 		toPositionMode();
 		RobotMap.winchMotor.set(RobotMap.winchMotor.getEncPosition());
+		SmartDashboard.putNumber("cause Zach wanted it", RobotMap.winchMotor.getEncPosition());
 	}
 }
