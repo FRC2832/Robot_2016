@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Zach O.
  * 
  */
-
+//values changed because of the kicker's new physical limits on the robot
 public class Kicker extends Subsystem{
 
-	public static double LAUNCH_ANGLE = 0;
-	public static double REST_ANGLE = .5;
-	public static double NEUTRAL_ANGLE = 0.7;
+	public static double LAUNCH_ANGLE = .25;
+	public static double REST_ANGLE = 0.05;
+	public static double NEUTRAL_ANGLE = 0;
 
 	
 	@Override
@@ -25,22 +25,22 @@ public class Kicker extends Subsystem{
 	//push boulder out at a default angle
 	public static void launch()
 	{
-		LAUNCH_ANGLE = Preferences.getInstance().getDouble("Kicker Launch Angle", 0);
+		LAUNCH_ANGLE = Preferences.getInstance().getDouble("Kicker Launch Angle", .25);
 		RobotMap.kicker.set(LAUNCH_ANGLE);
 		
 	}
 	//return after using default launch method
 	public static void resetAfterLaunch()
 	{
-		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", .5);
-		RobotMap.kicker.set(REST_ANGLE);
+		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", 0.05);
+		RobotMap.kicker.set(0.05);
 		
 	}
 	//reset back to position acquired in robotInit()
 	public static void reset()
 	{
-		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", .5);
-		RobotMap.kicker.set(REST_ANGLE);
+		REST_ANGLE = Preferences.getInstance().getDouble("Kicker Rest Angle", 0.05);
+		RobotMap.kicker.set(0.05);
 		
 	}
 	

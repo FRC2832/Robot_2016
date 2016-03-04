@@ -1,7 +1,7 @@
 package org.usfirst.frc2832.Robot_2016.commands;
 
-import org.usfirst.frc2832.Robot_2016.ImageProcessing;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
+import org.usfirst.frc2832.Robot_2016.vision.ImageProcessing;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;

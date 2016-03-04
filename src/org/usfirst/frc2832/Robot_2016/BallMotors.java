@@ -22,16 +22,16 @@ public class BallMotors extends Subsystem {
 	 */
 	public static void intake(double speed)
 	{
-		RobotMap.ballIngestLeft.set(speed);
-		RobotMap.ballIngestRight.set(-speed);
+		RobotMap.ballIngestLeft.set(-speed);
+		RobotMap.ballIngestRight.set(speed);
 	}
 	/*
 	 * Spins the wheels outwards to expel a boulder.
 	 */
 	public static void expel(double speed)
 	{
-		RobotMap.ballIngestLeft.set(-speed);
-		RobotMap.ballIngestRight.set(speed);
+		RobotMap.ballIngestLeft.set(speed);
+		RobotMap.ballIngestRight.set(-speed);
 	}
 	/*
 	 * Stops the wheels from spinning.

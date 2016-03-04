@@ -1,4 +1,4 @@
-package org.usfirst.frc2832.Robot_2016;
+package org.usfirst.frc2832.Robot_2016.vision;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

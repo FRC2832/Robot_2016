@@ -31,6 +31,7 @@ import org.usfirst.frc2832.Robot_2016.commands.autonomous.ConstructedAutonomous;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ParseInput;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
+import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
 
 import com.ni.vision.VisionException;
 
@@ -155,6 +156,7 @@ public class Robot extends IterativeRobot {
         isIngesting = false;
 
         RobotMap.winchMotor.setEncPosition(0);
+        Aimer.loadPreferences();
         
         table = NetworkTable.getTable("GRIP/contours");
     }
@@ -167,6 +169,7 @@ public class Robot extends IterativeRobot {
     	if (recordedAuton)
     		oi.gamepad.loadVirtualGamepad(recordedID);
     	RobotMap.winchMotor.setEncPosition(0);
+    	RobotMap.winchMotor.enableBrakeMode(false);
     }
 
     public void disabledPeriodic() {
@@ -187,6 +190,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
     		oi.gamepad.startVirtualGamepad();
     	} else {
@@ -213,6 +217,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	RobotMap.winchMotor.enableBrakeMode(true);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove

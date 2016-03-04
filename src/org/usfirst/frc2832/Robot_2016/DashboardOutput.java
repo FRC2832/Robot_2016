@@ -8,6 +8,8 @@ import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
+import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
+import org.usfirst.frc2832.Robot_2016.vision.ImageProcessing;
 
 import com.ni.vision.VisionException;
 
@@ -38,6 +40,10 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("winch error", RobotMap.winchMotor.getError());
 		SmartDashboard.putBoolean("Forward Lim", RobotMap.winchMotor.isFwdLimitSwitchClosed());
 		SmartDashboard.putBoolean("Reverse Lim", RobotMap.winchMotor.isRevLimitSwitchClosed());
+		
+		//TODO: best to remove the below code at competition to reduce lag
+		ImageProcessing.process();
+		SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
 		
 		try {
 			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);

@@ -24,7 +24,7 @@ public class SpyBot extends CommandGroup {
 			addSequential(new RotateAngle(135));
 		} else 
 			addSequential(new RotateAngle(45));
-		addSequential(new MoveForward(7));
+		addSequential(new MoveForward(6));
 		
 		
 			
