@@ -91,7 +91,8 @@ public class RobotMap {
         winchMotor.configPeakOutputVoltage(12, -12);
         winchMotor.enableLimitSwitch(false, false);
         
-        winchMotor.setInverted(true);
+        winchMotor.setInverted(false);
+        winchMotor.reverseOutput(true);
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);
