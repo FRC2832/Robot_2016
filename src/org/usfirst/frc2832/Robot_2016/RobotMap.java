@@ -87,7 +87,7 @@ public class RobotMap {
         frontRightMotor.setInverted(true);
         
         winchMotor = new CANTalonCurrentSafety(7);
-        winchMotor.enableBrakeMode(true);
+        winchMotor.enableBrakeMode(false);
         winchMotor.configPeakOutputVoltage(12, -12);
         winchMotor.enableLimitSwitch(false, false);
         
