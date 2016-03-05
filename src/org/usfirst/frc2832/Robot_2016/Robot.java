@@ -124,7 +124,7 @@ public class Robot extends IterativeRobot {
         	e.printStackTrace();
         }
         if(iGotACamera) { */
-	        try {
+	    /**    try {
 		        camera1 = new USBCamera("cam1");
 		        //camera2 = new USBCamera("cam1");
 		        
@@ -141,7 +141,7 @@ public class Robot extends IterativeRobot {
 	        } catch (VisionException e) {
 	        	e.printStackTrace();
 	        }
-        //}
+        //}*/
 
         auto_Movement = new SendableChooser();
         auto_Movement.addObject("Do nothing at all", "0");
@@ -175,7 +175,7 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setEncPosition(0);
         Aimer.loadPreferences();
         
-        table = NetworkTable.getTable("GRIP/contours");
+        //table = NetworkTable.getTable("GRIP/contours");
     }
 
     /**
