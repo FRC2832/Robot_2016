@@ -24,8 +24,8 @@ public class Aimer extends Subsystem {
 		DOWN_PID_I = Preferences.getInstance().getDouble("Aimer Down kI", 0.02);
 		DOWN_PID_D = Preferences.getInstance().getDouble("Aimer Down kD", 0.0);
 		
-		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", 200);
-		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed", -175);
+		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", (int) (200 * (77d/188d)));
+		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed",(int) (-175 * (77d/188d)));
 	}
 	
 	@Override
