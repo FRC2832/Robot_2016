@@ -19,11 +19,9 @@ import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
-import org.usfirst.frc2832.Robot_2016.commands.PurgeShooter;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
-import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
 import org.usfirst.frc2832.Robot_2016.commands.TurnToImage;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -74,7 +72,6 @@ public class OI {
 	public JoystickButton leftBumper;
 	public JoystickButton rightBumper;
 	public JoystickButton backButton;
-	public JoystickButton startButton;
 	
 	public SendableChooser index;
 	
@@ -92,9 +89,8 @@ public class OI {
 	    backButton = new JoystickButton(gamepad, GamepadState.BUTTON_BACK);
 	    backButton.whenPressed(new Shoot());
 	    
-	    startButton = new JoystickButton(gamepad, GamepadState.BUTTON_START);
-	    startButton.whileHeld(new PurgeShooter());
-	    startButton.whenReleased(new StopBallMotors());
+	    
+
 	    
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
