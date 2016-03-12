@@ -388,7 +388,7 @@ public class Robot extends IterativeRobot {
     		
     	}
     }
-  
+/*  
     public static String GetMacAddress()
     {
     	String address = null;
@@ -437,4 +437,5 @@ public class Robot extends IterativeRobot {
 
     	return address;
     }
+*/    
 }
