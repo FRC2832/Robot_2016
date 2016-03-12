@@ -110,22 +110,44 @@ public class Robot extends IterativeRobot {
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 
         // pointers. Bad news. Don't move it.
-        
+        boolean iGotACamera = false;
         oi = new OI();
-        try {
+        /*try {
 	        camera1 = new USBCamera("cam0");
-	        camera2 = new USBCamera("cam1");
+	        //camera2 = new USBCamera("cam1");
 	        
 	        camera1.setFPS(15);
 	        camera1.setSize(320, 240);
 	        
-	        camera2.setFPS(15);
-	        camera2.setSize(320, 240);
-	        CameraServer2832 cameraServer = CameraServer2832.getInstance();
-	        cameraServer.startAutomaticCapture(camera1, camera2);
+	        //camera2.setFPS(15);
+	        //camera2.setSize(320, 240);
+	        //CameraServer2832 cameraServer = CameraServer2832.getInstance();
+	        ///cameraServer.startAutomaticCapture(camera1, camera2);
+	        CameraServer cameraServer = CameraServer.getInstance();
+	        cameraServer.startAutomaticCapture(camera1);
+	        iGotACamera = true;
         } catch (VisionException e) {
         	e.printStackTrace();
         }
+        if(iGotACamera) { */
+	    /**    try {
+		        camera1 = new USBCamera("cam1");
+		        //camera2 = new USBCamera("cam1");
+		        
+		        camera1.setFPS(15);
+		        camera1.setSize(320, 240);
+		        
+		        //camera2.setFPS(15);
+		        //camera2.setSize(320, 240);
+		        //CameraServer2832 cameraServer = CameraServer2832.getInstance();
+		        ///cameraServer.startAutomaticCapture(camera1, camera2);
+		        CameraServer cameraServer = CameraServer.getInstance();
+		        cameraServer.startAutomaticCapture(camera1);
+		        iGotACamera = true;
+	        } catch (VisionException e) {
+	        	e.printStackTrace();
+	        }
+        //}*/
 
         auto_Movement = new SendableChooser();
         auto_Movement.addObject("Do nothing at all", "0");
@@ -134,6 +156,7 @@ public class Robot extends IterativeRobot {
         auto_Movement.addObject("Move Forward 3", "f3");
         auto_Movement.addDefault("Move Forward 5", "f5");
         auto_Movement.addObject("Move Forward 6.5", "f6.5");
+        auto_Movement.addObject("Move Backward 5", "f-5");
         auto_Movement.addObject("Spy Bot", "s");
         SmartDashboard.putData("Autonomous Selection", auto_Movement);
         
@@ -158,7 +181,7 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setEncPosition(0);
         Aimer.loadPreferences();
         
-        table = NetworkTable.getTable("GRIP/contours");
+        //table = NetworkTable.getTable("GRIP/contours");
     }
 
     /**
@@ -166,8 +189,6 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	if (recordedAuton)
-    		oi.gamepad.loadVirtualGamepad(recordedID);
     	RobotMap.winchMotor.setEncPosition(0);
     	RobotMap.winchMotor.enableBrakeMode(false);
     }
@@ -192,6 +213,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
+        	oi.gamepad.loadVirtualGamepad(recordedID);
     		oi.gamepad.startVirtualGamepad();
     	} else {
 		    // schedule the autonomous command (example)	

@@ -42,14 +42,14 @@ public class DashboardOutput {
 		SmartDashboard.putBoolean("Reverse Lim", RobotMap.winchMotor.isRevLimitSwitchClosed());
 		
 		//TODO: best to remove the below code at competition to reduce lag
-		ImageProcessing.process();
-		SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
+		//ImageProcessing.process();
+		//SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
 		
-		try {
+		/*try {
 			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
 		} catch(Exception e) {
-			e.printStackTrace();
-		}
+			
+		}*/
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}

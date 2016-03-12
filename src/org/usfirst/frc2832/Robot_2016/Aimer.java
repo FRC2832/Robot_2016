@@ -17,15 +17,15 @@ public class Aimer extends Subsystem {
 			
 	
 	public static void loadPreferences() {
-		UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 5.0);
+		UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 10.0);
 		UP_PID_I = Preferences.getInstance().getDouble("Aimer Up kI", 0.001);
 		UP_PID_D = Preferences.getInstance().getDouble("Aimer Up kD", 0.0);
 		DOWN_PID_P = Preferences.getInstance().getDouble("Aimer Down kP", 2.0);
 		DOWN_PID_I = Preferences.getInstance().getDouble("Aimer Down kI", 0.02);
 		DOWN_PID_D = Preferences.getInstance().getDouble("Aimer Down kD", 0.0);
 		
-		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", 200);
-		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed", -175);
+		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", (int) (220d * (77d/188d)));
+		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed",(int) (-175 * (77d/188d)));
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(2, 0, 0);
+		RobotMap.winchMotor.setPID(20, 0.02, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	/**
