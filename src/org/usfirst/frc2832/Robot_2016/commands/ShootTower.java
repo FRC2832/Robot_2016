@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * NOTE: The timeout isn't really a "timeout", it's just time between launching and resetting
  * This is because the servo is stable, it needs no tolerances, relative measurements, or timeouts
  */
-public class Shoot extends Command {
+public class ShootTower extends Command {
 
 	private long timeStart;
 	//length of timeout, in milliseconds
@@ -25,7 +25,7 @@ public class Shoot extends Command {
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
 	private static double  DELAY = 1000; //milliseconds that the ball motors move for before the kicker kicks in
 	
-	public Shoot()
+	public ShootTower()
 	{
 		//TODO: what does this require?
 	}
@@ -34,7 +34,7 @@ public class Shoot extends Command {
 	protected void initialize() {
 		
 		//DELAY = Preferences.getInstance().getDouble("Shooter Delay (Seconds)", 1);//this does not display
-		BallMotors.expel(0.5);
+		BallMotors.expel(1);
 		//record time of command start
 		timeStart = System.currentTimeMillis();
 		
