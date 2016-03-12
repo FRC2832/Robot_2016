@@ -183,8 +183,6 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	if (recordedAuton)
-    		oi.gamepad.loadVirtualGamepad(recordedID);
     	RobotMap.winchMotor.setEncPosition(0);
     	RobotMap.winchMotor.enableBrakeMode(false);
     }
@@ -209,6 +207,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
+        	oi.gamepad.loadVirtualGamepad(recordedID);
     		oi.gamepad.startVirtualGamepad();
     	} else {
 		    // schedule the autonomous command (example)	
