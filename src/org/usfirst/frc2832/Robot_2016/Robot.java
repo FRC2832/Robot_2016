@@ -361,7 +361,7 @@ public class Robot extends IterativeRobot {
     	// DO NOT CHANGE THIS NUMBER
     	// Doug and Justin worked for a long while to find an ID that works.
     	// We are using CAN ID 16 (0x10) Bigger IDs don't seem to work.
-    	final int MSGID_FOR_LIGHTS = 0x02021450;
+    	final int MSGID_FOR_LIGHTS = 0x02021451;
     			
     	timer = System.currentTimeMillis();
     	if ( timer > lastRunTime + 100 ) // At least 100 ms difference.
@@ -371,7 +371,9 @@ public class Robot extends IterativeRobot {
     		CAN_data.put(0, (byte)(isAutonomous ? 0 : 1) );
     		CAN_data.put(1, (byte)(isBlue ? 0 : 1) );
     		CAN_data.put(2, (byte)(isEnabled ? 1 : 0) );
-    		CAN_data.put(3, (byte)(isSpinning ? 1 : 0) );
+//    		CAN_data.put(3, (byte)(isSpinning ? 1 : 0) );
+    		CAN_data.put(3, (byte)(rightTriggerPressed ? 1 : 0) );
+    		
     		CAN_data.put(4, (byte)(isShooting ? 1 : 0) );
     		CAN_data.put(5, (byte)(isExpelling ? 1 : 0) );
     		CAN_data.put(6, (byte)(isIngesting ? 1 : 0) );
