@@ -20,7 +20,7 @@ import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
-import org.usfirst.frc2832.Robot_2016.commands.ShootAtFace;
+import org.usfirst.frc2832.Robot_2016.commands.ShootHighGoalTowerBase;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.TurnToImage;
