@@ -118,8 +118,15 @@ public class RobotMap {
         byte update_rate_hz = 50;
         imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP), update_rate_hz);
     
-        gyro = new AnalogGyro(2);
-        gyroPID = new GyroPID(gyro, winchMotor);
+        try
+        {
+        	gyro = new AnalogGyro(2);
+        	gyroPID = new GyroPID(gyro, winchMotor);
+        } 
+        catch (Exception e) 
+        {
+//			e.printStackTrace();
+        }
         
     }
 }
