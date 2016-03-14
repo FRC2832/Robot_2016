@@ -376,7 +376,8 @@ public class Robot extends IterativeRobot {
     		
     		CAN_data.put(4, (byte)(isShooting ? 1 : 0) );
     		CAN_data.put(5, (byte)(isExpelling ? 1 : 0) );
-    		CAN_data.put(6, (byte)(isIngesting ? 1 : 0) );
+    		CAN_data.put(6, (byte)(leftTriggerPressed ? 1: 0) );
+//    		CAN_data.put(6, (byte)(isIngesting ? 1 : 0) );
     		CAN_data.put(7, (byte)0);
     		
     		try 
