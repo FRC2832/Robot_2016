@@ -106,7 +106,7 @@ public class OI {
 	    
 	    
 	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X);
-	    xButton.whileHeld(new Kick());
+	    xButton.whenPressed(new Kick());
 	    
 	    RecordableGamepad.dashboardSetup();
 	    
