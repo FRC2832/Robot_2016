@@ -24,13 +24,17 @@ public class CANTalonCurrentSafety extends CANTalon {
 			final double filter = 0.1666667;
 			final double max = 30; // 30 Amps should not be violated in most cases
 			
+			boolean isDisabled = false;
+			
 			while (true) {
 				// Rolling Avg.
 				current = filter * getOutputCurrent() + current * (1 - filter);
-				if (current > max * 0.9) {
-					disableControl();
-				}else if (current < max * 0.80){
-					enableControl();
+				if (current > max * 0.9 && !isDisabled) {
+					disable();
+					isDisabled = true;
+				}else if (current < max * 0.80 && isDisabled){
+					enable();
+					isDisabled = false;
 				}
 				Timer.delay(0.1);
 			}

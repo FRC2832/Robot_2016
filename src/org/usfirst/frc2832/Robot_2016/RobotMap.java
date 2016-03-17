@@ -58,7 +58,7 @@ public class RobotMap {
     public static IMUAdvanced imu;
     
     private static AnalogGyro gyro;
-    public static GyroPID gyroPID;
+    public static DeltaPID gyroPID;
     
     public static final double ENCODER_PULSE_PER_METER = 2800;
 
@@ -118,8 +118,16 @@ public class RobotMap {
         byte update_rate_hz = 50;
         imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP), update_rate_hz);
     
-        gyro = new AnalogGyro(2);
-        gyroPID = new GyroPID(gyro, winchMotor);
+        try
+        {
+        	gyro = new AnalogGyro(2);
+        	gyroPID = new DeltaPID(gyro, winchMotor);
+        } 
+        catch (Exception e) 
+        {
+        //e.printStackTrace();
+        }
+        
         
     }
 }

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 
-public class GyroPID extends PIDController {
+public class DeltaPID extends PIDController {
 
 	private static double velP = 1;
 	private static double velI = 0.01;
@@ -22,7 +22,7 @@ public class GyroPID extends PIDController {
 	private static double prevTime = System.currentTimeMillis();
 	private static double prevError = 0;
 	
-	public GyroPID(PIDSource source, PIDOutput output) 
+	public DeltaPID(PIDSource source, PIDOutput output) 
 	{
 		super(velP,velI,velD, 0, source, output);
 	}

@@ -7,7 +7,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Aimer extends Subsystem {
 	public static int currentLevel = 0;
-	public static int[] levelPositions = {0,3000,4500,5500};
+	public static boolean sentinel = false; //if true the TALON should be disabled
+	public static final int TOLERANCE = 100; //in encoder counts
+	public static enum Levels {
+		START (0), 
+		HIGH (-180), 
+		LOW (-900), 
+		GROUND (-1400);
+		
+		private final int POSITION;
+		Levels(int pos) {
+			POSITION = pos;
+		}
+		
+		public int getSetpoint() {return POSITION;}
+	}
+	//public static int[] levelPositions = {0,2000,5000,5500};
+	//Level 0: 'Stowed' Position; Starting Position
+	//Level 1: Shooting on Batter in front of Tower
+	//Level 2: Low Goal, or 'just above the bottom'
+	//Level 3: On the ground
+	
 	//public static final int MOVE_SPEED_UP = 200;
 	public static String mode = "position";
 	//public static final int MOVE_SPEED_DOWN = -175;
@@ -52,6 +72,13 @@ public class Aimer extends Subsystem {
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
 		RobotMap.winchMotor.setPID(20, 0.02, 0);
+		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
+	}
+	//to be used for snapping to START or GROUND positions
+	public static void toProfiledVelocityMode()
+	{
+		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
+		RobotMap.winchMotor.setPID(1, 0.1, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	/**

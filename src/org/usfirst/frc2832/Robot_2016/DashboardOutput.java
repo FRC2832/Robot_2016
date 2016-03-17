@@ -1,6 +1,7 @@
 package org.usfirst.frc2832.Robot_2016;
 
-import org.usfirst.frc2832.Robot_2016.commands.GoToLevel;
+import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
+import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
 import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.Expel;
@@ -40,6 +41,8 @@ public class DashboardOutput {
 		SmartDashboard.putNumber("winch error", RobotMap.winchMotor.getError());
 		SmartDashboard.putBoolean("Forward Lim", RobotMap.winchMotor.isFwdLimitSwitchClosed());
 		SmartDashboard.putBoolean("Reverse Lim", RobotMap.winchMotor.isRevLimitSwitchClosed());
+		SmartDashboard.putBoolean("Is Aimer Control Enabled?", RobotMap.winchMotor.isControlEnabled());
+		SmartDashboard.putNumber("winch setpoint", RobotMap.winchMotor.getSetpoint());
 		
 		//TODO: best to remove the below code at competition to reduce lag
 		//ImageProcessing.process();
@@ -66,10 +69,10 @@ public class DashboardOutput {
       	SmartDashboard.putData("Move Forward 3", new MoveForward(3));
       	SmartDashboard.putData("Rotate -45", new RotateAngle(-45));
       	SmartDashboard.putData("Move Backward 5", new MoveForward(-5));
-      	SmartDashboard.putData("GoToLevel 0", new GoToLevel(0));
-		SmartDashboard.putData("GoToLevel 1", new GoToLevel(1));
-      	SmartDashboard.putData("GoToLevel 2", new GoToLevel(2));
-		SmartDashboard.putData("GoToLevel 3", new GoToLevel(3));
+      	SmartDashboard.putData("GoToLevel 0", new GoToPosition(Levels.START));
+		SmartDashboard.putData("GoToLevel 1", new GoToPosition(Levels.HIGH));
+      	SmartDashboard.putData("GoToLevel 2", new GoToPosition(Levels.LOW));
+		SmartDashboard.putData("GoToLevel 3", new GoToPosition(Levels.GROUND));
 		SmartDashboard.putData("ImagingTest", new ImagingTest());
 		
 //DCM		SmartDashboard.putString("MAC", Robot.GetMacAddress());

@@ -3,10 +3,13 @@ package org.usfirst.frc2832.Robot_2016.commands;
 import org.usfirst.frc2832.Robot_2016.Aimer;
 import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
+import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveAimerUp extends Command {
+	
 	
 	public MoveAimerUp() {
 		requires (Robot.aimer);
@@ -15,8 +18,15 @@ public class MoveAimerUp extends Command {
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		Aimer.upSpeedMode();
-		RobotMap.winchMotor.set(Aimer.MOVE_SPEED_UP);
-
+		Aimer.sentinel = false;
+		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE)
+			Aimer.sentinel = true;
+		
+		if(!Aimer.sentinel)
+		{
+			RobotMap.winchMotor.enable();
+			RobotMap.winchMotor.set(Aimer.MOVE_SPEED_UP);
+		}
 	}
 
 	@Override
@@ -33,6 +43,8 @@ public class MoveAimerUp extends Command {
 
 	@Override
 	protected void end() {
+		if(Aimer.sentinel)
+			RobotMap.winchMotor.disable();
 	}
 
 	@Override
