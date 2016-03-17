@@ -11,33 +11,29 @@
 
 package org.usfirst.frc2832.Robot_2016;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
+import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
 import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
-import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ConstructedAutonomous;
-import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ParseInput;
-import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
-import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
 
 import com.ni.vision.VisionException;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.can.CANJNI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -46,14 +42,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
-import edu.wpi.first.wpilibj.can.CANJNI;
-import edu.wpi.first.wpilibj.can.CANExceptionFactory;
-import java.nio.IntBuffer;
-import java.util.Arrays;
-import java.util.Enumeration;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -110,10 +98,9 @@ public class Robot extends IterativeRobot {
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 
         // pointers. Bad news. Don't move it.
-        boolean iGotACamera = false;
         oi = new OI();
-        /*try {
-	        camera1 = new USBCamera("cam0");
+        try {
+	        camera1 = new USBCamera("cam1");
 	        //camera2 = new USBCamera("cam1");
 	        
 	        camera1.setFPS(15);
@@ -125,29 +112,9 @@ public class Robot extends IterativeRobot {
 	        ///cameraServer.startAutomaticCapture(camera1, camera2);
 	        CameraServer cameraServer = CameraServer.getInstance();
 	        cameraServer.startAutomaticCapture(camera1);
-	        iGotACamera = true;
-        } catch (VisionException e) {
-        	e.printStackTrace();
+        } catch (Exception e) {
+        	
         }
-        if(iGotACamera) { */
-	    /**    try {
-		        camera1 = new USBCamera("cam1");
-		        //camera2 = new USBCamera("cam1");
-		        
-		        camera1.setFPS(15);
-		        camera1.setSize(320, 240);
-		        
-		        //camera2.setFPS(15);
-		        //camera2.setSize(320, 240);
-		        //CameraServer2832 cameraServer = CameraServer2832.getInstance();
-		        ///cameraServer.startAutomaticCapture(camera1, camera2);
-		        CameraServer cameraServer = CameraServer.getInstance();
-		        cameraServer.startAutomaticCapture(camera1);
-		        iGotACamera = true;
-	        } catch (VisionException e) {
-	        	e.printStackTrace();
-	        }
-        //}*/
 
         auto_Movement = new SendableChooser();
         auto_Movement.addObject("Do nothing at all", "0");
@@ -181,7 +148,7 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setEncPosition(0);
         Aimer.loadPreferences();
         
-        //table = NetworkTable.getTable("GRIP/contours");
+        table = NetworkTable.getTable("GRIP/contours");
     }
 
     /**
@@ -240,6 +207,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
+    	
+    	Scheduler.getInstance().add((new ImagingTest()));
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
