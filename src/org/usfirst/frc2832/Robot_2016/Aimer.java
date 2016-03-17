@@ -11,9 +11,9 @@ public class Aimer extends Subsystem {
 	public static final int TOLERANCE = 100; //in encoder counts
 	public static enum Levels {
 		START (0), 
-		HIGH (-180), 
+		HIGH (-130), 
 		LOW (-900), 
-		GROUND (-1400);
+		GROUND (-1435);
 		
 		private final int POSITION;
 		Levels(int pos) {

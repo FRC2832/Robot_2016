@@ -234,8 +234,7 @@ public class CameraServer2832 {
 	          setImage(frame);
 	        }
 	      } catch (VisionException ex) {
-	        DriverStation.reportError("Error when getting image from the camera: " + ex.getMessage(),
-	            true);
+	        //DriverStation.reportError("Error when getting image from the camera: " + ex.getMessage(),true);
 	        if (dataBuffer != null) {
 	          synchronized (this) {
 	            m_imageDataPool.addLast(dataBuffer);

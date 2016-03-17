@@ -101,7 +101,7 @@ public class OI {
 	    leftBumper.whenPressed(new GoToPosition(Levels.GROUND));
 	    
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
-	    rightBumper.whileHeld(new GoToPosition(Levels.START));
+	    rightBumper.whenPressed(new GoToPosition(Levels.START));
 	    
 	    
 	    

@@ -48,11 +48,11 @@ public class DashboardOutput {
 		//ImageProcessing.process();
 		//SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
 		
-		/*try {
+		try {
 			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
 		} catch(Exception e) {
 			
-		}*/
+		}
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}

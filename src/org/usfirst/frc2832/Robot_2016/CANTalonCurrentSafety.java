@@ -30,10 +30,10 @@ public class CANTalonCurrentSafety extends CANTalon {
 				// Rolling Avg.
 				current = filter * getOutputCurrent() + current * (1 - filter);
 				if (current > max * 0.9 && !isDisabled) {
-					disable();
+					disableControl();
 					isDisabled = true;
 				}else if (current < max * 0.80 && isDisabled){
-					enable();
+					enableControl();
 					isDisabled = false;
 				}
 				Timer.delay(0.1);

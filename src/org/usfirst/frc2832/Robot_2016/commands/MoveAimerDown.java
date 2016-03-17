@@ -22,7 +22,7 @@ public class MoveAimerDown extends Command {
 		
 		if(!Aimer.sentinel)
 		{
-			RobotMap.winchMotor.enable();
+			RobotMap.winchMotor.enableControl();
 			RobotMap.winchMotor.set(Aimer.MOVE_SPEED_DOWN);
 		}
 
@@ -43,7 +43,7 @@ public class MoveAimerDown extends Command {
 	@Override
 	protected void end() {
 		if(Aimer.sentinel)
-			RobotMap.winchMotor.disable();
+			RobotMap.winchMotor.disableControl();
 	}
 
 	@Override
