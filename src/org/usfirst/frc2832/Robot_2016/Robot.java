@@ -101,8 +101,8 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
 	    try {
-		        camera1 = new USBCamera("cam0");
-		        camera2 = new USBCamera("cam1");
+		        camera1 = new USBCamera("cam1");
+		        camera2 = new USBCamera("cam0");
 		        
 		        camera1.setFPS(15);
 		        camera1.setSize(320, 240);
@@ -149,7 +149,9 @@ public class Robot extends IterativeRobot {
         RobotMap.winchMotor.setEncPosition(0);
         Aimer.loadPreferences();
         
-        table = NetworkTable.getTable("GRIP/contours");
+        try{
+        	table = NetworkTable.getTable("GRIP/contours");
+        } catch (Exception e) {}
     }
 
     /**
@@ -209,7 +211,6 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
     	
-    	Scheduler.getInstance().add((new ImagingTest()));
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
