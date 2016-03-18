@@ -188,8 +188,8 @@ public class CameraServer2832 {
 	      camera.openCamera();
 	      startAutomaticCapture(camera);
 	    } catch (VisionException ex) {
-	      DriverStation.reportError(
-	          "Error when starting the camera: " + cameraName + " " + ex.getMessage(), true);
+	      //DriverStation.reportError(
+	         // "Error when starting the camera: " + cameraName + " " + ex.getMessage(), true);
 	    }
 	  }
 
@@ -255,7 +255,7 @@ public class CameraServer2832 {
 				  
 				  selectedCamera = id;
 			  } catch (VisionException e) {
-				  DriverStation.reportError("A camera was unplugged.", true);
+				  //DriverStation.reportError("A camera was unplugged.", true);
 			  }
 			  lastSwitch = System.currentTimeMillis();
 		  }
@@ -338,7 +338,7 @@ public class CameraServer2832 {
 	        int size = is.readInt();
 
 	        if (compression != kHardwareCompression) {
-	          DriverStation.reportError("Choose \"USB Camera HW\" on the dashboard", false);
+	          //DriverStation.reportError("Choose \"USB Camera HW\" on the dashboard", false);
 	          s.close();
 	          continue;
 	        }
@@ -387,7 +387,7 @@ public class CameraServer2832 {
 	              Thread.sleep(period - dt);
 	            }
 	          } catch (IOException | UnsupportedOperationException ex) {
-	            DriverStation.reportError(ex.getMessage(), true);
+	            //DriverStation.reportError(ex.getMessage(), true);
 	            break;
 	          } finally {
 	            imageData.data.free();
@@ -399,7 +399,7 @@ public class CameraServer2832 {
 	          }
 	        }
 	      } catch (IOException ex) {
-	        DriverStation.reportError(ex.getMessage(), true);
+	        //DriverStation.reportError(ex.getMessage(), true);
 	        continue;
 	      }
 	    }

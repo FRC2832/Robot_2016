@@ -13,7 +13,7 @@ public class Aimer extends Subsystem {
 		START (0), 
 		HIGH (-130), 
 		LOW (-900), 
-		GROUND (-1435);
+		GROUND (-1600);
 		
 		private final int POSITION;
 		Levels(int pos) {
