@@ -55,13 +55,21 @@ public class ImageProcessing {
 		double[] contour = new double[6];
 		String[] names = {"centerX","centerY","width","area","solidity","height"};
 		for(int i = 0; i < names.length;i++)
+		{
+			try{
 			contour[i]=Robot.table.getNumberArray(names[i], new double[6])[largest];
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
 		//now contour contains all values (in order) of largest
 		/*next let's determine how far off the target is from center.
 		*We will do this using [x,y] where x,y range from -1 to 1, and [0,0]
 		*being image center. This should thus tell us how far we must turn.*/
 		targetOffset[0] = (contour[0]-RES_X/2)/(RES_X/2);
-		targetOffset[1] = (contour[0]-RES_Y/2)/(RES_Y/2);
+		targetOffset[1] = (contour[1]-RES_Y/2)/(RES_Y/2);
 		
 		height = contour[5];
 		//finally let's figure out how far away we are from the target.

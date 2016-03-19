@@ -19,7 +19,7 @@ public class ImagingTest extends Command {
 	@Override
 	protected void execute() {
 		ImageProcessing.process();
-		RobotMap.driveTrain.arcadeDrive(0, ImageProcessing.targetOffset[0]);
+		//RobotMap.driveTrain.arcadeDrive(0, -1.2*(ImageProcessing.targetOffset[0]+0.094));
 		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);
