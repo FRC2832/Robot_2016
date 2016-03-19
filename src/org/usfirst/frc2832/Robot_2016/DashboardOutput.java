@@ -1,20 +1,15 @@
 package org.usfirst.frc2832.Robot_2016;
 
 import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
+import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
 import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
-import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
-import org.usfirst.frc2832.Robot_2016.commands.Expel;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
 import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
-import org.usfirst.frc2832.Robot_2016.vision.ImageProcessing;
 
-import com.ni.vision.VisionException;
-
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DashboardOutput {
 
+	static boolean hasCameraCaught = false;
 	//This method is invoked in teleopPeriodic to display all the crap we put on the dashboard
 	public static void putPeriodicData()
 	{
@@ -47,13 +43,14 @@ public class DashboardOutput {
 		//TODO: best to remove the below code at competition to reduce lag
 		//ImageProcessing.process();
 		//SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
-		
-		try {
-			CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
-		} catch(Exception e) {
-			
+		if (!hasCameraCaught)
+		{
+			try {
+				CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
+			} catch(Exception e) {
+				hasCameraCaught = true;
+			}
 		}
-		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
 	

@@ -16,7 +16,6 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.RawData;
 import com.ni.vision.VisionException;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
@@ -194,13 +193,27 @@ public class CameraServer2832 {
 	  }
 
 	  public synchronized void startAutomaticCapture(USBCamera... camera) {
-	    if (m_autoCaptureStarted)
-	      return;
+	    if (m_camera.length == 0 || m_autoCaptureStarted)
+	    	return;
 	    m_autoCaptureStarted = true;
 	    m_camera = camera;
-	    
-	    m_camera[selectedCamera].startCapture();
+	    boolean hasFailed = false;
 
+	    for (int i = 0; i < m_camera.length; i++)
+	    {
+	    	try
+	    	{
+	    		m_camera[selectedCamera].startCapture();
+	    		hasFailed = false;
+	    		break; // If this is reached, 
+	    	}
+	    	catch (VisionException e)
+	    	{
+	    		hasFailed = true;
+	    	}
+	    }
+	    if (hasFailed)
+	    	return;
 	    Thread captureThread = new Thread(new Runnable() {
 	      @Override
 	      public void run() {
