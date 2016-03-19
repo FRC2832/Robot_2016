@@ -63,7 +63,7 @@ public class RobotMap {
     public static DeltaPID gyroPID;
     
     public static final double ENCODER_PULSE_PER_METER = 2800;
-
+    
     public static void init() {
 
         frontLeftMotor = new CANTalon(1);
@@ -117,10 +117,10 @@ public class RobotMap {
         
         kicker.setPosition(Kicker.NEUTRAL_ANGLE);
         
-        //tail = new CANTalon(21); // TODO: Might have to change.
-        //tail.changeControlMode(CANTalon.TalonControlMode.Speed);
-        //tail.enableLimitSwitch(true, true);
-        
+        tail = new CANTalon(21); // TODO: Might have to change.
+        tail.changeControlMode(CANTalon.TalonControlMode.Speed);
+        tail.enableLimitSwitch(true, true);
+        //tail.setInverted(false);
         
         byte update_rate_hz = 50;
         imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP), update_rate_hz);

@@ -20,6 +20,8 @@ import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
+import org.usfirst.frc2832.Robot_2016.commands.MoveTailDown;
+import org.usfirst.frc2832.Robot_2016.commands.MoveTailUp;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
@@ -66,7 +68,7 @@ public class Robot extends IterativeRobot {
     public boolean leftTriggerPressed = false;
     public boolean rightTriggerPressed = false;
     public boolean shooterNotActive = true;
-    public boolean povPressed = false;
+    public static boolean povPressed = false;
     private long lastRunTime = System.currentTimeMillis();
     private long timer = 0;
 	private String recordedID;
@@ -253,14 +255,14 @@ public class Robot extends IterativeRobot {
 		//D-pad right
 		case 90:
 			if (!povPressed) {
-				Scheduler.getInstance().add(null);//new MoveTailDown());
+				Scheduler.getInstance().add(new MoveTailDown());
 			}
 			povPressed = true;
 			break;
 		//D-pad left
 		case 270:
 			if (!povPressed) {
-				Scheduler.getInstance().add(null);//new MoveTailUp());//TODO: add MoveTailUp command
+				Scheduler.getInstance().add(new MoveTailUp());
 			}
 			povPressed = true;
 			break;
@@ -282,7 +284,6 @@ public class Robot extends IterativeRobot {
 		case -1:
 			if (povPressed == true) {
 			Scheduler.getInstance().add(new StopAimer());
-			//Scheduler.getInstance().add(new StopTail());//TODO: add a stoptail command
 			}
 			povPressed = false;
 			break;
