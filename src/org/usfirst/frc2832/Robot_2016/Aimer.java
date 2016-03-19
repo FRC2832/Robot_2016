@@ -11,9 +11,9 @@ public class Aimer extends Subsystem {
 	public static final int TOLERANCE = 100; //in encoder counts
 	public static enum Levels {
 		START (0), 
-		HIGH (-130), 
-		LOW (-900), 
-		GROUND (-1600);
+		HIGH (-240), 
+		LOW (-1700), 
+		GROUND (-3000); // -1600 originally, this way we can quickly recalibrate
 		
 		private final int POSITION;
 		Levels(int pos) {
@@ -37,15 +37,15 @@ public class Aimer extends Subsystem {
 			
 	
 	public static void loadPreferences() {
-		UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 10.0);
+		UP_PID_P = Preferences.getInstance().getDouble("Aimer Up kP", 1.0);
 		UP_PID_I = Preferences.getInstance().getDouble("Aimer Up kI", 0.001);
 		UP_PID_D = Preferences.getInstance().getDouble("Aimer Up kD", 0.0);
-		DOWN_PID_P = Preferences.getInstance().getDouble("Aimer Down kP", 2.0);
+		DOWN_PID_P = Preferences.getInstance().getDouble("Aimer Down kP", 0.5);
 		DOWN_PID_I = Preferences.getInstance().getDouble("Aimer Down kI", 0.02);
 		DOWN_PID_D = Preferences.getInstance().getDouble("Aimer Down kD", 0.0);
 		
-		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", (int) (220d * (77d/188d)));
-		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed",(int) (-175 * (77d/188d)));
+		MOVE_SPEED_UP = Preferences.getInstance().getInt("Aimer Up Speed", 300);
+		MOVE_SPEED_DOWN = Preferences.getInstance().getInt("Aimer Down Speed",-175);
 	}
 	
 	@Override
@@ -71,7 +71,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(20, 0.02, 0);
+		RobotMap.winchMotor.setPID(2, 0.02, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	//to be used for snapping to START or GROUND positions

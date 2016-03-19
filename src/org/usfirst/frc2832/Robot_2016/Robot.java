@@ -100,22 +100,22 @@ public class Robot extends IterativeRobot {
         // constructed yet. Thus, their requires() statements may grab null 
         // pointers. Bad news. Don't move it.
         oi = new OI();
-	    try {
-		        camera1 = new USBCamera("cam1");
-		        camera2 = new USBCamera("cam0");
-		        
-		        camera1.setFPS(15);
-		        camera1.setSize(320, 240);
-		        
-		        camera2.setFPS(15);
-		        camera2.setSize(320, 240);
-		        CameraServer2832 cameraServer = CameraServer2832.getInstance();
-		        cameraServer.startAutomaticCapture(camera1, camera2);
-		        //CameraServer cameraServer = CameraServer.getInstance();
-		        //cameraServer.startAutomaticCapture(camera1);
-	        } catch (VisionException e) {
-	        	//e.printStackTrace();
-	    }
+	    /*try {
+	        camera1 = new USBCamera("cam1");
+	        camera2 = new USBCamera("cam0");
+	        
+	        camera1.setFPS(15);
+	        camera1.setSize(320, 240);
+	        
+	        camera2.setFPS(15);
+	        camera2.setSize(320, 240);
+	        CameraServer2832 cameraServer = CameraServer2832.getInstance();
+	        cameraServer.startAutomaticCapture(camera1, camera2);
+	        //CameraServer cameraServer = CameraServer.getInstance();
+	        //;
+        } catch (VisionException e) {
+	        
+	    }*/
 
         auto_Movement = new SendableChooser();
         auto_Movement.addObject("Do nothing at all", "0");
