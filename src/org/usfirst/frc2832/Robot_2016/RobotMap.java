@@ -48,6 +48,8 @@ public class RobotMap {
     public static CANTalon ballIngestLeft;
     public static CANTalon ballIngestRight;
     
+    public static CANTalon tail;
+    
     public static AnalogInput laser;
     public static AnalogInput proxSensor;
     
@@ -114,6 +116,11 @@ public class RobotMap {
         kicker = new Servo(1);
         
         kicker.setPosition(Kicker.NEUTRAL_ANGLE);
+        
+        //tail = new CANTalon(21); // TODO: Might have to change.
+        //tail.changeControlMode(CANTalon.TalonControlMode.Speed);
+        //tail.enableLimitSwitch(true, true);
+        
         
         byte update_rate_hz = 50;
         imu = new IMUAdvanced(new SerialPort(57600,SerialPort.Port.kMXP), update_rate_hz);

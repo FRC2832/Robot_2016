@@ -93,7 +93,7 @@ public class OI {
 	    backButton.whenPressed(new Shoot());
 	    
 	    //bButton = new JoystickButton(gamepad, GamepadState.BUTTON_B);
-	    //bButton.whenPressed(new ShootAtFace());
+	    //bButton.whenPressed(new ShootAtFace()); 
 
 	    
 	    
@@ -118,8 +118,7 @@ public class OI {
 
     }
 
-	private void createRecordedAutonIndex() {		
-		
+	private void createRecordedAutonIndex() {
 		index = new SendableChooser();
 		
 		SavedStates.loadIndex();

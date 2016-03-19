@@ -253,14 +253,14 @@ public class Robot extends IterativeRobot {
 		//D-pad right
 		case 90:
 			if (!povPressed) {
-				Scheduler.getInstance().add(null);
+				Scheduler.getInstance().add(null);//new MoveTailDown());
 			}
 			povPressed = true;
 			break;
 		//D-pad left
 		case 270:
 			if (!povPressed) {
-				Scheduler.getInstance().add(null);
+				Scheduler.getInstance().add(null);//new MoveTailUp());//TODO: add MoveTailUp command
 			}
 			povPressed = true;
 			break;
@@ -282,6 +282,7 @@ public class Robot extends IterativeRobot {
 		case -1:
 			if (povPressed == true) {
 			Scheduler.getInstance().add(new StopAimer());
+			//Scheduler.getInstance().add(new StopTail());//TODO: add a stoptail command
 			}
 			povPressed = false;
 			break;
