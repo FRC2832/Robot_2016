@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Aimer extends Subsystem {
 	public static int currentLevel = 0;
 	public static boolean sentinel = false; //if true the TALON should be disabled
-	public static final int TOLERANCE = 100; //in encoder counts
+	public static final int TOLERANCE = 200; //in encoder counts
 	public static enum Levels {
 		START (0), 
 		HIGH (-240), 
 		LOW (-1700), 
-		GROUND (-3000); // -1600 originally, this way we can quickly recalibrate
+		GROUND (-3200); // -1600 originally, this way we can quickly recalibrate
 		
 		private final int POSITION;
 		Levels(int pos) {
@@ -71,7 +71,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(2, 0.02, 0);
+		RobotMap.winchMotor.setPID(1.6, 0.01, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	//to be used for snapping to START or GROUND positions

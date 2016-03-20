@@ -102,7 +102,10 @@ public class GoToPosition extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Math.abs(RobotMap.winchMotor.getEncPosition() - setPoint) < Aimer.TOLERANCE || Aimer.sentinel || TIMEOUT + timeStart < System.currentTimeMillis();
+		return Math.abs(RobotMap.winchMotor.getEncPosition() - setPoint) < Aimer.TOLERANCE 
+				|| Aimer.sentinel 
+				|| TIMEOUT + timeStart < System.currentTimeMillis()
+				|| RobotMap.winchMotor.getEncPosition()*isUp > setPoint*isUp;
 	}
 
 	@Override

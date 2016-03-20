@@ -19,7 +19,8 @@ public class MoveAimerUp extends Command {
 		// TODO Auto-generated method stub
 		Aimer.upSpeedMode();
 		Aimer.sentinel = false;
-		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE)
+		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE|| RobotMap.winchMotor.getEncPosition() > Levels.START.getSetpoint())
+			
 			Aimer.sentinel = true;
 		
 		if(!Aimer.sentinel)
