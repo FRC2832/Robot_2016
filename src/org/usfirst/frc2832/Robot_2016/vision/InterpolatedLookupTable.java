@@ -18,8 +18,8 @@ public class InterpolatedLookupTable {
 	{
 		//TODO: get actual values for this
 		put(0,0);
-		put(.1,-1000);
-		put(.2,-2000);
+		put(10,-1000);
+		put(20,-2000);
 	}
 	
 	/**

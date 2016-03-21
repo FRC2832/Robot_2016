@@ -10,9 +10,6 @@ public class VisionShoot extends CommandGroup {
     public  VisionShoot() {
         addSequential(new VisionAimHoriz(),10);
         addSequential(new VisionAimVert(),10);
-        addSequential(new SpinShooterWheels());
-        //TODO: Add Delay()
-        addSequential(new Kick());
-        addSequential(new StopBallMotors());
+        addSequential(new Shoot());
     }
 }

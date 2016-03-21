@@ -23,7 +23,7 @@ public class Shoot extends Command {
 	private static final long TIMEOUT = 1500;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
-	private static double  DELAY = 1000; //milliseconds that the ball motors move for before the kicker kicks in
+	private static double  DELAY = 2000; //milliseconds that the ball motors move for before the kicker kicks in
 	
 	public Shoot()
 	{
