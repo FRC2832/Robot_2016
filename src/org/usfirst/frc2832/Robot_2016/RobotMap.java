@@ -48,6 +48,8 @@ public class RobotMap {
     public static CANTalon ballIngestLeft;
     public static CANTalon ballIngestRight;
     
+    public static CANTalon tail;
+    
     public static AnalogInput laser;
     public static AnalogInput proxSensor;
     
@@ -108,6 +110,12 @@ public class RobotMap {
         
         ballIngestLeft.setInverted(true);
         ballIngestRight.setInverted(true);
+        
+        //tail = new CANTalon(21); // TODO: Might have to change.
+        //tail.changeControlMode(CANTalon.TalonControlMode.Speed);
+        //tail.enableLimitSwitch(true, true);
+        //tail.setInverted(false);//Use this to switch up and down
+
 
         laser = new AnalogInput(0);
         proxSensor = new AnalogInput(1);

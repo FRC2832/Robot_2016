@@ -20,6 +20,8 @@ import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
+import org.usfirst.frc2832.Robot_2016.commands.MoveTailDown;
+import org.usfirst.frc2832.Robot_2016.commands.MoveTailUp;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
 import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
@@ -67,7 +69,7 @@ public class Robot extends IterativeRobot {
     public boolean leftTriggerPressed = false;
     public boolean rightTriggerPressed = false;
     public boolean shooterNotActive = true;
-    public boolean povPressed = false;
+    public static boolean povPressed = false;
     private long lastRunTime = System.currentTimeMillis();
     private long timer = 0;
 	private String recordedID;
@@ -256,21 +258,21 @@ public class Robot extends IterativeRobot {
     	//D-Pad Controls
 
         switch (oi.gamepad.getPOV()) {
-		//D-pad right
-		case 90:
-			if (!povPressed) {
-				Scheduler.getInstance().add(null);
-			}
-			povPressed = true;
-			break;
-		//D-pad left
-		case 270:
-			if (!povPressed) {
-				Scheduler.getInstance().add(null);
-			}
-			povPressed = true;
-			break;
-		//D-pad up
+        	//D-pad right
+      	case 90:
+      		if (!povPressed) {
+      			Scheduler.getInstance().add(null); //new MoveTailDown());
+      		}
+     			povPressed = true;
+      			break;
+      		//D-pad left
+      	case 270:
+      		if (!povPressed) {
+      			Scheduler.getInstance().add(null);//new MoveTailUp());
+      		}
+     			povPressed = true;
+      			break;
+      		//D-pad up
 		case 0:
 			// Use speed mode if not currently used
 			if (!povPressed) {
