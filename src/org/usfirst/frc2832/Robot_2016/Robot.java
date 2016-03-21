@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
-import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
+import org.usfirst.frc2832.Robot_2016.commands.VisionAimHoriz;
 import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;

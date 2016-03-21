@@ -3,7 +3,7 @@ package org.usfirst.frc2832.Robot_2016;
 import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
 import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
-import org.usfirst.frc2832.Robot_2016.commands.ImagingTest;
+import org.usfirst.frc2832.Robot_2016.commands.VisionAimHoriz;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
@@ -70,7 +70,7 @@ public class DashboardOutput {
 		SmartDashboard.putData("GoToLevel 1", new GoToPosition(Levels.HIGH));
       	SmartDashboard.putData("GoToLevel 2", new GoToPosition(Levels.LOW));
 		SmartDashboard.putData("GoToLevel 3", new GoToPosition(Levels.GROUND));
-		SmartDashboard.putData("ImagingTest", new ImagingTest());
+		SmartDashboard.putData("ImagingTest", new VisionAimHoriz());
 		
 //DCM		SmartDashboard.putString("MAC", Robot.GetMacAddress());
 	}

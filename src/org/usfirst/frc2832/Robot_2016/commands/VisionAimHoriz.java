@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //DEBUG USE ONLY
 //DO NOT USE FOR ANY LEGITIMATE PROCESS
 //THANKS :)
-public class ImagingTest extends Command {
+public class VisionAimHoriz extends Command {
 
 	private static final int FOV_ANGLE=22;
 	@Override
