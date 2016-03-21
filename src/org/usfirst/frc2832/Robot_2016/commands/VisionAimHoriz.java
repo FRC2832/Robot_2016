@@ -17,8 +17,10 @@ public class VisionAimHoriz extends Command {
 	@Override
 	protected void initialize() {
 		ImageProcessing.process();
-		Scheduler.getInstance().add(new RotateAngle(-ImageProcessing.targetOffset[0]*FOV_ANGLE));
-		SmartDashboard.putNumber("angle", -ImageProcessing.targetOffset[0]*FOV_ANGLE);
+		double angle = -ImageProcessing.targetOffset[0]*FOV_ANGLE;
+		if(Math.abs(angle)>1.5)
+		Scheduler.getInstance().add(new RotateAngle(angle));
+		SmartDashboard.putNumber("angle", angle);
 		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);

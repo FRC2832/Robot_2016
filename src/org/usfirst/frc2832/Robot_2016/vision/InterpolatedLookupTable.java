@@ -14,6 +14,14 @@ public class InterpolatedLookupTable {
 		map.put(key, value);
 	}
 	
+	public void setup()
+	{
+		//TODO: get actual values for this
+		put(0,0);
+		put(.1,-1000);
+		put(.2,-2000);
+	}
+	
 	/**
 	 * Gets a value, interpolating linearly
 	 * @param key The key, or x-coordinate
