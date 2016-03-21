@@ -6,8 +6,8 @@ public class Delay extends Command {
 
 	public double finishTime = 0;
 	
-	public void delay(double Time) {
-		finishTime = System.currentTimeMillis() + Time;
+	public void delay(double time) {
+		finishTime = System.currentTimeMillis() + time;
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class Delay extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		if (System.currentTimeMillis() == finishTime) {
+		if (System.currentTimeMillis() >= finishTime) {
 			return true;
 		}else{
 			return false;
