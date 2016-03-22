@@ -130,6 +130,7 @@ public class Robot extends IterativeRobot {
         auto_Movement.addObject("Move Forward 6.5", "f6.5");
         auto_Movement.addObject("Move Backward 5", "f-5");
         auto_Movement.addObject("Spy Bot", "s");
+        auto_Movement.addObject("Low Bar", "l");
         SmartDashboard.putData("Autonomous Selection", auto_Movement);
         
         auto_Reverse = new SendableChooser();
