@@ -18,7 +18,7 @@ public class ParseInput {
 			auto_Commands.add(new RotateAngle(Double.valueOf(movement.substring(1))));
 		else if(movement.charAt(0) == 's')
 			auto_Commands.add(new SpyBot(shooting));
-		else if(movement.charAt(0) == 'l')
+		//else if(movement.charAt(0) == 'l')
 		//	auto_Commands.add(new CrossLowbar());
 		
 		if(isRev == true && movement.charAt(0) == 'f')
