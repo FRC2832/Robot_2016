@@ -28,6 +28,7 @@ public class Climber extends Subsystem {
 		release = new Servo(2); //this value is guessed as of 3/21
 		motorLatch = new Servo(3); //this value is guessed as of 3/21
 		climbingWinch.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		climbingWinch.enableBrakeMode(true);
 	}
 	
 	public static void releaseLatch()
