@@ -12,6 +12,7 @@
 package org.usfirst.frc2832.Robot_2016;
 
 import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
+import org.usfirst.frc2832.Robot_2016.HID.GamepadDeadzoned;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
@@ -69,6 +70,7 @@ public class OI {
     
 	
 	public RecordableGamepad gamepad;
+	//public GamepadDeadzoned gamepad2; //the one to use for the climber potentially
 	public JoystickButton aButton;
 	public JoystickButton bButton;
 	public JoystickButton xButton;
