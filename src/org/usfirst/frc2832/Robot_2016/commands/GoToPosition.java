@@ -27,9 +27,9 @@ public class GoToPosition extends Command {
 	
 	public GoToPosition(int encoderCount)
 	{
-		if(encoderCount > Levels.GROUND.getSetpoint())
+		if(encoderCount < Levels.GROUND.getSetpoint())
 			setPoint = Levels.GROUND.getSetpoint();
-		else if(encoderCount < Levels.START.getSetpoint())
+		else if(encoderCount > Levels.START.getSetpoint())
 			setPoint = Levels.START.getSetpoint();
 		else
 			setPoint = encoderCount;
@@ -111,7 +111,8 @@ public class GoToPosition extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		Aimer.stop();
+		Aimer.toPositionMode();
+		RobotMap.winchMotor.set(setPoint);
 		if(Aimer.sentinel)
 			RobotMap.winchMotor.disableControl();
 	}
@@ -119,7 +120,8 @@ public class GoToPosition extends Command {
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		Aimer.stop();
+		Aimer.toPositionMode();
+		RobotMap.winchMotor.set(setPoint);
 	}
 
 }

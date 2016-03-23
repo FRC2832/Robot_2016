@@ -101,7 +101,7 @@ public class RobotMap {
         winchMotor.enableLimitSwitch(true, true);
         
         winchMotor.setInverted(false);
-        winchMotor.reverseOutput(true);
+        winchMotor.reverseOutput(false);
         
         ballIngestLeft = new CANTalon(5);
         LiveWindow.addActuator("Ball Handler", "ingestLeft",ballIngestLeft);
