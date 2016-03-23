@@ -24,6 +24,7 @@ import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerDown;
 import org.usfirst.frc2832.Robot_2016.commands.MoveAimerUp;
+import org.usfirst.frc2832.Robot_2016.commands.PIDPosition;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.ShootHighGoalTowerBase;
 import org.usfirst.frc2832.Robot_2016.commands.SpinShooterWheels;
@@ -96,7 +97,7 @@ public class OI {
 	    backButton.whenPressed(new Shoot());
 	    
 	    bButton = new JoystickButton(gamepad, GamepadState.BUTTON_B);
-	    bButton.whenPressed(new VisionShoot());
+	    bButton.whenPressed(new GoToPosition(-2037));
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
 	    leftBumper.whenPressed(new GoToPosition(Levels.GROUND));

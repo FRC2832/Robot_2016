@@ -168,7 +168,7 @@ public class Robot extends IterativeRobot {
      */
     public void disabledInit(){
     	RobotMap.winchMotor.setEncPosition(0);
-    	RobotMap.winchMotor.enableBrakeMode(false);
+    	RobotMap.winchMotor.enableBrakeMode(true);
     }
 
     public void disabledPeriodic() {
@@ -214,6 +214,11 @@ public class Robot extends IterativeRobot {
         DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
 
         sendStateToLights(true, true);
+        
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
+        {
+        	RobotMap.winchMotor.ClearIaccum();
+        }
     }
 
     public void teleopInit() {
@@ -241,6 +246,10 @@ public class Robot extends IterativeRobot {
         
         sendStateToLights(true, false);
         
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
+        {
+        	RobotMap.winchMotor.ClearIaccum();
+        }
       //D-Pad Controls
     }
 

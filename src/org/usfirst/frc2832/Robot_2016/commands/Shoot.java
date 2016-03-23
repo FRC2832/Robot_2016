@@ -20,7 +20,7 @@ public class Shoot extends Command {
 
 	private long timeStart;
 	//length of timeout, in milliseconds
-	private static final long TIMEOUT = 1500;
+	private static final long TIMEOUT = 2500;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
 	private static double  DELAY = 2000; //milliseconds that the ball motors move for before the kicker kicks in
@@ -44,6 +44,7 @@ public class Shoot extends Command {
 	@Override
 	protected void execute() {
 		//Kicker.resetAfterLaunch();
+		BallMotors.expel(0.5);
 		if ((timeStart + DELAY) < System.currentTimeMillis())
 			Kicker.launch();
 	}
