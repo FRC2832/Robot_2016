@@ -131,6 +131,7 @@ public class Robot extends IterativeRobot {
         auto_Movement.addObject("Move Forward 6.5", "f6.5");
         auto_Movement.addObject("Move Backward 5", "f-5");
         auto_Movement.addObject("Spy Bot", "s");
+        auto_Movement.addObject("Low Bar", "l");
         SmartDashboard.putData("Autonomous Selection", auto_Movement);
         
         auto_Reverse = new SendableChooser();
@@ -170,7 +171,7 @@ public class Robot extends IterativeRobot {
      */
     public void disabledInit(){
     	RobotMap.winchMotor.setEncPosition(0);
-    	RobotMap.winchMotor.enableBrakeMode(false);
+    	RobotMap.winchMotor.enableBrakeMode(true);
     	RobotMap.lightRing.set(Relay.Value.kOff);
     	
     }
@@ -219,6 +220,11 @@ public class Robot extends IterativeRobot {
         DashboardOutput.putPeriodicData();//this is a method to contain all the "putNumber" crap we put to the Dashboard
 
         sendStateToLights(true, true);
+        
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
+        {
+        	RobotMap.winchMotor.ClearIaccum();
+        }
     }
 
     public void teleopInit() {
@@ -249,6 +255,10 @@ public class Robot extends IterativeRobot {
         
         
         
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
+        {
+        	RobotMap.winchMotor.ClearIaccum();
+        }
       //D-Pad Controls
     }
 
