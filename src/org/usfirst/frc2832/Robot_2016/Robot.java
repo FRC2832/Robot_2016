@@ -37,6 +37,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.can.CANJNI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -159,6 +160,8 @@ public class Robot extends IterativeRobot {
         try{
         	table = NetworkTable.getTable("GRIP/contours");
         } catch (Exception e) {}
+     
+        RobotMap.lightRing.set(Relay.Value.kOn);
     }
 
     /**
@@ -168,6 +171,8 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	RobotMap.winchMotor.setEncPosition(0);
     	RobotMap.winchMotor.enableBrakeMode(false);
+    	RobotMap.lightRing.set(Relay.Value.kOff);
+    	
     }
 
     public void disabledPeriodic() {
@@ -188,6 +193,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	RobotMap.lightRing.set(Relay.Value.kOn);
     	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
         	oi.gamepad.loadVirtualGamepad(recordedID);
@@ -217,6 +223,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
+    	RobotMap.lightRing.set(Relay.Value.kOn);
     	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
@@ -239,6 +246,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         sendStateToLights(true, false);
+        
+        
         
       //D-Pad Controls
     }
