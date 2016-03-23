@@ -1,9 +1,11 @@
 package org.usfirst.frc2832.Robot_2016.commands.autonomous;
 
+import org.usfirst.frc2832.Robot_2016.Robot;
 import org.usfirst.frc2832.Robot_2016.RobotMap;
 import org.usfirst.frc2832.Robot_2016.TrajectoryController;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -59,5 +61,6 @@ public class RotateAngle extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     }
 }

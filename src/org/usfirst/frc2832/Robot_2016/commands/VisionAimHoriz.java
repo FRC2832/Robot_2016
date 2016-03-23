@@ -6,47 +6,28 @@ import org.usfirst.frc2832.Robot_2016.vision.ImageProcessing;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //DEBUG USE ONLY
 //DO NOT USE FOR ANY LEGITIMATE PROCESS
 //THANKS :)
-public class VisionAimHoriz extends Command {
+public class VisionAimHoriz extends CommandGroup {
 
 	private static final int FOV_ANGLE=22;
-	@Override
-	protected void initialize() {
+	
+	public VisionAimHoriz() {
 		ImageProcessing.process();
 		double angle = -ImageProcessing.targetOffset[0]*FOV_ANGLE;
 		if(Math.abs(angle)>1.5)
-		Scheduler.getInstance().add(new RotateAngle(angle));
+			addSequential(new RotateAngle(angle));
+		
+		addSequential(new RotatePID(angle));
 		SmartDashboard.putNumber("angle", angle);
 		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);
 		SmartDashboard.putNumber("height", ImageProcessing.height);
-	}
-
-	@Override
-	protected void execute() {
-	}
-
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	protected void end() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void interrupted() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

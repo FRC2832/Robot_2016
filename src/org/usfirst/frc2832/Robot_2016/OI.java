@@ -20,6 +20,7 @@ import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
+import org.usfirst.frc2832.Robot_2016.commands.VisionAimHoriz;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -69,6 +70,7 @@ public class OI {
 	public JoystickButton leftBumper;
 	public JoystickButton rightBumper;
 	public JoystickButton backButton;
+	public JoystickButton startButton;
 	
 	public SendableChooser index;
 	
@@ -95,7 +97,8 @@ public class OI {
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    rightBumper.whenPressed(new GoToPosition(Levels.START));
 	    
-	    
+	    startButton = new JoystickButton(gamepad,GamepadState.BUTTON_START);
+	    startButton.whenPressed(new VisionAimHoriz());
 	    
 	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X);
 	    xButton.whenPressed(new Kick());

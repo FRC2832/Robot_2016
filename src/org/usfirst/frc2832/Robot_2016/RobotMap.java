@@ -129,7 +129,6 @@ public class RobotMap {
         try
         {
         	gyro = new AnalogGyro(2);
-        	gyroPID = new DeltaPID(gyro, winchMotor);
         } 
         catch (Exception e) 
         {
