@@ -18,12 +18,17 @@ public class VisionAimHoriz extends CommandGroup {
 	
 	public VisionAimHoriz() {
 		ImageProcessing.process();
+		
 		double angle = -ImageProcessing.targetOffset[0]*FOV_ANGLE;
-		if(Math.abs(angle)>1.5)
+		double anglePos = angle + RobotMap.imu.getYaw();
+		SmartDashboard.putNumber("angle", angle);
+		
+		SmartDashboard.putNumber("toAngle",anglePos);
+		
+		if(Math.abs(angle)>5)
 			addSequential(new RotateAngle(angle));
 		
-		addSequential(new RotatePID(angle));
-		SmartDashboard.putNumber("angle", angle);
+		addSequential(new RotatePID(anglePos));
 		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);

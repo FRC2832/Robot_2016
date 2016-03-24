@@ -98,8 +98,8 @@ public class OI {
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    rightBumper.whenPressed(new GoToPosition(Levels.START));
 	    
-	    startButton = new JoystickButton(gamepad,GamepadState.BUTTON_START);
-	    startButton.whenPressed(new HorizontalAim());
+	    //startButton = new JoystickButton(gamepad,GamepadState.BUTTON_START);
+	    //startButton.whenPressed(new HorizontalAim());
 	    
 	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X);
 	    xButton.whenPressed(new Kick());
