@@ -20,10 +20,10 @@ public class Shoot extends Command {
 
 	private long timeStart;
 	//length of timeout, in milliseconds
-	private static final long TIMEOUT = 2500;
+	private static final long TIMEOUT = 3000;
 	private static double startAngle;
 	private static final double ANGLE_TOLERANCE = 0.05; //how many degrees it wants to return within
-	private static double  DELAY = 2000; //milliseconds that the ball motors move for before the kicker kicks in
+	private static double  DELAY = 2500; //milliseconds that the ball motors move for before the kicker kicks in
 	
 	public Shoot()
 	{
@@ -37,16 +37,21 @@ public class Shoot extends Command {
 		BallMotors.expel(0.5);
 		//record time of command start
 		timeStart = System.currentTimeMillis();
+		Robot.isSpinning = true;
 		
-	
 	}
 
 	@Override
 	protected void execute() {
 		//Kicker.resetAfterLaunch();
+		
 		BallMotors.expel(0.5);
 		if ((timeStart + DELAY) < System.currentTimeMillis())
+		{
 			Kicker.launch();
+			Robot.isSpinning=true;
+			Robot.isShooting=true;
+		}
 	}
 
 	@Override
@@ -59,13 +64,15 @@ public class Shoot extends Command {
 	protected void end() {
 		Kicker.resetAfterLaunch();
 		BallMotors.stopMotors();
-		
+		Robot.isShooting=false;
+		Robot.isSpinning=false;
 	}
 
 	@Override
 	protected void interrupted() {
 		//Kicker.reset(); //fail-safe
-
+		Robot.isShooting=false;
+		Robot.isSpinning=false;
 		BallMotors.stopMotors();
 	}
 

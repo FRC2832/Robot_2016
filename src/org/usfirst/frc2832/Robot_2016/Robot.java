@@ -34,6 +34,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.can.CANJNI;
 import edu.wpi.first.wpilibj.command.Command;
@@ -152,7 +153,7 @@ public class Robot extends IterativeRobot {
         lookupTable = new InterpolatedLookupTable();
         lookupTable.setup();
         
-        rotatePID = new PIDController(1,0.01,0,new PIDSource() {
+        rotatePID = new PIDController(1,0.1,0,new PIDSource() {
    
         	@Override
         	public double pidGet() {
@@ -185,8 +186,6 @@ public class Robot extends IterativeRobot {
         try{
         	table = NetworkTable.getTable("GRIP/contours");
         } catch (Exception e) {}
-     
-        RobotMap.lightRing.set(Relay.Value.kOn);
     }
 
     /**
@@ -196,11 +195,12 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	RobotMap.winchMotor.setEncPosition(0);
     	RobotMap.winchMotor.enableBrakeMode(true);
-    	RobotMap.lightRing.set(Relay.Value.kOff);
+    	RobotMap.lightRing.setRaw(0);
     	
     }
 
     public void disabledPeriodic() {
+    	RobotMap.lightRing.setRaw(0);
         Scheduler.getInstance().run();
         
         recordedID = (String) (oi.index.getSelected());
@@ -218,7 +218,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	RobotMap.lightRing.set(Relay.Value.kOn);
+    	RobotMap.lightRing.setRaw(128);
     	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
         	oi.gamepad.loadVirtualGamepad(recordedID);
@@ -253,7 +253,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
-    	RobotMap.lightRing.set(Relay.Value.kOn);
+    	RobotMap.lightRing.setRaw(128);
     	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
@@ -349,10 +349,11 @@ public class Robot extends IterativeRobot {
         //right Trigger Code
         if (oi.gamepad.getRawAxis(GamepadState.AXIS_RT) >= .2) {  
         	Scheduler.getInstance().add(new SpinShooterWheels());
-        	
+        	isSpinning = true;
         	rightTriggerPressed = true;
 		} else if (rightTriggerPressed){
 			rightTriggerPressed = false;
+			isSpinning = false;
 			shooterNotActive = true;
 			Scheduler.getInstance().add(new StopBallMotors());
 			
@@ -392,8 +393,8 @@ public class Robot extends IterativeRobot {
     		CAN_data.put(0, (byte)(isAutonomous ? 0 : 1) );
     		CAN_data.put(1, (byte)(isBlue ? 0 : 1) );
     		CAN_data.put(2, (byte)(isEnabled ? 1 : 0) );
-//    		CAN_data.put(3, (byte)(isSpinning ? 1 : 0) );
-    		CAN_data.put(3, (byte)(rightTriggerPressed ? 1 : 0) );
+    		CAN_data.put(3, (byte)(isSpinning ? 1 : 0) );
+    		//CAN_data.put(3, (byte)(rightTriggerPressed ? 1 : 0) );
     		
     		CAN_data.put(4, (byte)(isShooting ? 1 : 0) );
     		CAN_data.put(5, (byte)(isExpelling ? 1 : 0) );

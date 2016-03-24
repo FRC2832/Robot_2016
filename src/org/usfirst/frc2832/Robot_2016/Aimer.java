@@ -71,7 +71,7 @@ public class Aimer extends Subsystem {
 	public static void toPositionMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Position);
-		RobotMap.winchMotor.setPID(1, 0.01, 0);
+		RobotMap.winchMotor.setPID(3, 0.01, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	//to be used for snapping to START or GROUND positions

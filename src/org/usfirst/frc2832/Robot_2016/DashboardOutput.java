@@ -70,7 +70,6 @@ public class DashboardOutput {
 		SmartDashboard.putData("GoToLevel 1", new GoToPosition(Levels.HIGH));
       	SmartDashboard.putData("GoToLevel 2", new GoToPosition(Levels.LOW));
 		SmartDashboard.putData("GoToLevel 3", new GoToPosition(Levels.GROUND));
-		SmartDashboard.putData("ImagingTest", new VisionAimHoriz());
 		
 //DCM		SmartDashboard.putString("MAC", Robot.GetMacAddress());
 	}

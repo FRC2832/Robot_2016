@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Kicker extends Subsystem{
 
 	public static double LAUNCH_ANGLE = .25;
-	public static double REST_ANGLE = 0.05;
+	public static double REST_ANGLE = 0;
 	public static double NEUTRAL_ANGLE = 0;
 
 	

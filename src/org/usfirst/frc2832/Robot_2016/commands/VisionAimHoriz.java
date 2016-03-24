@@ -28,6 +28,7 @@ public class VisionAimHoriz extends CommandGroup {
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);
 		SmartDashboard.putNumber("height", ImageProcessing.height);
+		
 	}
 
 }

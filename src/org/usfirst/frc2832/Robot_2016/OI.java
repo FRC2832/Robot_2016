@@ -17,6 +17,7 @@ import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
 import org.usfirst.frc2832.Robot_2016.commands.Expel;
 import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
+import org.usfirst.frc2832.Robot_2016.commands.HorizontalAim;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
@@ -89,7 +90,7 @@ public class OI {
 	    backButton.whenPressed(new Shoot());
 	    
 	    bButton = new JoystickButton(gamepad, GamepadState.BUTTON_B);
-	    bButton.whenPressed(new GoToPosition(-2037));
+	    bButton.whenPressed(new GoToPosition(-1937));
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
 	    leftBumper.whenPressed(new GoToPosition(Levels.GROUND));
@@ -98,7 +99,7 @@ public class OI {
 	    rightBumper.whenPressed(new GoToPosition(Levels.START));
 	    
 	    startButton = new JoystickButton(gamepad,GamepadState.BUTTON_START);
-	    startButton.whenPressed(new VisionAimHoriz());
+	    startButton.whenPressed(new HorizontalAim());
 	    
 	    xButton = new JoystickButton(gamepad, GamepadState.BUTTON_X);
 	    xButton.whenPressed(new Kick());
