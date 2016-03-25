@@ -18,6 +18,8 @@ public class GoToPosition extends Command {
 	       kminHighSpeed = 1,
 	       kmaxLowSpeed = 1.2,
 	       kmaxHighSpeed = 1.8,
+	       
+	       kSpeedDown = 1.0,
 		   kSpeedUp = 2.5; //Raise speed when going up
 	//DeltaPID changeLevel = new DeltaPID(RobotMap.winchMotor, RobotMap.winchMotor);
 	TrajectoryController motionProfile;
@@ -71,23 +73,30 @@ public class GoToPosition extends Command {
 				isUp = -1;
 			}
 			
-			if(setPoint == Levels.START.getSetpoint() || setPoint == Levels.GROUND.getSetpoint()) //use FAST MOTION PROFILE
+			if(setPoint == Levels.START.getSetpoint() || setPoint == Levels.GROUND.getSetpoint()) { //use FAST MOTION PROFILE
+				if (isUp == 1)
+					motionProfile = new TrajectoryController(Math.abs(setPoint - initPoint), 
+							kminHighSpeed * Aimer.MOVE_SPEED_UP, kminHighSpeed * Aimer.MOVE_SPEED_UP, kmaxHighSpeed * Aimer.MOVE_SPEED_UP, 1.5, -1.5);
+				else
+					motionProfile = new TrajectoryController(Math.abs(setPoint - initPoint), 
+							kminHighSpeed * Aimer.MOVE_SPEED_UP, kminHighSpeed * Math.abs(Aimer.MOVE_SPEED_DOWN), kmaxHighSpeed * Math.abs(Aimer.MOVE_SPEED_DOWN), 1.5, -1);
+			} else //USE SLOWER (MORE NORMAL) MOTION PROFILE
 				motionProfile = new TrajectoryController(Math.abs(setPoint - initPoint), 
-				kminHighSpeed * Aimer.MOVE_SPEED_UP, kminHighSpeed * Aimer.MOVE_SPEED_UP, kmaxHighSpeed * Aimer.MOVE_SPEED_UP, 1.5, -1.5);
-			else //USE SLOWER (MORE NORMAL) MOTION PROFILE
-				motionProfile = new TrajectoryController(Math.abs(setPoint - initPoint), 
-				kminLowSpeed * Aimer.MOVE_SPEED_UP, kminLowSpeed * Aimer.MOVE_SPEED_UP, kmaxLowSpeed * Aimer.MOVE_SPEED_UP, 0.9, -0.9);
+						kminLowSpeed * Aimer.MOVE_SPEED_UP, kminLowSpeed * Aimer.MOVE_SPEED_UP, kmaxLowSpeed * Aimer.MOVE_SPEED_UP, 0.9, -0.9);
+			
 			RobotMap.winchMotor.enableControl();
 			if(isUp == 1)
 				RobotMap.winchMotor.set(kSpeedUp * isUp * motionProfile.get(initPoint));
 			else
-				RobotMap.winchMotor.set(isUp * motionProfile.get(initPoint));
+				RobotMap.winchMotor.set(kSpeedDown * isUp * motionProfile.get(initPoint));
 		}
 	}
 
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
+		if (RobotMap.winchMotor == null)
+			return;
 		RobotMap.winchMotor.set(isUp * motionProfile.get(Math.abs(RobotMap.winchMotor.getEncPosition() - initPoint)));
 		
 		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE &&

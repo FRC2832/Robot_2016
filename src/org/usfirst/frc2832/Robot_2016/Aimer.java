@@ -78,7 +78,7 @@ public class Aimer extends Subsystem {
 	public static void toProfiledVelocityMode()
 	{
 		RobotMap.winchMotor.changeControlMode(CANTalon.TalonControlMode.Speed);
-		RobotMap.winchMotor.setPID(1, 0.1, 0);
+		RobotMap.winchMotor.setPID(1, 0.01, 0);
 		RobotMap.winchMotor.setAllowableClosedLoopErr(0);
 	}
 	/**

@@ -73,17 +73,17 @@ public class RobotMap {
 
     public static void init() {
 
-        frontLeftMotor = new CANTalon(1);
+        frontLeftMotor = new CANTalonLoggable(1);
         LiveWindow.addActuator("Drivetrain", "frontLeft", frontLeftMotor);
         
-        frontRightMotor = new CANTalon(3);
+        frontRightMotor = new CANTalonLoggable(3);
         LiveWindow.addActuator("Drivetrain", "frontRight", frontRightMotor);
         
         //the following code sets the back motors as slaves/followers to the front
-        backLeftMotor = new CANTalon(2);
+        backLeftMotor = new CANTalonLoggable(2);
         backLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backLeftMotor.set(1);
-        backRightMotor = new CANTalon(4);
+        backRightMotor = new CANTalonLoggable(4);
         backRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backRightMotor.set(3);
         
