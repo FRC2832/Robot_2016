@@ -53,7 +53,7 @@ public class RobotMap {
     
     public static CANTalon tail;
     
-    public static PWM lightRing;
+    public static Relay lightRing;
     
     public static AnalogInput laser;
     public static AnalogInput proxSensor;
@@ -142,10 +142,7 @@ public class RobotMap {
         //e.printStackTrace();
         }
         
-        lightRing = new PWM(0);
-        lightRing.setRaw(0);
-        
-        
-        
+        lightRing = new Relay(0);
+        lightRing.set(Relay.Value.kOff);
     }
 }

@@ -26,7 +26,7 @@ public class CANTalonCurrentSafety extends CANTalon {
 			
 			boolean isDisabled = false;
 			
-			while (true) {
+			while (!Thread.currentThread().isInterrupted()) {
 				// Rolling Avg.
 				current = filter * getOutputCurrent() + current * (1 - filter);
 				if (current > max * 0.9 && !isDisabled) {
@@ -40,14 +40,22 @@ public class CANTalonCurrentSafety extends CANTalon {
 			}
 		}
 	}
+	private Thread th;
+	
 	public CANTalonCurrentSafety(int deviceNumber) {
 		super(deviceNumber);
-		(new MonitorThread()).start();
+		th = new MonitorThread();
+		th.start();
 	}
 
 	@Override
 	public String getSmartDashboardType() {
 		return null;
 	}
-
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		th.interrupt();
+	}
 }

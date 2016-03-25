@@ -24,8 +24,12 @@ import org.usfirst.frc2832.Robot_2016.commands.StopAimer;
 import org.usfirst.frc2832.Robot_2016.commands.StopBallMotors;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ConstructedAutonomous;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.ParseInput;
+import org.usfirst.frc2832.Robot_2016.vision.CameraServer2832;
 import org.usfirst.frc2832.Robot_2016.vision.InterpolatedLookupTable;
 
+import com.ni.vision.VisionException;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -34,7 +38,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.can.CANJNI;
 import edu.wpi.first.wpilibj.command.Command;
@@ -110,12 +113,13 @@ public class Robot extends IterativeRobot {
 	        camera1.setFPS(15);
 	        camera1.setSize(320, 240);
 	        
-	        camera2.setFPS(15);
-	        camera2.setSize(320, 240);
-	        CameraServer2832 cameraServer = CameraServer2832.getInstance();
-	        cameraServer.startAutomaticCapture(camera1, camera2);
-	        //CameraServer cameraServer = CameraServer.getInstance();
-	        //;
+	        //camera2.setFPS(15);
+	        //camera2.setSize(320, 240);
+	        //CameraServer2832 cameraServer = CameraServer2832.getInstance();
+	        
+	        CameraServer cameraServer = CameraServer.getInstance();
+	        cameraServer.setQuality(10);
+	        cameraServer.startAutomaticCapture(camera1);
         } catch (VisionException e) {
 	        
 	    }*/
@@ -195,12 +199,11 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	RobotMap.winchMotor.setEncPosition(0);
     	RobotMap.winchMotor.enableBrakeMode(true);
-    	RobotMap.lightRing.setRaw(0);
-    	
+        RobotMap.lightRing.set(Relay.Value.kOff);
     }
 
     public void disabledPeriodic() {
-    	RobotMap.lightRing.setRaw(0);
+        RobotMap.lightRing.set(Relay.Value.kOff);
         Scheduler.getInstance().run();
         
         recordedID = (String) (oi.index.getSelected());
@@ -218,7 +221,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	RobotMap.lightRing.setRaw(128);
+        RobotMap.lightRing.set(Relay.Value.kOn);
     	RobotMap.winchMotor.enableBrakeMode(true);
     	if (recordedAuton) {
         	oi.gamepad.loadVirtualGamepad(recordedID);
@@ -253,7 +256,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
-    	RobotMap.lightRing.setRaw(128);
+        RobotMap.lightRing.set(Relay.Value.kOn);
     	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
