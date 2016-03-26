@@ -43,14 +43,18 @@ public class DashboardOutput {
 		//TODO: best to remove the below code at competition to reduce lag
 		//ImageProcessing.process();
 		//SmartDashboard.putNumber("contour x pos", ImageProcessing.targetOffset[0]);
-		if (!hasCameraCaught)
+		
+		// Zach and Doug: We are getting null pointer exceptions from this code now and then.
+		// Removing since not used when the raspberry pi is being used.
+		/*if (!hasCameraCaught)
 		{
 			try {
 				CameraServer2832.getInstance().setSelectedCamera(InterfaceFlip.isFlipped ? 1 : 0);
 			} catch(Exception e) {
 				hasCameraCaught = true;
 			}
-		}
+		}*/
+		
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
 	
