@@ -73,17 +73,23 @@ public class RobotMap {
 
     public static void init() {
 
-        frontLeftMotor = new CANTalonLoggable(1);
+    	// Doug MacKenzie: Switch from CANTalonLoggable back to CANTalon to remove the logging thread
+    	// Trying to fix very high CPU utilization on the roboRIO that is causing lagging.
+//        frontLeftMotor = new CANTalonLoggable(1);
+    	frontLeftMotor = new CANTalon(1);
         LiveWindow.addActuator("Drivetrain", "frontLeft", frontLeftMotor);
         
-        frontRightMotor = new CANTalonLoggable(3);
+//        frontRightMotor = new CANTalonLoggable(3);
+        frontRightMotor = new CANTalon(3);
         LiveWindow.addActuator("Drivetrain", "frontRight", frontRightMotor);
         
         //the following code sets the back motors as slaves/followers to the front
-        backLeftMotor = new CANTalonLoggable(2);
+//        backLeftMotor = new CANTalonLoggable(2);
+        backLeftMotor = new CANTalon(2);
         backLeftMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backLeftMotor.set(1);
-        backRightMotor = new CANTalonLoggable(4);
+//        backRightMotor = new CANTalonLoggable(4);
+        backRightMotor = new CANTalon(4);
         backRightMotor.changeControlMode(CANTalon.TalonControlMode.Follower);
         backRightMotor.set(3);
         
@@ -98,6 +104,14 @@ public class RobotMap {
         frontRightMotor.enableBrakeMode(true);
         backLeftMotor.enableBrakeMode(true);
         backRightMotor.enableBrakeMode(true);
+        
+        // Doug MacKenzie : Attempt to reproduce the code added by Brendan to reduce current usage by the drive train. 
+        // Removed brownout problems
+        frontLeftMotor.setVoltageRampRate( 41 );
+        frontRightMotor.setVoltageRampRate( 41 );
+        backLeftMotor.setVoltageRampRate( 41 );
+        backRightMotor.setVoltageRampRate( 41 );
+       
         
         frontLeftMotor.setInverted(true);
         frontRightMotor.setInverted(true);
