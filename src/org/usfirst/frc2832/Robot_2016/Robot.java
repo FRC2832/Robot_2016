@@ -298,10 +298,10 @@ public class Robot extends IterativeRobot {
     
     private void handleInput(GenericHID g) {
     	
-    	// slow down turning sensitivity by multiplying stick input bhy 0.7
+    	// slow down turning sensitivity by multiplying stick input bhy 0.75
     	RobotMap.driveTrain.arcadeDrive(
     			g.getRawAxis(GamepadState.AXIS_LY) * (InterfaceFlip.isFlipped ? 1 : -1), 
-    			g.getRawAxis(GamepadState.AXIS_RX) * 0.7);
+    			g.getRawAxis(GamepadState.AXIS_RX) * 0.75);
     	
     	//D-Pad Controls
 
