@@ -93,19 +93,25 @@ public class GoToPosition extends Command {
 	}
 
 	@Override
-	protected void execute() {
-		// TODO Auto-generated method stub
-		if (RobotMap.winchMotor == null)
-			return;
-		RobotMap.winchMotor.set(isUp * motionProfile.get(Math.abs(RobotMap.winchMotor.getEncPosition() - initPoint)));
-		
-		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE &&
-		   Math.abs(setPoint - Levels.START.getSetpoint()) < Aimer.TOLERANCE)
-			Aimer.sentinel = true;
-		
-		if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE &&
-		   Math.abs(setPoint - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE)
-			Aimer.sentinel = true;
+	protected void execute() 
+	{
+		// Doug: Wrap in try/catch because getting null pointer errors here now and then
+		try 
+		{
+			RobotMap.winchMotor.set(isUp * motionProfile.get( Math.abs(RobotMap.winchMotor.getEncPosition() - initPoint)));
+
+			if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < Aimer.TOLERANCE &&
+					Math.abs(setPoint - Levels.START.getSetpoint()) < Aimer.TOLERANCE)
+				Aimer.sentinel = true;
+
+			if(Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE &&
+					Math.abs(setPoint - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE)
+				Aimer.sentinel = true;
+		} 
+		catch (Exception e)
+		{
+			// nothing
+		}
 	}
 
 	@Override
