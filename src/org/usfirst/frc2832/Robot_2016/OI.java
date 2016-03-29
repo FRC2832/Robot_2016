@@ -90,7 +90,7 @@ public class OI {
 	    backButton.whenPressed(new Shoot());
 	    
 	    bButton = new JoystickButton(gamepad, GamepadState.BUTTON_B);
-	    bButton.whenPressed(new GoToPosition(-1937));
+	    bButton.whenPressed(new GoToPosition(-400/*-1937*/));
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
 	    leftBumper.whenPressed(new GoToPosition(Levels.GROUND));

@@ -7,6 +7,7 @@ import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
 import org.usfirst.frc2832.Robot_2016.TrajectoryController;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //Will set Lenny to a position or fixed level. 
 public class GoToPosition extends Command {
@@ -45,6 +46,9 @@ public class GoToPosition extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
+		if(RobotMap.winchMotor.getEncPosition() > 0)
+			RobotMap.winchMotor.setEncPosition(0);
+		
 		Aimer.loadPreferences();
 		timeStart = System.currentTimeMillis();
 		//if(setPoint == Levels.START.getSetpoint() || setPoint == Levels.GROUND.getSetpoint())
@@ -60,6 +64,7 @@ public class GoToPosition extends Command {
 		if(Math.abs(initPoint - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE &&
 		   Math.abs(setPoint - Levels.GROUND.getSetpoint()) < Aimer.TOLERANCE)
 					Aimer.sentinel = true;
+		
 		if(!Aimer.sentinel) //Then you have the green light to go ahead and move
 		{
 			if(setPoint > initPoint) //Which direction are we going?
@@ -128,6 +133,14 @@ public class GoToPosition extends Command {
 		// TODO Auto-generated method stub
 		Aimer.toPositionMode();
 		RobotMap.winchMotor.set(setPoint);
+		SmartDashboard.putNumber("setpoint", setPoint);
+		if(setPoint==0 && RobotMap.winchMotor.getEncPosition()>0)
+		{
+			RobotMap.winchMotor.setEncPosition(setPoint);
+			SmartDashboard.putString("yes", "yes");
+		}
+			
+			
 		if(Aimer.sentinel)
 			RobotMap.winchMotor.disableControl();
 	}
@@ -137,6 +150,8 @@ public class GoToPosition extends Command {
 		// TODO Auto-generated method stub
 		Aimer.toPositionMode();
 		RobotMap.winchMotor.set(setPoint);
+		if(setPoint==0 && RobotMap.winchMotor.getEncPosition()>0)
+			RobotMap.winchMotor.setEncPosition(setPoint);
 	}
 
 }

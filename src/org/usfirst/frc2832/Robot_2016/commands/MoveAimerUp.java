@@ -16,6 +16,8 @@ public class MoveAimerUp extends Command {
 	}
 	@Override
 	protected void initialize() {
+		if(RobotMap.winchMotor.getEncPosition() > 0)
+			RobotMap.winchMotor.setEncPosition(0);
 		// TODO Auto-generated method stub
 		Aimer.upSpeedMode();
 		Aimer.sentinel = false;

@@ -4,8 +4,8 @@ import org.usfirst.frc2832.Robot_2016.Robot;
 
 public class ImageProcessing {
 	//resolution
-	private static final int RES_X = 640;
-	private static final int RES_Y = 480;
+	private static final int RES_X = 320;
+	private static final int RES_Y = 240;
 	//view angle of camera, in radians
 	private static final double VIEW_ANG = 67* Math.PI / 180;
 	

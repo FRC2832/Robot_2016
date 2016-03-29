@@ -14,6 +14,8 @@ public class MoveAimerDown extends Command {
 		requires (Robot.aimer);
 	}
 	protected void initialize() {
+		if(RobotMap.winchMotor.getEncPosition() > 0)
+			RobotMap.winchMotor.setEncPosition(0);
 		// TODO Auto-generated method stub
 		Aimer.downSpeedMode();
 		Aimer.sentinel = false;

@@ -110,8 +110,7 @@ public class RobotMap {
         frontLeftMotor.setVoltageRampRate( 41 );
         frontRightMotor.setVoltageRampRate( 41 );
         backLeftMotor.setVoltageRampRate( 41 );
-        backRightMotor.setVoltageRampRate( 41 );
-       
+        backRightMotor.setVoltageRampRate( 41 );       
         
         frontLeftMotor.setInverted(true);
         frontRightMotor.setInverted(true);
