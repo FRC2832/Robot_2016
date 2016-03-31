@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartRotate extends Command {
 
 	private static double MAX_OUTPUT=0.8;
-	private static double MIN_OUTPUT=0.6;
+	private static double MIN_OUTPUT=0.5;
 	private static double MAX_INPUT=30;
 	private static double MIN_INPUT=1;
+	private static final int TIMEOUT = 5000;
 
 	private double theta;
 	private boolean finished;
@@ -21,6 +22,7 @@ public class SmartRotate extends Command {
 	
     public SmartRotate(double angle) {
         theta = angle;
+        
     }
 
     // Called just before this Command runs the first time

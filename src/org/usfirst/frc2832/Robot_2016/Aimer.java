@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Aimer extends Subsystem {
 	public static int currentLevel = 0;
 	public static boolean sentinel = false; //if true the TALON should be disabled
-	public static final int TOLERANCE = 200; //in encoder counts
+	public static final int TOLERANCE = 100; //in encoder counts
 	public static enum Levels {
 		START (0), 
 		HIGH (-240), 

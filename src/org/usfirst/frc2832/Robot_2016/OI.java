@@ -15,12 +15,14 @@ import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.HID.RecordableGamepad;
 import org.usfirst.frc2832.Robot_2016.HID.SavedStates;
+import org.usfirst.frc2832.Robot_2016.commands.Debug;
 import org.usfirst.frc2832.Robot_2016.commands.Expel;
 import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
 import org.usfirst.frc2832.Robot_2016.commands.HorizontalAim;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
 import org.usfirst.frc2832.Robot_2016.commands.Kick;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
+import org.usfirst.frc2832.Robot_2016.commands.SmartRotate;
 import org.usfirst.frc2832.Robot_2016.commands.VisionAimHoriz;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -90,7 +92,9 @@ public class OI {
 	    backButton.whenPressed(new Shoot());
 	    
 	    bButton = new JoystickButton(gamepad, GamepadState.BUTTON_B);
-	    bButton.whenPressed(new GoToPosition(-1937));
+	    //bButton.whenPressed(new Debug());
+	    bButton.whenPressed(new GoToPosition(-250/*-1937*/));
+	    //bButton.whenPressed(new SmartRotate(2));
 	    
 	    leftBumper = new JoystickButton(gamepad,GamepadState.BUTTON_LB);
 	    leftBumper.whenPressed(new GoToPosition(Levels.GROUND));
@@ -98,6 +102,7 @@ public class OI {
 	    rightBumper = new JoystickButton(gamepad,GamepadState.BUTTON_RB);
 	    rightBumper.whenPressed(new GoToPosition(Levels.START));
 	    
+	    SmartDashboard.putNumber("FOV_ANGLE",27);
 	    //startButton = new JoystickButton(gamepad,GamepadState.BUTTON_START);
 	    //startButton.whenPressed(new HorizontalAim());
 	    

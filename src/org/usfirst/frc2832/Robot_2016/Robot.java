@@ -257,7 +257,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     	RobotMap.winchMotor.enableBrakeMode(true);
         RobotMap.lightRing.set(Relay.Value.kOn);
-    	
+        	
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -280,8 +280,9 @@ public class Robot extends IterativeRobot {
         
         sendStateToLights(true, false);
         
-        
-        
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed())
+        	RobotMap.winchMotor.setEncPosition(0);
+        	
         if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
         {
         	RobotMap.winchMotor.ClearIaccum();

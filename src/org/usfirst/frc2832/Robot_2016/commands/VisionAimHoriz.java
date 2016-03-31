@@ -14,9 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //THANKS :)
 public class VisionAimHoriz extends CommandGroup {
 
-	private static final int FOV_ANGLE=22;
+	private static int FOV_ANGLE=25;
 	
 	public VisionAimHoriz() {
+		FOV_ANGLE = (int)SmartDashboard.getNumber("FOV_ANGLE",27);
+		
 		ImageProcessing.process();
 		
 		double angle = -ImageProcessing.targetOffset[0]*FOV_ANGLE;
@@ -25,10 +27,7 @@ public class VisionAimHoriz extends CommandGroup {
 		
 		SmartDashboard.putNumber("toAngle",anglePos);
 		
-		if(Math.abs(angle)>5)
-			addSequential(new RotateAngle(angle));
-		
-		addSequential(new RotatePID(anglePos));
+		addSequential(new SmartRotate(angle));
 		SmartDashboard.putNumber("offset X", ImageProcessing.targetOffset[0]);
 		SmartDashboard.putNumber("offset Y", ImageProcessing.targetOffset[1]);
 		SmartDashboard.putNumber("target depth", ImageProcessing.depth);
