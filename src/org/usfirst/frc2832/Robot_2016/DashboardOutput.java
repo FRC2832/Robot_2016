@@ -5,6 +5,7 @@ import org.usfirst.frc2832.Robot_2016.commands.AutonomousCommand;
 import org.usfirst.frc2832.Robot_2016.commands.GoToPosition;
 import org.usfirst.frc2832.Robot_2016.commands.VisionAimHoriz;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
+import org.usfirst.frc2832.Robot_2016.commands.ResetEncoderToGround;
 import org.usfirst.frc2832.Robot_2016.commands.Shoot;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.MoveForward;
 import org.usfirst.frc2832.Robot_2016.commands.autonomous.RotateAngle;
@@ -74,6 +75,7 @@ public class DashboardOutput {
 		SmartDashboard.putData("GoToLevel 1", new GoToPosition(Levels.HIGH));
       	SmartDashboard.putData("GoToLevel 2", new GoToPosition(Levels.LOW));
 		SmartDashboard.putData("GoToLevel 3", new GoToPosition(Levels.GROUND));
+		SmartDashboard.putData("Reset Encoder to GROUND", new ResetEncoderToGround());
 		
 //DCM		SmartDashboard.putString("MAC", Robot.GetMacAddress());
 	}
