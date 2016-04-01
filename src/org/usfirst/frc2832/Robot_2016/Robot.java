@@ -14,6 +14,7 @@ package org.usfirst.frc2832.Robot_2016;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import org.usfirst.frc2832.Robot_2016.Aimer.Levels;
 import org.usfirst.frc2832.Robot_2016.HID.GamepadState;
 import org.usfirst.frc2832.Robot_2016.commands.Intake;
 import org.usfirst.frc2832.Robot_2016.commands.InterfaceFlip;
@@ -280,7 +281,7 @@ public class Robot extends IterativeRobot {
         
         sendStateToLights(true, false);
         
-        if(RobotMap.winchMotor.isFwdLimitSwitchClosed())
+        if(RobotMap.winchMotor.isFwdLimitSwitchClosed() && Math.abs(RobotMap.winchMotor.getEncPosition() - Levels.START.getSetpoint()) < 150)
         	RobotMap.winchMotor.setEncPosition(0);
         	
         if(RobotMap.winchMotor.isFwdLimitSwitchClosed()||RobotMap.winchMotor.isRevLimitSwitchClosed())
